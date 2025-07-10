@@ -18,7 +18,7 @@ class GetController extends Controller
     {
          Gate::authorize('access-admin');
 
-        $cars = Cars::oldest()->simplePaginate(4);; // fetch all users
+        $cars = Cars::latest()->simplePaginate(4);; // fetch all users
 
         return view('admin.create-car', compact('cars'));
     }

@@ -58,6 +58,7 @@ Route::get('/users/{user}/profile', [EditProfileController::class, 'edit']);
 // Admin 
 Route::get('/loginadmin', [HomeController::class, 'login']);
 Route::post('/loginasadmin', [AdminController::class, 'store']);
+Route::post('/logoutasadmin', [AdminController::class, 'destroy']);
 Route::post('/cars', [CarController::class, 'store']);
 Route::get('/create', [GetController::class, 'index']);
 Route::patch('/cars/{car}', [CarController::class, 'update']);
