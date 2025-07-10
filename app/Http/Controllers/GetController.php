@@ -47,12 +47,12 @@ class GetController extends Controller
     public function user()
     {
 
-         $users = User::get(); // display all users
+         $rents = Rent::all(); // display all users
 
         // $true = 0;
 
         //  $is_admin = User::where('is_admin', $true)->get(); get by id hard coded
 
-        return view('admin.users-display', ['users' => $users]);
+        return view('admin.users-display', compact('rents'));
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Rent;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
@@ -58,17 +60,43 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Admin $admin)
+    public function edit(Rent $rent)
     {
-        //
+
+        return view('admin.edit-user', compact('rent'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, Rent $rent)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'nullable',
+            'middle_name' => 'nullable',
+            'last_name' => 'nullable',
+            'suffix' => 'nullable',
+            'password' => 'nullable',
+            'region' => 'nullable',
+            'email' => 'nullable',
+            'phone' => 'nullable',
+            'city' => 'nullable',
+            'barangay' => 'nullable',
+            'account_status' => 'nullable',
+            'verification_code' => 'nullable',
+            'additional_address' => 'nullable',
+            'profile' => 'nullable|image|mimes:jpg,jpeg,png,web',
+            'valid_id_photo' => 'nullable|image|mimes:jpg,jpeg,png,webp'
+        ]);
+
+        if ($request->hasFile('valid_id_photo')) {
+            $validated['valid_id_photo'] = $request->valid_id_photo->store('valid_id', 'public');
+        }
+
+        if ($request->hasFile('profile')) {
+            $validated['profile'] = $request->profile->store('profile', 'public');
+        }
+
+        $rent->update($validated);
+
+        return redirect('/verification_code');
     }
 
     /**

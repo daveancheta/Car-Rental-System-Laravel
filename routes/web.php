@@ -65,5 +65,7 @@ Route::patch('/cars/{car}', [CarController::class, 'update']);
 Route::get('/cars/{car}/edit', [CarController::class, 'edit']);
 Route::delete('/cars/{car}', [CarController::class, 'destroy']);
 Route::get('/display-users', [GetController::class, 'user']);
+Route::patch('/users/{rent}', [AdminController::class, 'update']);
+Route::get('/users/{rent}/admin', [AdminController::class, 'edit']);
 
 
