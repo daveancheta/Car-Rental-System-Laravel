@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cars;
 use App\Models\Rent;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -16,9 +17,9 @@ class GetController extends Controller
      */
     public function index()
     {
-         Gate::authorize('access-admin');
+        Gate::authorize('access-admin');
 
-        $cars = Cars::latest()->simplePaginate(4);; // fetch all users
+        $cars = Cars::latest()->simplePaginate(4); // fetch all users
 
         return view('admin.create-car', compact('cars'));
     }
@@ -42,5 +43,16 @@ class GetController extends Controller
 
         return view('display-rent', compact('rents'));
     }
-    
+
+    public function user()
+    {
+
+         $users = User::get(); // display all users
+
+        // $true = 0;
+
+        //  $is_admin = User::where('is_admin', $true)->get(); get by id hard coded
+
+        return view('admin.users-display', ['users' => $users]);
+    }
 }

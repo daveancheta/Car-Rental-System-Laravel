@@ -64,5 +64,6 @@ Route::get('/create', [GetController::class, 'index']);
 Route::patch('/cars/{car}', [CarController::class, 'update']);
 Route::get('/cars/{car}/edit', [CarController::class, 'edit']);
 Route::delete('/cars/{car}', [CarController::class, 'destroy']);
+Route::get('/display-users', [GetController::class, 'user']);
 
 
