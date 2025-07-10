@@ -9,7 +9,7 @@
                         <x-tables.table-head-data>Car Name</x-tables.table-head-data>
                         <x-tables.table-head-data>Start Date</x-tables.table-head-data>
                         <x-tables.table-head-data>End Date</x-tables.table-head-data>
-                        <x-tables.table-head-data>Duration Days</x-tables.table-head-data>
+                        <x-tables.table-head-data>Rental Period</x-tables.table-head-data>
                         <x-tables.table-head-data>Daily Rate</x-tables.table-head-data>
                         <x-tables.table-head-data>Total Cost</x-tables.table-head-data>
                         <x-tables.table-head-data>Status</x-tables.table-head-data>

@@ -232,6 +232,8 @@
               <input type="hidden" name="customer_valid_id_photo" value="{{ Auth::user()->valid_id_photo}}">
               <input type="hidden" name="customer_profile" value="{{ Auth::user()->profile}}">
               <input type="hidden" name="status" value="pending">
+              <input type="hidden" name="car_image" value="{{ $car->image}}">
+
 
 
               <x-modal-forms.button type="submit">

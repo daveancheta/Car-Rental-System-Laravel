@@ -52,10 +52,11 @@ class RentController extends Controller
             'car_id' => ['required'],
             'car_name' => ['required'],
             'car_price' => ['required'],
+             'car_image' => ['required'],
             'status' => ['required'],
         ]);
 
-        $user = Rent::create($validated);
+        Rent::create($validated);
 
         $carId = $request->input('car_id');
         $car = Cars::find($carId);

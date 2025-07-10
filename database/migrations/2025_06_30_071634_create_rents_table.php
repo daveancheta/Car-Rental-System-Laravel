@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('car_id');
             $table->string('car_name');
             $table->string('car_price');
+            $table->string('car_image');
             $table->string('status');
             $table->timestamps();
         });
