@@ -6,6 +6,7 @@ use App\Models\Cars;
 use App\Models\Rent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class GetController extends Controller
@@ -15,6 +16,8 @@ class GetController extends Controller
      */
     public function index()
     {
+         Gate::authorize('access-admin');
+
         $cars = Cars::oldest()->simplePaginate(4);; // fetch all users
 
         return view('admin.create-car', compact('cars'));

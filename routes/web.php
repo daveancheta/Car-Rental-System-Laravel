@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\GetController;
 use App\Http\Controllers\HomeController;
@@ -20,7 +21,7 @@ Route::get('/', [HomeController::class, 'index'])->name('login');
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/verification', [HomeController::class, 'verify']);
 Route::get('/services', [HomeController::class, 'services']);
-Route::get('/profile', [HomeController::class, 'profile']);
+Route::get('/profile', [HomeController::class, 'profile'])->middleware('auth');
 Route::get('/car', [HomeController::class, 'cars']);
 Route::get('/car', [GetController::class, 'index2']);
 Route::get('/display', [GetController::class, 'index3'])->middleware('auth');
@@ -39,14 +40,6 @@ Route::patch('/users/{user}', [RegisterController::class, 'update']);
 Route::get('/users/{user}/edit', [RegisterController::class, 'edit']);
 Route::post('/verify_code', [RegisterController::class, 'code']);
 
-// Admin
-Route::get('/create', [CarController::class, 'create'])->middleware('auth');
-Route::post('/cars', [CarController::class, 'store'])->middleware('auth');
-Route::get('/create', [GetController::class, 'index'])->middleware('auth');
-Route::patch('/cars/{car}', [CarController::class, 'update']);
-Route::get('/cars/{car}/edit', [CarController::class, 'edit']);
-Route::delete('/cars/{car}', [CarController::class, 'destroy']);
-
 // Rent
 Route::get('/rent', [RentController::class, 'create'])->middleware('auth');
 Route::post('/rent', [RentController::class, 'store'])->middleware('auth');
@@ -61,5 +54,14 @@ Route::get('/rental/{rent}/contract/download', [ContractController::class, 'down
 // Edit Profile
 Route::patch('/userss/{user}', [EditProfileController::class, 'update']);
 Route::get('/users/{user}/profile', [EditProfileController::class, 'edit']);
+
+// Admin 
+Route::get('/loginadmin', [HomeController::class, 'login']);
+Route::post('/loginasadmin', [AdminController::class, 'store']);
+Route::post('/cars', [CarController::class, 'store']);
+Route::get('/create', [GetController::class, 'index']);
+Route::patch('/cars/{car}', [CarController::class, 'update']);
+Route::get('/cars/{car}/edit', [CarController::class, 'edit']);
+Route::delete('/cars/{car}', [CarController::class, 'destroy']);
 
 

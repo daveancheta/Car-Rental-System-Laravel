@@ -47,4 +47,8 @@ class HomeController extends Controller
     {
         return view('change_password');
     }
+    public function login() 
+    {
+        return view('admin.login');
+    }
 }

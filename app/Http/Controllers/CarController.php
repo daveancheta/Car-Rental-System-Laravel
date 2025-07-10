@@ -23,6 +23,9 @@ class CarController extends Controller
      */
     public function create()
     {
+
+        Gate::authorize('access-admin');
+
         return view('admin.create-car');
     }
     /**
