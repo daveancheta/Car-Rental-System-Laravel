@@ -8,24 +8,24 @@
     $grandTotal += $total;
     @endphp
 
-    <div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div class="min-h-screen bg-gray-50 dark:bg-gray-800 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            {{-- Header Section --}}
+          
             <div class="mb-8">
                 <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Rental Agreement</h1>
                 <p class="mt-2 text-gray-600 dark:text-gray-400">Car Reference Nnumber: {{ $rent->crn_id }}</p>
             </div>
 
-            {{-- Main Content Grid --}}
+            
             <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
 
-                {{-- Left Column: Car Details --}}
+                
                 <div class="xl:col-span-2 space-y-6">
 
-                    {{-- Vehicle Information Card --}}
+                    
                     <div
-                        class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                        class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
                         <div class="relative">
                             <img src="{{ asset('storage/' . $rent->car_image) }}" alt="{{ $rent->car_name }}"
                                 class="w-full h-80 object-cover">
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
 
-                            {{-- Total Cost Highlight --}}
+                         
                             <div
                                 class="mt-8 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
                                 <div class="flex items-center justify-between">
@@ -111,16 +111,16 @@
                     </div>
                 </div>
 
-                {{-- Right Column: Customer Information --}}
+              
                 <div class="xl:col-span-1">
                     <div
-                        class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                        class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
                         <div class="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-6">
                             <h2 class="text-xl font-bold text-white">Customer Information</h2>
                         </div>
 
                         <div class="p-8">
-                            {{-- Customer Profile --}}
+                          
                             <div class="text-center mb-8">
                                 <img src="{{ asset('storage/' . $rent->customer_profile) }}" alt="Customer Profile"
                                     class="w-24 h-24 object-cover rounded-full mx-auto border-4 border-white dark:border-gray-700 shadow-lg">
@@ -130,7 +130,7 @@
                                 </h3>
                             </div>
 
-                            {{-- Contact Information --}}
+                         
                             <div class="space-y-4 mb-8">
                                 <div class="flex items-center space-x-3">
                                     <div
@@ -167,7 +167,7 @@
                                 </div>
                             </div>
 
-                            {{-- Address Information --}}
+                          
                             <div class="space-y-4 mb-8">
                                 <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Address Details</h4>
 
@@ -189,7 +189,7 @@
                                     </div>
                                     @if($rent->customer_additional_address)
                                     <div>
-                                        <span class="text-sm text-gray-600 dark:text-gray-400">Street:</span>
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">House No. / Street:</span>
                                         <span class="ml-2 text-gray-900 dark:text-white font-medium">{{
                                             $rent->customer_additional_address }}</span>
                                     </div>
@@ -197,7 +197,7 @@
                                 </div>
                             </div>
 
-                            {{-- Valid ID Section --}}
+                           
                             <div>
                                 <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Valid ID</h4>
                                 <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
@@ -214,7 +214,7 @@
         </div>
     </div>
 
-    {{-- Region & City Resolver --}}
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(function () {

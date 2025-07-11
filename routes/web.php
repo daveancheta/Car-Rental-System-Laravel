@@ -13,7 +13,7 @@ use App\Mail\VerificationMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\RedirectIfNotSignedIn;
 
 Route::get('/display', [HomeController::class, 'display_rent']);
 
@@ -59,13 +59,19 @@ Route::get('/users/{user}/profile', [EditProfileController::class, 'edit']);
 Route::get('/loginadmin', [HomeController::class, 'login']);
 Route::post('/loginasadmin', [AdminController::class, 'store']);
 Route::post('/logoutasadmin', [AdminController::class, 'destroy']);
-Route::post('/cars', [CarController::class, 'store']);
-Route::get('/create', [GetController::class, 'index']);
-Route::patch('/cars/{car}', [CarController::class, 'update']);
-Route::get('/cars/{car}/edit', [CarController::class, 'edit']);
-Route::delete('/cars/{car}', [CarController::class, 'destroy']);
-Route::get('/display-users', [GetController::class, 'user']);
-Route::patch('/users/{rent}', [AdminController::class, 'update']);
-Route::get('/users/{rent}/admin', [AdminController::class, 'edit']);
+Route::post('/cars', [CarController::class, 'store'])->middleware(RedirectIfNotSignedIn::class);
+
+Route::get('/create', [GetController::class, 'index'])->middleware(RedirectIfNotSignedIn::class);
+
+Route::patch('/cars/{car}', [CarController::class, 'update'])->middleware(RedirectIfNotSignedIn::class);
+
+Route::get('/cars/{car}/edit', [CarController::class, 'edit'])->middleware(RedirectIfNotSignedIn::class);
+
+Route::delete('/cars/{car}', [CarController::class, 'destroy'])->middleware(RedirectIfNotSignedIn::class);
+
+Route::get('/display-rented', [GetController::class, 'user'])->middleware(RedirectIfNotSignedIn::class);
+
+Route::patch('/users/{rent}', [AdminController::class, 'update'])->middleware(RedirectIfNotSignedIn::class);
+Route::get('/users/{rent}/admin', [AdminController::class, 'edit'])->middleware(RedirectIfNotSignedIn::class);
 
 
