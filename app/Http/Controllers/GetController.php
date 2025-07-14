@@ -57,4 +57,14 @@ class GetController extends Controller
 
         return view('admin.users-display', compact('rents'));
     }
+
+    public function count()
+   {
+
+     $count1 = User::all()->count();
+     $count2 = Rent::all()->count();
+     $rents = Rent::all();
+
+     return view('admin.dashboard', compact('count1', 'count2', 'rents'));
+   }
 }
