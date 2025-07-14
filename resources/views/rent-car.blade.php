@@ -43,7 +43,7 @@
             <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">{{ $car->description }}</p>
             <div class="flex items-center justify-between mb-4">
               <span class="text-2xl font-bold text-green-600 dark:text-green-400">
-                ${{ number_format($car->car_price, 2) }}
+                ₱{{ number_format($car->car_price, 2) }}
                 <span class="text-sm text-gray-500 dark:text-gray-400">/per day</span>
               </span>
             </div>
@@ -131,7 +131,7 @@
             <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">{{ $car->description }}</p>
             <div class="flex items-center justify-between mb-4">
               <span class="text-2xl font-bold text-green-600 dark:text-green-400">
-                ${{ number_format($car->car_price, 2) }}<span class="text-sm text-gray-500 dark:text-gray-400">/per
+                ₱{{ number_format($car->car_price, 2) }}<span class="text-sm text-gray-500 dark:text-gray-400">/per
                   day</span>
               </span>
             </div>
@@ -198,7 +198,7 @@
 
               <div>
                 <x-modal-forms.label for="car_price">Car Price</x-modal-forms.label>
-                <x-modal-forms.input-p>${{ number_format($car->car_price, 2) }}<span class="text-xs">/perday</span>
+                <x-modal-forms.input-p>₱{{ number_format($car->car_price, 2) }}<span class="text-xs">/perday</span>
                 </x-modal-forms.input-p>
                 <x-modal-forms.input type="hidden" name="car_price" value="{{ $car->car_price }}" readonly />
               </div>

@@ -39,7 +39,7 @@
                         <h5 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ $car->car_name }}</h5>
                         <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">{{ $car->description }}</p>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-2xl font-bold text-green-600 dark:text-green-400">${{ number_format($car->car_price, 2)
+                            <span class="text-2xl font-bold text-green-600 dark:text-green-400">₱{{ number_format($car->car_price, 2)
                                 }}<span class="text-sm text-gray-500 dark:text-gray-400">/per day</span>
                             </span>
                         </div>

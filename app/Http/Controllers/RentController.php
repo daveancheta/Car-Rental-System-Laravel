@@ -90,6 +90,14 @@ class RentController extends Controller
         //
     }
 
+     public function destroy(Rent $rent)
+    {
+        $rent->delete();
+
+        return redirect('/display');
+    }
+
+
     /**
      * Remove the specified resource from storage.
      */

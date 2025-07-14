@@ -1,16 +1,18 @@
 <x-admin-layout>
 
-    @php $grandTotal = 0; @endphp
+    @php $grandTotal = 0;
+    $currentmonth = \Carbon\Carbon::now()->format('F');
+    @endphp
     @foreach ($rents as $rent)
     @php
-  
+
     $start = \Carbon\Carbon::parse($rent->rent_start_date);
     $end = \Carbon\Carbon::parse($rent->rent_end_date);
     $days = $start->diffInDays($end);
     $total = $days * $rent->car_price;
     $grandTotal += $total;
 
-            $currentmonth = \Carbon\Carbon::now()->format('F');
+
     @endphp
     @endforeach
 
@@ -78,7 +80,8 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Total Rents</p>
+                            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Total Rents (this {{
+                                $currentmonth }})</p>
                             <p class="text-2xl font-semibold text-gray-900 dark:text-white">{{ $count2 }}</p>
                         </div>
                     </div>
@@ -120,7 +123,8 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Total Revenue (this {{ $currentmonth}})</p>
+                            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Total Revenue (this {{
+                                $currentmonth}})</p>
                             <p class="text-2xl font-semibold text-gray-900 dark:text-white">₱{{
                                 number_format($revenue, 2) }}</p>
                         </div>

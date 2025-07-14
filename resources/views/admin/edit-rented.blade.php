@@ -58,22 +58,11 @@
                                     </div>
                                     <div class="flex items-center justify-between py-3 dark:border-gray-700">
 
-                                        <form class="w-full" method="POST" action="/rented/{{ $rent->id }}"
+                                        <form class="w-full flex justify-between space-x-6" method="POST" action="/rented/{{ $rent->id }}"
                                            >
                                             @method('PATCH')
                                             @csrf
 
-                                            @if ($errors->any())
-                                            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-                                                role="alert">
-                                                <strong class="font-bold">Whoops!</strong>
-                                                <ul class="list-disc list-inside mt-2">
-                                                    @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                            @endif
 
                                             <select name="status" id="underline_select" class="block py-2 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:text-gray-400 dark:border-gray-600 
                                             focus:outline-none focus:ring-0 focus:border-gray-200 peer font-medium">
@@ -85,12 +74,12 @@
                                                 <option class="dark:bg-gray-600 dark:text-white" value="approved" {{
                                                     $rent->
                                                     status == 'approved' ? 'selected' :
-                                                    ''}}>Approved</option>
+                                                    ''}}>Approve</option>
                                                 <option class="dark:bg-gray-600 dark:text-white" value="declined">
-                                                    Declined</option>
+                                                    Decline</option>
                                             </select>
 
-                                            <button type="submit">Update</button>
+                                            <button type="submit" class="text-gray-800 uppercase font-medium text-sm bg-blue-400 m-2 px-2 rounded">Update</button>
                                         </form>
 
                                     </div>

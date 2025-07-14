@@ -74,11 +74,19 @@ class GetController extends Controller
 
 
         $count1 = User::all()->count();
-        $count2 = Rent::all()->count();
-        $rents = Rent::all();
-
-        $revenuecurrentmonth = Rent::oldest()
+        $count2 = Rent::latest()
             ->whereMonth('created_at', $currentMonthNumber)
+            ->where('status', 'approved')
+            ->get()
+            ->count();
+
+        $rents = Rent::latest()
+            ->where('status', 'approved')
+            ->get();
+
+        $revenuecurrentmonth = Rent::latest()
+            ->whereMonth('created_at', $currentMonthNumber)
+            ->where('status', 'approved')
             ->get();
 
         return view('admin.dashboard', compact('count1', 'count2', 'rents', 'revenuecurrentmonth'));

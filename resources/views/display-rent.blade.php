@@ -58,17 +58,22 @@
                             </div>
                         </x-tables.table-data>
                         <x-tables.table-data>
+                            <form id="delete-rented" action="user/{{ $rent->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                             @if($rent->status === 'pending')
-                            <a href="#"
-                                class="font-medium text-blue-600 dark:text-yellow-500 hover:underline">Cancel</a>
+                            <button form="delete-rented" type="submit"
+                                class="font-medium text-blue-600 dark:text-yellow-500 hover:underline cursor-pointer">Cancel</button>
 
                             @elseif($rent->status === 'declined')
-                            <a href="#" class="font-medium text-blue-600 dark:text-red-500 hover:underline">Delete</a>
+                            <button form="delete-rented" type="submit"
+                                class="font-medium text-blue-600 dark:text-red-500 hover:underline cursor-pointer">Delete</button>
 
                             @else
 
                             <a data-tooltip-target="tooltip-left" type="button" data-tooltip-placement="left"
-                                class="font-medium text-blue-600 dark:text-gray-500 cursor-pointer">Cancel</a>
+                                class="font-medium text-blue-600 dark:text-gray-500 cursor-default">Cancel</a>
 
 
 

@@ -32,6 +32,7 @@ Route::get('/verification_code', [HomeController::class, 'VerificationCode']);
 Route::get('/login', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destroy']);
+Route::delete('/user/{rent}', [RentController::class, 'destroy'])->middleware('auth');
 
 //Register
 Route::get('/register', [RegisterController::class, 'create']);
