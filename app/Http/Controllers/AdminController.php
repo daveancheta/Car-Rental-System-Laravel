@@ -47,7 +47,7 @@ class AdminController extends Controller
 
         request()->session()->regenerate();
 
-        return redirect('/create');
+        return redirect('/admindashboard');
     }
 
     /**

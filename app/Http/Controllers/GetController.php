@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
+
 
 class GetController extends Controller
 {
@@ -59,12 +61,26 @@ class GetController extends Controller
     }
 
     public function count()
-   {
+    {
 
-     $count1 = User::all()->count();
-     $count2 = Rent::all()->count();
-     $rents = Rent::all();
+        // Get current month number (e.g., 07 for July)
+        $currentMonthNumber = Carbon::now()->format('m');
 
-     return view('admin.dashboard', compact('count1', 'count2', 'rents'));
-   }
+        // Get current month name (e.g., July)
+        $currentMonthName = Carbon::now()->format('F');
+
+        // $desiredMonthNumber = 6; // March
+        // $monthFormatted = Carbon::create()->month($desiredMonthNumber)->format('m'); get the desired month of your choice
+
+
+        $count1 = User::all()->count();
+        $count2 = Rent::all()->count();
+        $rents = Rent::all();
+
+        $revenuecurrentmonth = Rent::oldest()
+            ->whereMonth('created_at', $currentMonthNumber)
+            ->get();
+
+        return view('admin.dashboard', compact('count1', 'count2', 'rents', 'revenuecurrentmonth'));
+    }
 }
