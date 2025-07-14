@@ -1,7 +1,7 @@
 <x-admin-layout>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         @foreach ($rents as $rent)
-        <a href="users/{{ $rent->crn_id }}/admin">
+        <a href="rented/{{ $rent->id }}/admin">
             <div class="bg-gray-900 dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition transform hover:scale-105 duration-200">
                 <div class="p-6 flex items-center space-x-5">
                     

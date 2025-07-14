@@ -30,7 +30,7 @@
                         $grandTotal += $total;
                         @endphp
 
-                        <x-tables.table-data> <a href="/rental/{{ $rent->crn_id }}/contract"
+                        <x-tables.table-data> <a href="/rental/{{ $rent->id }}/contract"
                                 class="text-blue-500 hover:underline">{{ $rent->crn_id}}</a></x-tables.table-data>
                         <x-tables.table-data>{{ $rent->car_name}}</x-tables.table-data>
                         <x-tables.table-data>{{ $start->format('M j, Y') }}</x-tables.table-data>

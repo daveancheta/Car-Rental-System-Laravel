@@ -19,10 +19,7 @@ class Rent extends Authenticatable
      */
     protected $guarded = [];
 
-    public function getRouteKeyName()
-    {
-        return 'crn_id';
-    }
+  
 
     /**
      * The attributes that should be hidden for serialization.

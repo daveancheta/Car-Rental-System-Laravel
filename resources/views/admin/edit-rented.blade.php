@@ -11,19 +11,18 @@
     <div class="min-h-screen bg-gray-50 dark:bg-gray-800 py-8 rounded">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          
             <div class="mb-8">
                 <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Rental Agreement</h1>
                 <p class="mt-2 text-gray-600 dark:text-gray-400">Car Reference Nnumber: {{ $rent->crn_id }}</p>
             </div>
 
-            
+
             <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
 
-                
+
                 <div class="xl:col-span-2 space-y-6">
 
-                    
+
                     <div
                         class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
                         <div class="relative">
@@ -59,18 +58,40 @@
                                     </div>
                                     <div class="flex items-center justify-between py-3 dark:border-gray-700">
 
+                                        <form class="w-full" method="POST" action="/rented/{{ $rent->id }}"
+                                           >
+                                            @method('PATCH')
+                                            @csrf
 
-                                        <select id="underline_select"
-                                            class="block py-2 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:text-gray-400 dark:border-gray-600 
+                                            @if ($errors->any())
+                                            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                                                role="alert">
+                                                <strong class="font-bold">Whoops!</strong>
+                                                <ul class="list-disc list-inside mt-2">
+                                                    @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            @endif
+
+                                            <select name="status" id="underline_select" class="block py-2 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:text-gray-400 dark:border-gray-600 
                                             focus:outline-none focus:ring-0 focus:border-gray-200 peer font-medium">
 
-                                            <option class="dark:bg-gray-600 dark:text-white" value="pending" {{ $rent->status == 'pending' ? 'selected' :
-                                                ''}}>Pending</option>
-                                            <option class="dark:bg-gray-600 dark:text-white" value="approved" {{ $rent->status == 'approved' ? 'selected' :
-                                                ''}}>Approved</option>
-                                            <option class="dark:bg-gray-600 dark:text-white" value="declined">Declined</option>
-                                        </select>
+                                                <option class="dark:bg-gray-600 dark:text-white" value="pending" {{
+                                                    $rent->
+                                                    status == 'pending' ? 'selected' :
+                                                    ''}}>Pending</option>
+                                                <option class="dark:bg-gray-600 dark:text-white" value="approved" {{
+                                                    $rent->
+                                                    status == 'approved' ? 'selected' :
+                                                    ''}}>Approved</option>
+                                                <option class="dark:bg-gray-600 dark:text-white" value="declined">
+                                                    Declined</option>
+                                            </select>
 
+                                            <button type="submit">Update</button>
+                                        </form>
 
                                     </div>
                                 </div>
@@ -91,7 +112,7 @@
                                 </div>
                             </div>
 
-                         
+
                             <div
                                 class="mt-8 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
                                 <div class="flex items-center justify-between">
@@ -111,7 +132,7 @@
                     </div>
                 </div>
 
-              
+
                 <div class="xl:col-span-1">
                     <div
                         class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -120,7 +141,7 @@
                         </div>
 
                         <div class="p-8">
-                          
+
                             <div class="text-center mb-8">
                                 <img src="{{ asset('storage/' . $rent->customer_profile) }}" alt="Customer Profile"
                                     class="w-24 h-24 object-cover rounded-full mx-auto border-4 border-white dark:border-gray-700 shadow-lg">
@@ -130,7 +151,7 @@
                                 </h3>
                             </div>
 
-                         
+
                             <div class="space-y-4 mb-8">
                                 <div class="flex items-center space-x-3">
                                     <div
@@ -167,7 +188,7 @@
                                 </div>
                             </div>
 
-                          
+
                             <div class="space-y-4 mb-8">
                                 <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Address Details</h4>
 
@@ -189,7 +210,8 @@
                                     </div>
                                     @if($rent->customer_additional_address)
                                     <div>
-                                        <span class="text-sm text-gray-600 dark:text-gray-400">House No. / Street:</span>
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">House No. /
+                                            Street:</span>
                                         <span class="ml-2 text-gray-900 dark:text-white font-medium">{{
                                             $rent->customer_additional_address }}</span>
                                     </div>
@@ -197,7 +219,7 @@
                                 </div>
                             </div>
 
-                           
+
                             <div>
                                 <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Valid ID</h4>
                                 <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
@@ -214,7 +236,7 @@
         </div>
     </div>
 
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(function () {

@@ -72,7 +72,8 @@ Route::delete('/cars/{car}', [CarController::class, 'destroy'])->middleware(Redi
 
 Route::get('/display-rented', [GetController::class, 'user'])->middleware(RedirectIfNotSignedIn::class);
 
-Route::patch('/users/{rent}', [AdminController::class, 'update'])->middleware(RedirectIfNotSignedIn::class);
-Route::get('/users/{rent}/admin', [AdminController::class, 'edit'])->middleware(RedirectIfNotSignedIn::class);
+Route::patch('/rented/{rent}', [AdminController::class, 'update']);
+Route::get('/rented/{rent}/admin', [AdminController::class, 'edit'])->middleware(RedirectIfNotSignedIn::class);
+
 
 

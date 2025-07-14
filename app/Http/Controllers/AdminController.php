@@ -65,7 +65,7 @@ class AdminController extends Controller
     {
         Gate::authorize('access-admin');
 
-        return view('admin.edit-user', compact('rent'));
+        return view('admin.edit-rented', compact('rent'));
     }
 
     public function update(Request $request, Rent $rent)
@@ -74,34 +74,12 @@ class AdminController extends Controller
         Gate::authorize('access-admin');
 
         $validated = $request->validate([
-            'first_name' => 'nullable',
-            'middle_name' => 'nullable',
-            'last_name' => 'nullable',
-            'suffix' => 'nullable',
-            'password' => 'nullable',
-            'region' => 'nullable',
-            'email' => 'nullable',
-            'phone' => 'nullable',
-            'city' => 'nullable',
-            'barangay' => 'nullable',
-            'account_status' => 'nullable',
-            'verification_code' => 'nullable',
-            'additional_address' => 'nullable',
-            'profile' => 'nullable|image|mimes:jpg,jpeg,png,web',
-            'valid_id_photo' => 'nullable|image|mimes:jpg,jpeg,png,webp'
+            'status' => 'required'
         ]);
-
-        if ($request->hasFile('valid_id_photo')) {
-            $validated['valid_id_photo'] = $request->valid_id_photo->store('valid_id', 'public');
-        }
-
-        if ($request->hasFile('profile')) {
-            $validated['profile'] = $request->profile->store('profile', 'public');
-        }
 
         $rent->update($validated);
 
-        return redirect('/verification_code');
+        return redirect('/rented/' . $rent->id . '/admin');
     }
 
     /**

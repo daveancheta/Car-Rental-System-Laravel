@@ -1,4 +1,5 @@
 <x-admin-layout>
+    <div class="flex justify-between mb-10">
      <div>
                     <h1 class="text-3xl font-bold text-white">Available Cars</h1>
                 </div>
@@ -14,8 +15,9 @@
                         Add New Car
                     </button>
                 </div>
-
-            </div>
+    
+    </div>
+    </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 @foreach($cars as $car)

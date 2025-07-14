@@ -57,7 +57,7 @@ class GetController extends Controller
 
         //  $is_admin = User::where('is_admin', $true)->get(); get by id hard coded
 
-        return view('admin.users-display', compact('rents'));
+        return view('admin.display-rented', compact('rents'));
     }
 
     public function count()
