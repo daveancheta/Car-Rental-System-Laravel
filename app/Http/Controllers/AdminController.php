@@ -7,6 +7,7 @@ use App\Models\Rent;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 
@@ -62,12 +63,16 @@ class AdminController extends Controller
      */
     public function edit(Rent $rent)
     {
+        Gate::authorize('access-admin');
 
         return view('admin.edit-user', compact('rent'));
     }
 
     public function update(Request $request, Rent $rent)
     {
+
+        Gate::authorize('access-admin');
+
         $validated = $request->validate([
             'first_name' => 'nullable',
             'middle_name' => 'nullable',

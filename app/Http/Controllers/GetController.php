@@ -47,7 +47,9 @@ class GetController extends Controller
     public function user()
     {
 
-         $rents = Rent::all(); // display all users
+        Gate::authorize('access-admin');
+
+        $rents = Rent::all(); // display all users
 
         // $true = 0;
 

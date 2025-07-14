@@ -11,7 +11,7 @@ class RedirectIfNotSignedIn
     public function handle($request, Closure $next): Response
     {
         if (!Auth::check()) {
-            return redirect('/loginadmin'); // 👈 your custom redirect
+            return redirect('/loginadmin');
         }
 
         return $next($request);
