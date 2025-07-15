@@ -1,3 +1,3 @@
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div class="relative overflow-hidden shadow-md sm:rounded-lg">
     {{ $slot }}
 </div>

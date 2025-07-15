@@ -24,8 +24,15 @@
                         <div class="mb-2 text-sm text-gray-500 dark:text-gray-300">
                             Status:
 
-                            <span class="font-semibold uppercase  {{ $rent->status === 'approved' ? 'text-green-300' : 
-                               ($rent->status === 'declined' ? 'text-red-300' : 'text-yellow-300') }}">{{ $rent->status }}</span>
+                            @if($rent->status === 'approved')
+                                   <span class="font-semibold uppercase text-green-300">Approved</span>
+                            @elseif($rent->status === 'done')
+                                   <span class="font-semibold uppercase text-green-300">Done</span>
+                            @elseif($rent->status === 'declined')
+                                   <span class="font-semibold uppercase text-red-300">Declined</span>
+                            @else
+                                   <span class="font-semibold uppercase text-yellow-300">Pending</span>
+                            @endif
 
 
 

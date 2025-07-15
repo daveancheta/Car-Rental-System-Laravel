@@ -28,10 +28,23 @@ class GetController extends Controller
 
     public function index2()
     {
+
+        $userId = Auth::id(); // Logged in user
+
+        $user = Rent::latest()
+            ->where('customer_user_id', $userId)
+            ->wherein('status', ['pending', 'approved'])
+            ->get();
+
+
         $cars = Cars::all(); // fetch all users
         $uniqueCode = 'CRN-' . now()->format('Ymd') . '-' . strtoupper(Str::random(8));
 
-        return view('rent-car', compact('cars', 'uniqueCode'));
+
+
+
+
+        return view('rent-car', compact('cars', 'uniqueCode', 'user'));
     }
 
     /**
@@ -76,19 +89,31 @@ class GetController extends Controller
         $count1 = User::all()->count();
         $count2 = Rent::latest()
             ->whereMonth('created_at', $currentMonthNumber)
-            ->where('status', 'approved')
+            ->whereIn('status', ['approved', 'done'])
             ->get()
             ->count();
+        // ->where('status', 'approved')
+        // ->orWhere('status', 'done')
+        // ->get()
+        // ->count();
 
         $rents = Rent::latest()
-            ->where('status', 'approved')
+            ->whereIn('status', ['approved', 'done'])
             ->get();
 
         $revenuecurrentmonth = Rent::latest()
             ->whereMonth('created_at', $currentMonthNumber)
-            ->where('status', 'approved')
+            ->whereIn('status', ['approved', 'done'])
             ->get();
 
-        return view('admin.dashboard', compact('count1', 'count2', 'rents', 'revenuecurrentmonth'));
+        $count3 = Cars::latest()
+            ->whereIn('status', ['available'])
+            ->get()
+            ->count();
+
+        $count4 = Cars::latest()
+            ->get()
+            ->count();
+        return view('admin.dashboard', compact('count1', 'count2', 'count3', 'count4', 'rents', 'revenuecurrentmonth'));
     }
 }

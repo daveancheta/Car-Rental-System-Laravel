@@ -1,5 +1,6 @@
 <x-layout>
 
+
   @guest
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <div class="flex items-center p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
@@ -77,6 +78,9 @@
 
 
   @auth
+
+
+
   @if(Auth::user()->account_status === NULL)
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <div class="flex items-center p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
@@ -103,6 +107,7 @@
 
     <div class="min-h-[60vh] flex flex-col">
       @if($cars->count())
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         @foreach($cars as $car)
         <div
@@ -136,6 +141,25 @@
               </span>
             </div>
 
+
+
+            @if ($user->count())
+            <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
+            <div id="tooltip-default" role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+              You currently have a rented car.
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+            <button data-tooltip-target="tooltip-default" type="button"
+              class="flex-1 inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-white bg-gray-500 rounded-lg opacity-70 w-full">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+              RENTAL UNAVAILABLE
+            </button>
+            @else
+
             @if(Auth::user()->account_status === NULL)
             <button disabled
               class="w-full inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-white bg-gray-500 rounded-lg opacity-70 cursor-not-allowed">
@@ -165,6 +189,7 @@
                 </svg>
                 Rented
               </button>
+
               @else
               <button disabled
                 class="flex-1 inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-white bg-gray-500 rounded-lg opacity-70 cursor-not-allowed">
@@ -177,6 +202,7 @@
               </button>
               @endif
             </div>
+            @endif
             @endif
           </div>
 
@@ -261,10 +287,13 @@
           </div>
         </div>
       </div>
+
       @endif
     </div>
   </div>
+
   @endauth
+
 
 
 </x-layout>

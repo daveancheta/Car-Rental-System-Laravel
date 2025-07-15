@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  
 
 
 
@@ -310,16 +311,6 @@
         <x-modal-forms.body>
             <x-modal-forms.form method="POST" action="/login">
                 @csrf
-
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
 
                 <x-modal-forms.error></x-modal-forms.error>
                 <div>

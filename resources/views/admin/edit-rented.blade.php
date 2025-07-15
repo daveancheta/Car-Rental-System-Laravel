@@ -68,15 +68,19 @@
                                             focus:outline-none focus:ring-0 focus:border-gray-200 peer font-medium">
 
                                                 <option class="dark:bg-gray-600 dark:text-white" value="pending" {{
-                                                    $rent->
-                                                    status == 'pending' ? 'selected' :
+                                                    $rent->status == 'pending' ? 'selected' :
                                                     ''}}>Pending</option>
                                                 <option class="dark:bg-gray-600 dark:text-white" value="approved" {{
-                                                    $rent->
-                                                    status == 'approved' ? 'selected' :
+                                                    $rent->status == 'approved' ? 'selected' :
                                                     ''}}>Approve</option>
-                                                <option class="dark:bg-gray-600 dark:text-white" value="declined">
+                                                <option class="dark:bg-gray-600 dark:text-white" value="declined" {{
+                                                    $rent->status == 'declined' ? 'selected' :
+                                                    ''}}>
                                                     Decline</option>
+                                                       <option class="dark:bg-gray-600 dark:text-white" value="done" {{
+                                                    $rent->status == 'done' ? 'selected' :
+                                                    ''}}>
+                                                    Done</option>
                                             </select>
 
                                             <button type="submit" class="text-gray-800 uppercase font-medium text-sm bg-blue-400 m-2 px-2 rounded">Update</button>

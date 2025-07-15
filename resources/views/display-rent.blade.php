@@ -51,6 +51,10 @@
                                 <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2 "></div> <span
                                     class="capitalize">{{ $rent->status}}</span>
 
+                                @elseif($rent->status === 'done')
+                                <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2 "></div> <span
+                                    class="capitalize">{{ $rent->status}}</span>
+
                                 @else
                                 <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2 "></div> <span
                                     class="capitalize">{{ $rent->status}}</span>
@@ -70,19 +74,28 @@
                             <button form="delete-rented" type="submit"
                                 class="font-medium text-blue-600 dark:text-red-500 hover:underline cursor-pointer">Delete</button>
 
-                            @else
+                            @elseif($rent->status === 'approved')
 
-                            <a data-tooltip-target="tooltip-left" type="button" data-tooltip-placement="left"
+                            <a data-tooltip-target="tooltip-approved" type="button" data-tooltip-placement="left"
                                 class="font-medium text-blue-600 dark:text-gray-500 cursor-default">Cancel</a>
 
-
-
-                            <div id="tooltip-left" role="tooltip"
+                            <div id="tooltip-approved" role="tooltip"
                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
                                 Approved rent cannot be canceled.
                                 <div class="tooltip-arrow" data-popper-arrow></div>
                             </div>
 
+                            @else
+                            <a data-tooltip-target="tooltip-done" type="button" data-tooltip-placement="left"
+                                class="font-medium text-blue-600 dark:text-gray-500 cursor-default">Cancel</a>
+
+
+
+                            <div id="tooltip-done" role="tooltip"
+                                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+                                Your rental session has ended. Thank you for being a valued customer!
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
                             @endif
 
                             </div>
