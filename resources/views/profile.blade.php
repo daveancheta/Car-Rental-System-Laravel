@@ -22,9 +22,11 @@
                 @endif
 
                 <div>
+                      @php
+                            $fullname = trim(Auth::user()->first_name . ' ' . Auth::user()->middle_name . ' ' . Auth::user()->last_name . ' ' . Auth::user()->surname)
+                        @endphp
                     <h2 class="text-lg font-bold text-gray-900 dark:text-white tracking-wide select-none">
-                        {{ Auth::user()->first_name }} {{ Auth::user()->middle_name }} {{ Auth::user()->last_name }} {{
-                        Auth::user()->suffix }}
+                        {{ $fullname }}
                     </h2>
                     <p class="text-sm text-gray-600 dark:text-gray-400 select-none">Registered User</p>
                     @if(Auth::user()->account_status === NULL)
@@ -55,8 +57,7 @@
             <div class="grid grid-cols-1 gap-4 text-sm text-gray-700 dark:text-gray-200">
                 <div class="flex justify-between select-none">
                     <span class="font-semibold">Full Name:</span>
-                    <span>{{ Auth::user()->first_name }} {{ Auth::user()->middle_name }} {{ Auth::user()->last_name
-                        }}</span>
+                    <span>{{ $fullname }}</span>
                 </div>
                 <div class="flex justify-between select-none">
                     <span class="font-semibold">Email:</span>

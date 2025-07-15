@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('car_price');
             $table->text('description')->nullable();
             $table->string('image')->nullable();
+            $table->string('driver')->nullable();
             $table->string('status');
             $table->timestamps();
         });

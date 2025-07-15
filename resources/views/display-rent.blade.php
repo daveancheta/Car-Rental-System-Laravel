@@ -7,6 +7,7 @@
                     <tr>
                         <x-tables.table-head-data>CRN Number</x-tables.table-head-data>
                         <x-tables.table-head-data>Car Name</x-tables.table-head-data>
+                         <x-tables.table-head-data>Driver</x-tables.table-head-data>
                         <x-tables.table-head-data>Start Date</x-tables.table-head-data>
                         <x-tables.table-head-data>End Date</x-tables.table-head-data>
                         <x-tables.table-head-data>Rental Period</x-tables.table-head-data>
@@ -33,6 +34,7 @@
                         <x-tables.table-data> <a href="/rental/{{ $rent->id }}/contract"
                                 class="text-blue-500 hover:underline">{{ $rent->crn_id}}</a></x-tables.table-data>
                         <x-tables.table-data>{{ $rent->car_name}}</x-tables.table-data>
+                          <x-tables.table-data>{{ $rent->driver}}</x-tables.table-data>
                         <x-tables.table-data>{{ $start->format('M j, Y') }}</x-tables.table-data>
                         <x-tables.table-data>{{ $end->format('M j, Y') }}</x-tables.table-data>
                         <x-tables.table-data>{{ $days }}</x-tables.table-data>

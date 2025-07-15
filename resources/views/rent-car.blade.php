@@ -259,6 +259,7 @@
               <input type="hidden" name="customer_profile" value="{{ Auth::user()->profile}}">
               <input type="hidden" name="status" value="pending">
               <input type="hidden" name="car_image" value="{{ $car->image}}">
+              <input type="hidden" name="driver" value="{{ $car->driver}}">
 
               <div class="row mb-3">
                 <div class="col-md-12">

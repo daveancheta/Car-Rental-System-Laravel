@@ -31,7 +31,7 @@
                             <span class="font-semibold uppercase text-green-300">Approved</span>
                             @else
                             <span class="font-semibold uppercase text-red-300">For VErification</span>
-                           
+
                             @endif
 
 
@@ -48,11 +48,14 @@
                         </div>
 
                         <div class="text-base font-semibold text-gray-900 dark:text-white">
-
+                            @php
+                            $fullname = trim("{$driver->first_name}
+                            {$driver->middle_name}
+                            {$driver->last_name}
+                            {$driver->suffix}") 
+                            @endphp
                             <div><span class="font-normal text-sm text-gray-500 dark:text-gray-400">Name:</span><br>
-                                {{ $driver->first_name }} {{ $driver->middle_name }} {{
-                                $driver->last_name }} {{
-                                $driver->suffix }}</div>
+                                {{ $fullname }}</div>
                         </div>
                     </div>
                 </div>

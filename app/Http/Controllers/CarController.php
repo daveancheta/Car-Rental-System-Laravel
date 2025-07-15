@@ -38,6 +38,7 @@ class CarController extends Controller
             'car_price' => ['required'],
             'description' => ['required'],
             'image' => ['required', File::types(['png', 'jpg', 'webp'])],
+            'driver' => ['required'],
             'status' => ['required'],
         ]);
 
@@ -77,6 +78,7 @@ class CarController extends Controller
             'car_price' => 'nullable',
             'description' => 'nullable',
             'status' => 'required',
+            'driver' => 'nullable',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp'
         ]);
 
