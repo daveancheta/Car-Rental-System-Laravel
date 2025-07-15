@@ -52,12 +52,6 @@ class HomeController extends Controller
     {
         return view('admin.login');
     }
-    public function driver()
-    {
-        Gate::authorize('access-admin');
-
-        return view('admin.create-driver');
-    }
     public function driverhome() 
     {
         Gate::authorize('access-driver');
@@ -65,8 +59,20 @@ class HomeController extends Controller
         
     }
 
+       public function driverlogin() 
+    {
+      
+        return view('driver.login');
+        
+    }
+
     public function rbac () 
     {
         return view('rbac');
+    }
+
+    public function registerasdriver ()
+    {
+        return view('driver.register');
     }
 }

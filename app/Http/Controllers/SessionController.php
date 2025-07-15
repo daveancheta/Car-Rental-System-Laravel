@@ -30,11 +30,11 @@ class Sessioncontroller extends Controller
 
     request()->session()->regenerate();
 
-    return redirect('/');
+    return redirect('/index');
     }
     public function destroy() {
         Auth::logout();
 
-        return redirect('/');
+        return redirect('/index');
     }
 }

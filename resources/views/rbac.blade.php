@@ -73,7 +73,7 @@
             </a>
 
             <!-- Driver Role -->
-            <a href="#" class="role-card group bg-gray-800 hover:bg-green-600 card-shadow hover:card-shadow-hover rounded-2xl p-8 flex flex-col items-center text-center border border-gray-700 hover:border-green-500">
+            <a href="/driver" class="role-card group bg-gray-800 hover:bg-green-600 card-shadow hover:card-shadow-hover rounded-2xl p-8 flex flex-col items-center text-center border border-gray-700 hover:border-green-500">
                 <div class="bg-green-500/10 group-hover:bg-green-500/20 rounded-xl p-4 mb-6 transition-colors">
                     <svg class="w-12 h-12 text-green-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0V8.25a1.5 1.5 0 013 0v10.5zM12 18.75a1.5 1.5 0 01-3 0V8.25a1.5 1.5 0 013 0v10.5zM15.75 18.75a1.5 1.5 0 01-3 0V8.25a1.5 1.5 0 013 0v10.5z" />

@@ -1,15 +1,15 @@
 <x-admin-layout>
-    @if($rents->count())
+    @if($drivers->count())
 
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-        @foreach ($rents as $rent)
-        <a href="rented/{{ $rent->id }}/admin">
+        @foreach ($drivers as $driver)
+        <a href="rented/{{ $driver->id }}/admin">
             <div
                 class="bg-gray-900 dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition transform hover:scale-105 duration-200">
                 <div class="p-6 flex items-center space-x-5">
 
-                    @if($rent->customer_profile === NULL)
+                    @if($driver->profile === NULL)
                     <div class="w-24 h-24 flex items-center justify-center bg-gray-200 dark:bg-gray-700 rounded-full">
                         <svg class="w-12 h-12 text-gray-500 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
@@ -18,7 +18,7 @@
                         </svg>
                     </div>
                     @else
-                    <img src="{{ asset('storage/' . $rent->customer_profile) }}" alt="Profile"
+                    <img src="{{ asset('storage/' . $driver->profile) }}" alt="Profile"
                         class="w-24 h-24 object-cover rounded-full border border-gray-300 dark:border-gray-600">
                     @endif
 
@@ -27,14 +27,11 @@
                         <div class="mb-2 text-sm text-gray-500 dark:text-gray-300">
                             Status:
 
-                            @if($rent->status === 'approved')
+                            @if($driver->status === 'approved')
                             <span class="font-semibold uppercase text-green-300">Approved</span>
-                            @elseif($rent->status === 'done')
-                            <span class="font-semibold uppercase text-green-300">Done</span>
-                            @elseif($rent->status === 'declined')
-                            <span class="font-semibold uppercase text-red-300">Declined</span>
                             @else
-                            <span class="font-semibold uppercase text-yellow-300">Pending</span>
+                            <span class="font-semibold uppercase text-red-300">For VErification</span>
+                           
                             @endif
 
 
@@ -42,9 +39,9 @@
                         </div>
 
                         <div class="mb-2 text-sm text-gray-500 dark:text-gray-300">
-                            Rented:
+                            Role:
 
-                            <span class="text-yellow-500 font-semibold uppercase">{{ $rent->car_name }}</span>
+                            <span class="text-yellow-500 font-semibold uppercase">Driver</span>
 
 
 
@@ -53,9 +50,9 @@
                         <div class="text-base font-semibold text-gray-900 dark:text-white">
 
                             <div><span class="font-normal text-sm text-gray-500 dark:text-gray-400">Name:</span><br>
-                                {{ $rent->customer_first_name }} {{ $rent->customer_middle_name }} {{
-                                $rent->customer_last_name }} {{
-                                $rent->customer_suffix }}</div>
+                                {{ $driver->first_name }} {{ $driver->middle_name }} {{
+                                $driver->last_name }} {{
+                                $driver->suffix }}</div>
                         </div>
                     </div>
                 </div>

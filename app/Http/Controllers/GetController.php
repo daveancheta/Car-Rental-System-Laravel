@@ -131,4 +131,15 @@ class GetController extends Controller
 
         return view('admin.dashboard', compact('count1', 'count2', 'count3', 'count4', 'count5', 'count6', 'rents', 'revenuecurrentmonth'));
     }
+
+          public function driver()
+    {
+        Gate::authorize('access-admin');
+
+        $drivers = User::latest()
+        ->where('is_driver', '=', '1')
+        ->get();
+
+        return view('admin.display-driver', compact('drivers'));
+    }
 }

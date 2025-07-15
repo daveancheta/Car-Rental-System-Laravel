@@ -260,6 +260,38 @@
               <input type="hidden" name="status" value="pending">
               <input type="hidden" name="car_image" value="{{ $car->image}}">
 
+              <div class="row mb-3">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="text-white mb-2">Are you renting the car with a driver?</label>
+
+
+                    <div class="flex items-center mb-4">
+                      <input type="radio" value="" name="default-radio"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" id="checkbox">
+                      <label for="default-radio-1"
+                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
+                    </div>
+                    <div class="flex items-center">
+                      <input checked id="default-radio-2" type="radio" value="" name="default-radio"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                      <label for="default-radio-2"
+                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Checked state</label>
+                    </div>
+
+
+                    <div class="col-md-4 mb-3" id="box" style="display: none;">
+                      <input type="number" name="practical1" class="form-control" placeholder="Enter driver fee">
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <input name="driver" type="radio" class="form-check-input">
+                      <label class="form-check-label text-white">No</label>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
 
 
               <x-modal-forms.button type="submit">
@@ -294,6 +326,18 @@
 
   @endauth
 
+  <script>
+    var checkbox = document.getElementById('checkbox');
+var box = document.getElementById('box');
+checkbox.onclick = function() {
+    console.log(this);
+    if (this.checked) {
+        box.style['display'] = 'block';
+    } else {
+        box.style['display'] = 'none';
+    }
+};   
+  </script>
 
 
 </x-layout>

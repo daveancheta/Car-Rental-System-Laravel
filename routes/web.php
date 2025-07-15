@@ -8,6 +8,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RentController;
 use App\Http\Controllers\ContractController;
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\EditProfileController;
 use App\Mail\VerificationMail;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +19,10 @@ use App\Http\Middleware\RedirectIfNotSignedIn;
 Route::get('/display', [HomeController::class, 'display_rent']);
 
 Route::get('/', [HomeController::class, 'rbac']);
+Route::get('/driver', [HomeController::class, 'driverlogin']);
 Route::get('/index', [HomeController::class, 'index'])->name('login');
-Route::get('/driver', [HomeController::class, 'driver'])->middleware(RedirectIfNotSignedIn::class);
-Route::get('/driverhome', [HomeController::class, 'driverhome']);
+Route::get('/driver-display', [GetController::class, 'driver'])->middleware(RedirectIfNotSignedIn::class);
+Route::get('/driverhomes', [HomeController::class, 'driverhome']);
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/verification', [HomeController::class, 'verify']);
 Route::get('/services', [HomeController::class, 'services']);
@@ -79,5 +81,10 @@ Route::get('/display-rented', [GetController::class, 'user'])->middleware(Redire
 Route::patch('/rented/{rent}', [AdminController::class, 'update']);
 Route::get('/rented/{rent}/admin', [AdminController::class, 'edit'])->middleware(RedirectIfNotSignedIn::class);
 
+// Driver 
+Route::post('/loginasdriver', [DriverController::class, 'store']);
+Route::post('/logoutasdriver', [DriverController::class, 'destroy']);
+Route::get('/registerasdriver', [HomeController::class, 'registerasdriver']);
+Route::post('/registerdriver', [DriverController::class, 'register']);
 
 
