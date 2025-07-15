@@ -17,7 +17,10 @@ use App\Http\Middleware\RedirectIfNotSignedIn;
 
 Route::get('/display', [HomeController::class, 'display_rent']);
 
-Route::get('/', [HomeController::class, 'index'])->name('login');
+Route::get('/', [HomeController::class, 'rbac']);
+Route::get('/index', [HomeController::class, 'index'])->name('login');
+Route::get('/driver', [HomeController::class, 'driver'])->middleware(RedirectIfNotSignedIn::class);
+Route::get('/driverhome', [HomeController::class, 'driverhome']);
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/verification', [HomeController::class, 'verify']);
 Route::get('/services', [HomeController::class, 'services']);

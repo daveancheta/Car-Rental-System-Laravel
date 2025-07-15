@@ -86,7 +86,11 @@ class GetController extends Controller
         // $monthFormatted = Carbon::create()->month($desiredMonthNumber)->format('m'); get the desired month of your choice
 
 
-        $count1 = User::all()->count();
+        $count1 = User::latest()
+            ->where('is_admin', '=', '0')
+            ->get()
+            ->count();
+
         $count2 = Rent::latest()
             ->whereMonth('created_at', $currentMonthNumber)
             ->whereIn('status', ['approved', 'done'])
@@ -114,6 +118,17 @@ class GetController extends Controller
         $count4 = Cars::latest()
             ->get()
             ->count();
-        return view('admin.dashboard', compact('count1', 'count2', 'count3', 'count4', 'rents', 'revenuecurrentmonth'));
+
+        $count5 = User::latest()
+            ->where('is_driver', '=', '1')
+            ->get()
+            ->count();
+
+        $count6 = User::latest()
+            ->where('is_admin', '=', '1')
+            ->get()
+            ->count();
+
+        return view('admin.dashboard', compact('count1', 'count2', 'count3', 'count4', 'count5', 'count6', 'rents', 'revenuecurrentmonth'));
     }
 }

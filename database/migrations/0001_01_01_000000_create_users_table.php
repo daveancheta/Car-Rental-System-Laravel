@@ -30,7 +30,8 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('account_status')->nullable();
             $table->string('verification_code')->nullable();
-            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_admin')->nullable();
+            $table->boolean('is_driver')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

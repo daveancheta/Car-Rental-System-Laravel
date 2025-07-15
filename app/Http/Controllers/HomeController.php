@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -43,12 +44,29 @@ class HomeController extends Controller
     {
         return view('verification_code');
     }
-    public function password ()
+    public function password()
     {
         return view('change_password');
     }
-    public function login() 
+    public function login()
     {
         return view('admin.login');
+    }
+    public function driver()
+    {
+        Gate::authorize('access-admin');
+
+        return view('admin.create-driver');
+    }
+    public function driverhome() 
+    {
+        Gate::authorize('access-driver');
+        return view('driver.index');
+        
+    }
+
+    public function rbac () 
+    {
+        return view('rbac');
     }
 }

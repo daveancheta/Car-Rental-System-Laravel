@@ -33,7 +33,8 @@ class RegisterController extends Controller
             'phone' => ['required'],
             'profile' => ['nullable'],
             'password' => ['required', Password::min(6), 'confirmed'],
-            'account_status' => ['nullable']
+            'account_status' => ['nullable'],
+            'is_admin' => ['nullable'],
         ]);
 
         $user = User::create($validatedAttributes);

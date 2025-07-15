@@ -30,5 +30,11 @@ class AppServiceProvider extends ServiceProvider
                 ? Response::allow()
                 : Response::denyAsNotFound(); 
         });
+
+         Gate::define('access-driver', function ($user) {
+            return $user->is_driver
+                ? Response::allow()
+                : Response::denyAsNotFound(); 
+        });
     }
 }

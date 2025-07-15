@@ -73,6 +73,8 @@
             <x-forms.input  type="password" autocomplete="off" name="password_confirmation" placeholder="Comfirm Password" />
           </div>
 
+          <input type="hidden" name="is_admin" value="0">
+
         </x-forms.container>
 
         <div class="mt-8 flex justify-end">
