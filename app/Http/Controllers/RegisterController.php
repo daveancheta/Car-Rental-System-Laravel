@@ -73,8 +73,7 @@ class RegisterController extends Controller
         if ($request->hasFile('valid_id_photo')) {
             $validated['valid_id_photo'] = $request->valid_id_photo->store('valid_id', 'public');
         }
-
-
+        
         if ($request->hasFile('profile')) {
             $validated['profile'] = $request->profile->store('profile', 'public');
         }

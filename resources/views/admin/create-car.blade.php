@@ -190,7 +190,6 @@
                             {{$fullName }}</option>
                         @endforeach
 
-
                     </x-modal-forms.select>
                 </div>
 
