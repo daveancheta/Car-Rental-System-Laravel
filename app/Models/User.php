@@ -24,6 +24,13 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+    public function rent()
+    {
+        return $this->hasMany(Rent::class, 'customer_user_id');
+    }
+
+
     protected $hidden = [
         'password',
         'remember_token',

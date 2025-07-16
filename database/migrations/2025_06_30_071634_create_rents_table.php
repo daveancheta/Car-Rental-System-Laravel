@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('rents', function (Blueprint $table) {
             $table->id();
-            $table->string('customer_user_id');
+            $table->foreignId('customer_user_id')
+                ->constrained('users')
+                ->onDelete('cascade');
+            $table->string('driver');
             $table->string('crn_id')->unique();
             $table->string('customer_first_name');
             $table->string('customer_middle_name')->nullable();

@@ -26,6 +26,12 @@ class Rent extends Authenticatable
      *
      * @var list<string>
      */
+
+      public function user()
+    {
+        return $this->belongsTo(User::class, 'customer_user_id');
+    }
+    
     protected $hidden = [
         'password',
         'remember_token',
