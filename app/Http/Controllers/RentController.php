@@ -53,7 +53,7 @@ class RentController extends Controller
             'car_name' => ['required'],
             'car_price' => ['required'],
             'car_image' => ['required'],
-             'driver' => ['required'],
+            'driver' => ['required'],
             'status' => ['required'],
         ]);
 
@@ -91,12 +91,20 @@ class RentController extends Controller
         //
     }
 
-     public function destroy(Rent $rent)
-    {
-        $rent->delete();
-
-        return redirect('/display');
+    public function destroy(Rent $rent)
+{
+    if ($rent->car_id) {
+        $car = Cars::find($rent->car_id);
+        if ($car) {
+            $car->update(['status' => 'available']);
+        }
     }
+
+    $rent->delete();
+
+    return redirect('/display');
+}
+
 
 
     /**

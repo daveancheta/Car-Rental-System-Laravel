@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Cars;
 use App\Models\Rent;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -68,19 +69,34 @@ class AdminController extends Controller
         return view('admin.edit-rented', compact('rent'));
     }
 
-    public function update(Request $request, Rent $rent)
-    {
+   public function update(Request $request, Rent $rent)
+{
+    Gate::authorize('access-admin');
 
-        Gate::authorize('access-admin');
+    $validated = $request->validate([
+        'status' => 'required'
+    ]);
 
-        $validated = $request->validate([
-            'status' => 'required'
-        ]);
+    $rent->update($validated); 
 
-        $rent->update($validated);
+    
+    $rent->refresh();
 
-        return redirect('/rented/' . $rent->id . '/admin');
+    if ($rent->car_id) {
+        $car = Cars::find($rent->car_id);
+
+        if ($car) {
+            if (in_array($rent->status, ['declined', 'done'])) {
+                $car->update(['status' => 'available']);
+            } elseif (in_array($rent->status, ['approved', 'pending'])) {
+                $car->update(['status' => 'rented']);
+            }
+        }
     }
+
+    return redirect('/rented/' . $rent->id . '/admin');
+}
+
 
     /**
      * Remove the specified resource from storage.
