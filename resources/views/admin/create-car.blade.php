@@ -24,7 +24,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         @foreach($cars as $car)
-        <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200"">
+        <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
                     <div class=" relative">
             <img src="{{ asset('storage/' . $car->image) }}" alt="{{ $car->car_name }}"
                 class="w-full h-48 object-cover rounded-t-xl" />
