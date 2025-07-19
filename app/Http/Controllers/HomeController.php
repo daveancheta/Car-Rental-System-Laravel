@@ -75,4 +75,7 @@ class HomeController extends Controller
     {
         return view('driver.register');
     }
+    public function notification() {
+        return view('driver.notification');
+    }
 }

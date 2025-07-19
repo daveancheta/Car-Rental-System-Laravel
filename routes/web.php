@@ -83,5 +83,7 @@ Route::post('/loginasdriver', [DriverController::class, 'store']);
 Route::post('/logoutasdriver', [DriverController::class, 'destroy']);
 Route::get('/registerasdriver', [HomeController::class, 'registerasdriver']);
 Route::post('/registerdriver', [DriverController::class, 'register']);
-
+Route::get('/notifCount', [GetController::class, 'notifCount']);
+Route::get('/notification', [HomeController::class, 'notification']);
+Route::get('/notifications', [GetController::class, 'notifications']);
 

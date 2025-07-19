@@ -148,4 +148,37 @@ class GetController extends Controller
 
         return view('admin.display-driver', compact('drivers'));
     }
+
+    public function notifCount() {
+        $driverId = Auth::id();
+
+        $notifCount = Rent::where('driver', $driverId)
+        ->where('status', 'approved')
+        ->get()
+        ->count();
+
+        return response()->json(['count' => $notifCount]);
+    }
+
+    public function notifications() {
+        $driverId = Auth::id();
+
+        $notification = Rent::latest()->where('driver', $driverId)
+        ->where('status', 'approved')
+        ->get();
+
+         foreach ($notification as $notif) {
+            $notif->time_ago = Carbon::parse($notif->created_at)->diffForHumans();
+            $notif->start_date = Carbon::parse($notif->rent_start_date)->toFormattedDateString();
+            $notif->end_date = Carbon::parse($notif->rent_end_date)->toFormattedDateString();
+            
+            $notif->fullname = trim("{$notif->customer_first_name} {$notif->middle_name} {$notif->customer_last_name} {$notif->suffixnull}");
+
+
+            $notif->car_image = asset('storage/' . $notif->car_image);
+
+        }
+
+        return response()->json($notification);
+    }
 }

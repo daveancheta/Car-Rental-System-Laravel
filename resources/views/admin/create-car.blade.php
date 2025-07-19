@@ -113,7 +113,7 @@
                         $fullName = trim("{$driver->first_name} {$driver->middle_name} {$driver->last_name}
                         {$driver->suffix}");
                         @endphp
-                        <option value="{{ $fullName }}" {{ $car->driver == $fullName ? 'selected' : '' }}>
+                        <option value="{{ $driver->id }}" {{ $car->driver == $fullName ? 'selected' : '' }}>
                             {{ $fullName }}
                         </option>
                         @endforeach
@@ -186,7 +186,7 @@
                         {$driver->suffix}");
                         @endphp
                         <option
-                            value="{{ $fullName }}">
+                            value="{{ $driver->id }}">
                             {{$fullName }}</option>
                         @endforeach
 
@@ -271,10 +271,12 @@
                     <x-modal-forms.label for="">Driver</x-modal-forms.label>
                     <x-modal-forms.select name="driver" id="status">
                         @foreach ($drivers as $driver)
-                        <option
-                            value="{{ $driver->first_name }} {{ $driver->middle_name }} {{ $driver->last_name }} {{ $driver->suffix }}">
-                            {{ $driver->first_name }} {{ $driver->middle_name }} {{ $driver->last_name }} {{
-                            $driver->suffix }}</option>
+                        @php
+                            $fullname = trim("{$driver->first_name} {$driver->middle_name}
+                            {$driver->last_name}
+                            {$driver->suffix}");
+                        @endphp
+                        <option value="{{ $driver->id }}">{{ $fullname }}</option>
                         @endforeach
 
 

@@ -12,15 +12,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-100 dark:bg-gray-900">
+<body class="bg-gray-100 dark:bg-gray-900" style="font-family: 'Inter', sans-serif;">
 
-
-@auth
-    
-@endauth
     <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
@@ -48,26 +49,27 @@
                             <button type="button"
                                 class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                                 aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                              @if (Auth::user()->profile === NULL)
-                        <svg class="w-8 h-8 text-gray-800 dark:text-white select-none" aria-hidden="true"
-                           xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                           viewBox="0 0 24 24">
-                           <path fill-rule="evenodd"
-                              d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
-                              clip-rule="evenodd" />
-                        </svg>
+                                @if (Auth::user()->profile === NULL)
+                                <svg class="w-8 h-8 text-gray-800 dark:text-white select-none" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                                        clip-rule="evenodd" />
+                                </svg>
 
-                        @else
-                        <img class="w-8 h-8 rounded-full select-none"
-                           src="{{ asset('storage/' . Auth::user()->profile) }}" alt="profile">
-                        @endif
+                                @else
+                                <img class="w-8 h-8 rounded-full select-none"
+                                    src="{{ asset('storage/' . Auth::user()->profile) }}" alt="profile">
+                                @endif
                             </button>
                         </div>
                         <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm dark:bg-gray-700 dark:divide-gray-600"
                             id="dropdown-user">
                             <div class="px-4 py-3" role="none">
                                 <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                    {{ Auth::user()->first_name}} {{ Auth::user()->middle_name}} {{ Auth::user()->last_name}} {{ Auth::user()->suffix}}
+                                    {{ Auth::user()->first_name}} {{ Auth::user()->middle_name}} {{
+                                    Auth::user()->last_name}} {{ Auth::user()->suffix}}
                                 </p>
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
                                     {{ Auth::user()->email_driver}}
@@ -97,10 +99,10 @@
         </div>
     </nav>
 
-   <aside id="logo-sidebar"
-      class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-900 dark:border-gray-700"
-      aria-label="Sidebar">
-      <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-900">
+    <aside id="logo-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-900 dark:border-gray-700"
+        aria-label="Sidebar">
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-900">
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="#"
@@ -131,15 +133,16 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a id="notification" href="/notification"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                       <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
-  <path d="M17.133 12.632v-1.8a5.406 5.406 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V3.1a1 1 0 0 0-2 0v2.364a.955.955 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C6.867 15.018 5 15.614 5 16.807 5 17.4 5 18 5.538 18h12.924C19 18 19 17.4 19 16.807c0-1.193-1.867-1.789-1.867-4.175ZM8.823 19a3.453 3.453 0 0 0 6.354 0H8.823Z"/>
-</svg>
+                          <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M17.133 12.632v-1.8a5.406 5.406 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V3.1a1 1 0 0 0-2 0v2.364a.955.955 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C6.867 15.018 5 15.614 5 16.807 5 17.4 5 18 5.538 18h12.924C19 18 19 17.4 19 16.807c0-1.193-1.867-1.789-1.867-4.175ZM8.823 19a3.453 3.453 0 0 0 6.354 0H8.823Z" />
+                        </svg>
 
                         <span class="flex-1 ms-3 whitespace-nowrap">Notification</span>
-                        <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
                     </a>
                 </li>
                 <li>
@@ -190,6 +193,50 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function loadNotification() {
+            $.get('/notifCount', function(notifCount) 
+        {
+            let html = '';
+
+            if (notifCount.count === 0) {
+                html = `
+                        <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M17.133 12.632v-1.8a5.406 5.406 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V3.1a1 1 0 0 0-2 0v2.364a.955.955 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C6.867 15.018 5 15.614 5 16.807 5 17.4 5 18 5.538 18h12.924C19 18 19 17.4 19 16.807c0-1.193-1.867-1.789-1.867-4.175ZM8.823 19a3.453 3.453 0 0 0 6.354 0H8.823Z" />
+                        </svg>
+
+                        <span class="flex-1 ms-3 whitespace-nowrap">Notification</span>
+                    `;
+            } else {
+            html = ` 
+                        <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M17.133 12.632v-1.8a5.406 5.406 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V3.1a1 1 0 0 0-2 0v2.364a.955.955 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C6.867 15.018 5 15.614 5 16.807 5 17.4 5 18 5.538 18h12.924C19 18 19 17.4 19 16.807c0-1.193-1.867-1.789-1.867-4.175ZM8.823 19a3.453 3.453 0 0 0 6.354 0H8.823Z" />
+                        </svg>
+
+                        <span class="flex-1 ms-3 whitespace-nowrap">Notification</span>
+                        <span
+                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">${notifCount.count}</span>
+                   `;
+                }
+        $('#notification').html(html);
+        }).fail(() => {
+            $('#notification').html('<p class="text-red-500">Failed to load notification</p>');
+        });
+        }
+
+loadNotification();
+
+setInterval(loadNotification, 1500);
+
+
+    </script>
 </body>
 
 </html>
