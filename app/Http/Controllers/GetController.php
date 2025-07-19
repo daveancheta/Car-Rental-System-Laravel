@@ -135,7 +135,13 @@ class GetController extends Controller
             ->get()
             ->count();
 
-        return view('admin.dashboard', compact('count1', 'count2', 'count3', 'count4', 'count5', 'count6', 'rents', 'revenuecurrentmonth'));
+            $count7 = Rent::latest()
+            ->where('status', 'approved')
+            ->whereNotNull('driver')
+            ->get()
+            ->count();
+
+        return view('admin.dashboard', compact('count1', 'count2', 'count3', 'count4', 'count5', 'count6', 'count7', 'rents', 'revenuecurrentmonth'));
     }
 
     public function driver()
@@ -153,7 +159,7 @@ class GetController extends Controller
         $driverId = Auth::id();
 
         $notifCount = Rent::where('driver', $driverId)
-        ->where('status', 'approved')
+
         ->get()
         ->count();
 
@@ -180,5 +186,9 @@ class GetController extends Controller
         }
 
         return response()->json($notification);
+    }
+    public function manage(Request $request, Rent $rent) 
+    {
+        return view('driver.manage-details', compact('rent'));
     }
 }

@@ -21,7 +21,7 @@
 
         <x-forms.group-input-label>
             <x-forms.label for="password">Password</x-forms.label>
-            <x-forms.input type="password" autocomplete="off" name="password" placeholder="Password" autocomplete="off" />
+            <x-forms.input type="password" autocomplete="off" autocomplete="off" name="password" placeholder="Password" autocomplete="off" />
         </x-forms.group-input-label>
 
         <x-forms.button>Login</x-forms.button>

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RedirectIfNotSignedIn;
+use App\Http\Middleware\RedirectIfNotSignedInDriver;
 
 Route::get('/display', [HomeController::class, 'display_rent']);
 
@@ -81,9 +82,10 @@ Route::get('/rented/{rent}/admin', [AdminController::class, 'edit'])->middleware
 // Driver 
 Route::post('/loginasdriver', [DriverController::class, 'store']);
 Route::post('/logoutasdriver', [DriverController::class, 'destroy']);
-Route::get('/registerasdriver', [HomeController::class, 'registerasdriver']);
-Route::post('/registerdriver', [DriverController::class, 'register']);
-Route::get('/notifCount', [GetController::class, 'notifCount']);
-Route::get('/notification', [HomeController::class, 'notification']);
-Route::get('/notifications', [GetController::class, 'notifications']);
+Route::get('/registerasdriver', [HomeController::class, 'registerasdriver'])->middleware(RedirectIfNotSignedInDriver::class);
+Route::post('/registerdriver', [DriverController::class, 'register'])->middleware(RedirectIfNotSignedInDriver::class);
+Route::get('/notifCount', [GetController::class, 'notifCount'])->middleware(RedirectIfNotSignedInDriver::class);
+Route::get('/notification', [HomeController::class, 'notification'])->middleware(RedirectIfNotSignedInDriver::class);
+Route::get('/notifications', [GetController::class, 'notifications'])->middleware(RedirectIfNotSignedInDriver::class);
+Route::get('/manage/{rent}/details', [GetController::class, 'manage'])->middleware(RedirectIfNotSignedInDriver::class);
 

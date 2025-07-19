@@ -84,12 +84,12 @@
 
           <div class="md:col-span-2">
             <x-forms.label for="street">Password</x-forms.label>
-            <x-forms.input type="password" autocomplete="off" name="password" placeholder="Password"/>
+            <x-forms.input type="password" autocomplete="off" autocomplete="off" name="password" placeholder="Password"/>
           </div>
 
           <div class="md:col-span-2">
             <x-forms.label for="street">Confirm Password</x-forms.label>
-            <x-forms.input  type="password" autocomplete="off" name="password_confirmation" placeholder="Comfirm Password" />
+            <x-forms.input  type="password" autocomplete="off" autocomplete="off" name="password_confirmation" placeholder="Comfirm Password" />
           </div>
 
           <input type="hidden" name="is_driver" value="1">

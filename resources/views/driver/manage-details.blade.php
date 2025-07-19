@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-driver-layout>
     @php
     $start = \Carbon\Carbon::parse($rent->rent_start_date);
     $end = \Carbon\Carbon::parse($rent->rent_end_date);
@@ -6,6 +6,9 @@
     $total = $days * $rent->car_price;
     $drivercut = $total * 0.20;
     @endphp
+
+   
+
 
     <div class="min-h-screen bg-gray-50 dark:bg-gray-800 py-8 rounded">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,37 +58,7 @@
                                         <span class="text-gray-900 dark:text-white font-semibold">₱{{
                                             number_format($rent->car_price, 2) }}</span>
                                     </div>
-                                    <div class="flex items-center justify-between py-3 dark:border-gray-700">
 
-                                        <form class="w-full flex justify-between space-x-6" method="POST" action="/rented/{{ $rent->id }}"
-                                           >
-                                            @method('PATCH')
-                                            @csrf
-
-
-                                            <select name="status" id="underline_select" class="block py-2 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:text-gray-400 dark:border-gray-600 
-                                            focus:outline-none focus:ring-0 focus:border-gray-200 peer font-medium">
-
-                                                <option class="dark:bg-gray-600 dark:text-white" value="pending" {{
-                                                    $rent->status == 'pending' ? 'selected' :
-                                                    ''}}>Pending</option>
-                                                <option class="dark:bg-gray-600 dark:text-white" value="approved" {{
-                                                    $rent->status == 'approved' ? 'selected' :
-                                                    ''}}>Approve</option>
-                                                <option class="dark:bg-gray-600 dark:text-white" value="declined" {{
-                                                    $rent->status == 'declined' ? 'selected' :
-                                                    ''}}>
-                                                    Decline</option>
-                                                       <option class="dark:bg-gray-600 dark:text-white" value="done" {{
-                                                    $rent->status == 'done' ? 'selected' :
-                                                    ''}}>
-                                                    Done</option>
-                                            </select>
-
-                                            <button type="submit" class="text-gray-800 uppercase font-medium text-sm bg-blue-400 m-2 px-2 rounded">Update</button>
-                                        </form>
-
-                                    </div>
                                 </div>
 
                                 <div class="space-y-4">
@@ -105,6 +78,7 @@
                             </div>
 
 
+
                             <div
                                 class="mt-8 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
                                 <div class="flex items-center justify-between">
@@ -118,9 +92,12 @@
                                         <span class="text-3xl font-bold text-green-600 dark:text-green-400">₱{{
                                             number_format($total, 2) }}</span>
                                     </div>
+
+
                                 </div>
                             </div>
-                                <div
+
+                            <div
                                 class="mt-8 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
                                 <div class="flex items-center justify-between">
                                     <div>
@@ -135,6 +112,7 @@
 
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -268,4 +246,4 @@
             });
         });
     </script>
-</x-admin-layout>
+</x-driver-layout>

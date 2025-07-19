@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rent;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -78,4 +80,6 @@ class HomeController extends Controller
     public function notification() {
         return view('driver.notification');
     }
+
+
 }
