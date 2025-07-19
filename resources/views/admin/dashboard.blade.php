@@ -16,18 +16,50 @@
     @endphp
     @endforeach
 
-    @php $revenue = 0; @endphp
+      
+    @php $currentrevenue = 0; @endphp
     @foreach ($revenuecurrentmonth as $month)
     @php
     $start = \Carbon\Carbon::parse($month->rent_start_date);
     $end = \Carbon\Carbon::parse($month->rent_end_date);
     $days = $start->diffInDays($end);
     $total = $days * $month->car_price;
+    $currentrevenue += $total;
+    
+    @endphp
+    @endforeach
+
+       @php $revenue = 0; @endphp
+    @foreach ($totalRevenue as $nuew)
+    @php
+    $start = \Carbon\Carbon::parse($nuew->rent_start_date);
+    $end = \Carbon\Carbon::parse($nuew->rent_end_date);
+    $days = $start->diffInDays($end);
+    $total = $days * $nuew->car_price;
     $revenue += $total;
     $percentage = 0.20 * $count7;
     $wodriver = $revenue * $percentage;
+    
     @endphp
     @endforeach
+
+       @php $pastrevenue = 0; @endphp
+         @foreach ($count8 as $cey)
+         @php
+               $start = \Carbon\Carbon::parse($cey->rent_start_date);
+    $end = \Carbon\Carbon::parse($cey->rent_end_date);
+    $days = $start->diffInDays($end);
+    $total = $days * $cey->car_price;
+    $pastrevenue += $total;
+         @endphp
+           
+                @endforeach
+     @php
+         $sub = $currentrevenue - $pastrevenue;
+         $div = $sub / $pastrevenue;
+         $mul = $div * 100;
+     @endphp
+
 
 
 
@@ -264,19 +296,29 @@
                             <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Total Revenue (this {{
                                 $currentmonth}})</p>
                             <p class="text-2xl font-semibold text-gray-900 dark:text-white">₱{{
-                                number_format($revenue, 2) }}</p>
+                                number_format($currentrevenue, 2) }}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mt-4 flex items-center text-sm">
+                @if (number_format($mul, 1) <= 1)
                 <span class="text-red-600 dark:text-red-400 flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M17 13l-5 5m0 0l-5-5m5 5V6"></path>
                     </svg>
-                    3%
+                    {{abs(number_format($mul, 1))}}%
                 </span>
+@else
+                 <span class="text-green-600 dark:text-green-400 flex items-center">
+                   <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
+                    </svg>
+                    {{abs(number_format($mul, 1))}}%
+                </span>
+                @endif
                 <span class="text-gray-500 dark:text-gray-400 ml-2">from last month</span>
             </div>
 

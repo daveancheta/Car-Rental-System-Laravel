@@ -88,6 +88,8 @@ class GetController extends Controller
         // Get current month name (e.g., July)
         $currentMonthName = Carbon::now()->format('F');
 
+        $currentDate = Carbon::now();
+
         // $desiredMonthNumber = 6; // March
         // $monthFormatted = Carbon::create()->month($desiredMonthNumber)->format('m'); get the desired month of your choice
 
@@ -135,13 +137,24 @@ class GetController extends Controller
             ->get()
             ->count();
 
-            $count7 = Rent::latest()
+        $count7 = Rent::latest()
             ->where('status', 'approved')
             ->whereNotNull('driver')
             ->get()
             ->count();
 
-        return view('admin.dashboard', compact('count1', 'count2', 'count3', 'count4', 'count5', 'count6', 'count7', 'rents', 'revenuecurrentmonth'));
+        $lastMonth = Carbon::now()->subMonth();
+
+        $count8 = Rent::latest()
+        ->whereMonth('created_at', $lastMonth)
+        ->get();
+
+        $totalRevenue = Rent::all();
+
+
+      
+
+        return view('admin.dashboard', compact('count1', 'count2', 'count3', 'count4', 'count5', 'count6', 'count7', 'count8', 'rents', 'revenuecurrentmonth', 'totalRevenue'));
     }
 
     public function driver()
@@ -155,39 +168,40 @@ class GetController extends Controller
         return view('admin.display-driver', compact('drivers'));
     }
 
-    public function notifCount() {
+    public function notifCount()
+    {
         $driverId = Auth::id();
 
         $notifCount = Rent::where('driver', $driverId)
 
-        ->get()
-        ->count();
+            ->get()
+            ->count();
 
         return response()->json(['count' => $notifCount]);
     }
 
-    public function notifications() {
+    public function notifications()
+    {
         $driverId = Auth::id();
 
         $notification = Rent::latest()->where('driver', $driverId)
-        ->where('status', 'approved')
-        ->get();
+            ->where('status', 'approved')
+            ->get();
 
-         foreach ($notification as $notif) {
+        foreach ($notification as $notif) {
             $notif->time_ago = Carbon::parse($notif->created_at)->diffForHumans();
             $notif->start_date = Carbon::parse($notif->rent_start_date)->toFormattedDateString();
             $notif->end_date = Carbon::parse($notif->rent_end_date)->toFormattedDateString();
-            
+
             $notif->fullname = trim("{$notif->customer_first_name} {$notif->middle_name} {$notif->customer_last_name} {$notif->suffixnull}");
 
 
             $notif->car_image = asset('storage/' . $notif->car_image);
-
         }
 
         return response()->json($notification);
     }
-    public function manage(Request $request, Rent $rent) 
+    public function manage(Request $request, Rent $rent)
     {
         return view('driver.manage-details', compact('rent'));
     }
