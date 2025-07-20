@@ -146,13 +146,13 @@ class GetController extends Controller
         $lastMonth = Carbon::now()->subMonth();
 
         $count8 = Rent::latest()
-        ->whereMonth('created_at', $lastMonth)
-        ->get();
+            ->whereMonth('created_at', $lastMonth)
+            ->get();
 
         $totalRevenue = Rent::all();
 
 
-      
+
 
         return view('admin.dashboard', compact('count1', 'count2', 'count3', 'count4', 'count5', 'count6', 'count7', 'count8', 'rents', 'revenuecurrentmonth', 'totalRevenue'));
     }
@@ -173,7 +173,8 @@ class GetController extends Controller
         $driverId = Auth::id();
 
         $notifCount = Rent::where('driver', $driverId)
-
+            ->where('notifStatus', Null)
+            ->whereIn('status', ['approved', 'done'])
             ->get()
             ->count();
 
@@ -182,10 +183,10 @@ class GetController extends Controller
 
     public function notifications()
     {
-        $driverId = Auth::id();
+        $driverId = Auth::id(); 
 
         $notification = Rent::latest()->where('driver', $driverId)
-            ->where('status', 'approved')
+            ->whereIn('status', ['approved', 'done'])
             ->get();
 
         foreach ($notification as $notif) {
@@ -204,5 +205,34 @@ class GetController extends Controller
     public function manage(Request $request, Rent $rent)
     {
         return view('driver.manage-details', compact('rent'));
+    }
+
+    public function dashboarddriver()
+    {
+
+        $driverId = Auth::id();
+
+        $currentMonthNumber = Carbon::now()->format('m');
+
+        $lastMonth = Carbon::now()->subMonth();
+
+        $driverRevenue = Rent::latest()
+            ->where('driver', $driverId)
+            ->whereIn('status', ['approved', 'done'])
+            ->get();
+
+        $dRCurrentMonth = Rent::latest()
+            ->where('driver', $driverId)
+            ->WhereMonth('created_at', $currentMonthNumber)
+            ->whereIn('status', ['approved', 'done'])
+            ->get();
+
+        $dRPastMonth = Rent::latest()
+            ->where('driver', $driverId)
+            ->WhereMonth('created_at', $lastMonth)
+            ->whereIn('status', ['approved', 'done'])
+            ->get();
+
+        return view('driver.dashboard', compact('driverRevenue', 'dRCurrentMonth', 'dRPastMonth'));
     }
 }

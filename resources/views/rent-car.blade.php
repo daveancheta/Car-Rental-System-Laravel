@@ -1,5 +1,8 @@
 <x-layout>
 
+  @php
+      $currentDay = \Carbon\Carbon::today()->format('Y-m-d');
+  @endphp
 
   @guest
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -235,12 +238,12 @@
 
               <div>
                 <x-modal-forms.label class="text-xs" for="">Start Date</x-modal-forms.label>
-                <x-modal-forms.input type="date" name="rent_start_date" />
+                <x-modal-forms.input type="date" name="rent_start_date" min="{{ $currentDay }}"/>
               </div>
 
               <div>
                 <x-modal-forms.label class="text-xs" for="">End Date</x-modal-forms.label>
-                <x-modal-forms.input type="date" name="rent_end_date" />
+                <x-modal-forms.input type="date" name="rent_end_date" min="{{ $currentDay}}" />
               </div>
               <input type="hidden" name="car_id" value="{{ $car->id }}">
               <input type="hidden" name="customer_user_id" value="{{ Auth::user()->id }}">

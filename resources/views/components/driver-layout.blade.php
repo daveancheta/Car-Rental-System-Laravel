@@ -37,7 +37,7 @@
                             </path>
                         </svg>
                     </button>
-                    <a href="/admindashboard" class="flex ms-2 md:me-24 space-x-3">
+                    <a href="/dashboarddriver" class="flex ms-2 md:me-24 space-x-3">
                         <img src="{{ Vite::asset('resources/images/logo.png') }}" class="h-8" alt="Flowbite Logo" />
                         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
                             style=" font-family: 'Russo One', sans-serif;">CarVibe</span>
@@ -77,7 +77,7 @@
                             </div>
                             <ul class="py-1" role="none">
                                 <li>
-                                    <a href="#"
+                                    <a href="/dashboarddriver"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">Dashboard</a>
                                 </li>
@@ -105,7 +105,7 @@
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-900">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="#"
+                    <a href="/dashboarddriver"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -132,9 +132,9 @@
                             class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
                     </a>
                 </li>
-                <li>
-                    <a id="notification" href="/notification"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <li id="notification">
+                   <a href="/notification">
+              <button type="button" class=" cursor-pointer update-notif w-full text-start flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                          <svg
                      class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                      aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -143,7 +143,8 @@
                   </svg>
 
                         <span class="flex-1 ms-3 whitespace-nowrap">Notification</span>
-                    </a>
+                       
+                  </button> </a>
                 </li>
                 <li>
                     <a href="#"
@@ -201,7 +202,8 @@
             let html = '';
 
             if (notifCount.count === 0) {
-                html = `
+                html = `  <a href="/notification">
+              <button type="button" class="update-notif cursor-pointer w-full text-start flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                          <svg
                      class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                      aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -210,9 +212,13 @@
                   </svg>
 
                         <span class="flex-1 ms-3 whitespace-nowrap">Notification</span>
+                       
+                  </button> </a>
                     `;
             } else {
             html = ` 
+            <a href="/notification">
+              <button type="button" class="update-notif cursor-pointer w-full text-start flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                          <svg
                      class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                      aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -223,7 +229,7 @@
                         <span class="flex-1 ms-3 whitespace-nowrap">Notification</span>
                         <span
                             class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">${notifCount.count}</span>
-                   `;
+                  </button> </a>`;
                 }
         $('#notification').html(html);
         }).fail(() => {
@@ -234,6 +240,30 @@
 loadNotification();
 
 setInterval(loadNotification, 1500);
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    }
+});
+
+$(document).on('click', '.update-notif', function () {
+    let button = $(this);
+
+    let data = {
+        user_id: {{ Auth::user()->id }}
+    };
+
+    $.ajax({
+        url: '/update-notif',
+        type: 'POST',
+        data: data,
+        error: function (xhr) {
+            console.error(xhr.responseText);
+            alert('Failed to mark as done');
+        }
+    });
+});
 
 
     </script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rent;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -111,5 +112,16 @@ class DriverController extends Controller
         Auth::logout();
 
         return redirect('/driver');
+    }
+
+    public function updateNotif(Request $request)
+    {
+        request()->validate([
+            'user_id' => ['required']
+        ]);
+
+           $driverId = $request->input('user_id');
+           Rent::where('driver', $driverId)->update(['notifStatus' => 'done']);
+
     }
 }

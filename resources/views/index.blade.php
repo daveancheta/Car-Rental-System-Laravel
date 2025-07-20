@@ -1,5 +1,5 @@
 <x-layout>
-   <div class="relative bg-gray-900 h-screen">
+   <div class="relative bg-gray-900 h-screen z-0">
 
     <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 opacity-90"></div>
     <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-30"></div>

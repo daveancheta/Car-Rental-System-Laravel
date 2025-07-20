@@ -1,6 +1,5 @@
 <x-driver-layout>
     <div id="notifications">
-
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -24,7 +23,16 @@ notification.forEach(notif => {
 
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 select-none">
     <a href="#">
-        <img class="rounded-t-lg" src="${notif.car_image}" alt="" />
+            <div class=" relative">
+            <img src="${notif.car_image}" alt=""
+                class="w-full h-48 object-cover rounded-t-xl" />
+            <div class="absolute top-3 left-3">
+                <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium uppercase tracking-wide dark:bg-green-100 dark:text-green-800">
+                     ${notif.status} 
+                </span>
+            </div>
+            </div>
     </a>
     <div class="p-5">
         <a href="#">

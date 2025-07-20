@@ -36,7 +36,7 @@
 
 
     @guest
-    <nav class="fixed top-0 left-0 w-full bg-white border-gray-200 dark:bg-gray-900 z-50  border-white">
+    <nav class="fixed top-0 left-0 w-full bg-white border-gray-200 dark:bg-gray-900 z-40 border-white">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse select-none">
                 <img src="{{ Vite::asset('resources/images/logo.png') }}" class="h-8" alt="Flowbite Logo" />
@@ -88,7 +88,7 @@
 
     @auth
 
-   <nav class="fixed top-0 left-0 w-full bg-white border-gray-200 dark:bg-gray-900 z-50  border-white">
+   <nav class="fixed top-0 left-0 w-full bg-white border-gray-200 dark:bg-gray-900 z-40 border-white">
 
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse select-none">

@@ -81,5 +81,8 @@ class HomeController extends Controller
         return view('driver.notification');
     }
 
+    public function bot () {
+        return view('chatbot');
+    }
 
 }

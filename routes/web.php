@@ -88,4 +88,6 @@ Route::get('/notifCount', [GetController::class, 'notifCount'])->middleware(Redi
 Route::get('/notification', [HomeController::class, 'notification'])->middleware(RedirectIfNotSignedInDriver::class);
 Route::get('/notifications', [GetController::class, 'notifications'])->middleware(RedirectIfNotSignedInDriver::class);
 Route::get('/manage/{rent}/details', [GetController::class, 'manage'])->middleware(RedirectIfNotSignedInDriver::class);
+Route::get('/dashboarddriver', [GetController::class, 'dashboarddriver'])->middleware(RedirectIfNotSignedInDriver::class);
+Route::post('/update-notif', [DriverController::class, 'updateNotif'])->middleware(RedirectIfNotSignedInDriver::class);
 
