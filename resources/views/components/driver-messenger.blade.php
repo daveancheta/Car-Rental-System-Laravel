@@ -38,8 +38,6 @@
                 <span class="text-white text-3xl font-bold">Chats</span>
             </div>
 
-
-
             <form class="max-w-md mx-auto mb-5">
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -76,12 +74,15 @@
                 let html = ''; 
 
                 getMessage.forEach(message => {
-                    html += ` 
+                    html += ` <a href='chat/${message.id}/session'>
+                        <button class="submit-room" type="button" data-room="${message.id}">
                        <li class="mb-5 flex gap-2">
                     <img class="rounded-full w-15 h-15" src="${message.profile}" alt="">
 
                     <p class="text-white font-medium mt-2">${message.customer_name}</p>
                 </li>
+                </button>
+                </a>
                 `;
                 });
 
@@ -96,7 +97,31 @@
             getMessages();
             setInterval(getMessages, 500);
 
+             
+    // AJAX CSRF Setup
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    });
 
+    // Mark as Done
+    $(document).on('click', '.submit-room', function () {
+        let button = $(this);
+        let data = {
+            room_id: button.data('room')
+        };
+
+        $.ajax({
+            url: '/submit-room',
+            type: 'POST',
+            data: data,
+            error: function (xhr) {
+                console.error(xhr.responseText);
+                alert('Failed to mark as done.');
+            }
+        });
+    });
       
       
     </script>

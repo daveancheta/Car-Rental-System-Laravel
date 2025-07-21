@@ -185,7 +185,7 @@ class GetController extends Controller
 
     public function notifications()
     {
-        $driverId = Auth::id(); 
+        $driverId = Auth::id();
 
         $notification = Rent::latest()->where('driver', $driverId)
             ->whereIn('status', ['approved', 'done'])
@@ -238,18 +238,18 @@ class GetController extends Controller
         return view('driver.dashboard', compact('driverRevenue', 'dRCurrentMonth', 'dRPastMonth'));
     }
 
-      public function driverMessenger()
+    public function driverMessenger()
     {
 
         return view('driver.messenger');
     }
 
-      public function getMessage()
+    public function getMessage()
     {
         $driverId = Auth::id();
 
         $userMessage = Room::where('driver_id', $driverId)
-        ->get();
+            ->get();
 
         foreach ($userMessage as $u) {
             $u->profile = asset('storage/' . $u->customer_profile);
@@ -258,29 +258,62 @@ class GetController extends Controller
         return response()->json($userMessage);
     }
 
-       public function getDriverMessage()
+    public function getDriverMessage()
     {
         $driverId = Auth::id();
 
         $userMessage = Messenger::where('driver', $driverId)
-        ->get();
-        
+            ->get();
+
 
         return response()->json($userMessage);
     }
 
-      public function getUserMessage()
+    public function getSession(Room $room)
     {
-        // $driverId = Auth::id();
 
-        // $userMessage = Rent::where('driver', $driverId)
-        // ->get();
+        return view('driver.chat-session', compact('room'));
+    }
 
-        // foreach ($userMessage as $u) {
-        //     $u->profile = asset('storage/' . $u->customer_profile);
-        //     $u->fullname = trim("{$u->customer_first_name} {$u->customer_last_name}");
-        // }
+    public function getDriverSessionMessage(Request $request, Room $room)
+    {
 
-        // return response()->json($userMessage);
+        request()->validate([
+            'room_id' => ['']
+        ]);
+
+        $driverId = Auth::id();
+
+        $roomId = $request->input('room_id');
+
+ 
+
+        $driverMessage = Messenger::where('driver_id', $driverId)
+            ->where('id', $roomId)
+            ->get();
+
+        foreach ($driverMessage as $u) {
+            $u->profile = asset('storage/' . $u->customer_profile);
+        }
+
+        return response()->json($driverMessage);
+     
+    }
+
+    public function getCustomerSessionMessage(Room $room)
+    {
+        $customerId = $room->id;
+        $roomId = $room->id;
+
+
+        $driverMessage = Messenger::where('user_id', $customerId)
+            ->where('room_id', $roomId)
+            ->get();
+
+        foreach ($driverMessage as $u) {
+            $u->profile = asset('storage/' . $u->customer_profile);
+        }
+
+        return response()->json($driverMessage);
     }
 }
