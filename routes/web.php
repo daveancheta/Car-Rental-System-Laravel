@@ -90,4 +90,6 @@ Route::get('/notifications', [GetController::class, 'notifications'])->middlewar
 Route::get('/manage/{rent}/details', [GetController::class, 'manage'])->middleware(RedirectIfNotSignedInDriver::class);
 Route::get('/dashboarddriver', [GetController::class, 'dashboarddriver'])->middleware(RedirectIfNotSignedInDriver::class);
 Route::post('/update-notif', [DriverController::class, 'updateNotif'])->middleware(RedirectIfNotSignedInDriver::class);
+Route::get('/driverMessenger', [GetController::class, 'driverMessenger'])->middleware(RedirectIfNotSignedInDriver::class);
+Route::get('/getMessage', [GetController::class, 'getMessage'])->middleware(RedirectIfNotSignedInDriver::class);
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cars;
 use App\Models\Rent;
 use App\Models\User;
+use App\Models\Messenger;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -234,5 +236,51 @@ class GetController extends Controller
             ->get();
 
         return view('driver.dashboard', compact('driverRevenue', 'dRCurrentMonth', 'dRPastMonth'));
+    }
+
+      public function driverMessenger()
+    {
+
+        return view('driver.messenger');
+    }
+
+      public function getMessage()
+    {
+        $driverId = Auth::id();
+
+        $userMessage = Room::where('driver_id', $driverId)
+        ->get();
+
+        foreach ($userMessage as $u) {
+            $u->profile = asset('storage/' . $u->customer_profile);
+        }
+
+        return response()->json($userMessage);
+    }
+
+       public function getDriverMessage()
+    {
+        $driverId = Auth::id();
+
+        $userMessage = Messenger::where('driver', $driverId)
+        ->get();
+        
+
+        return response()->json($userMessage);
+    }
+
+      public function getUserMessage()
+    {
+        // $driverId = Auth::id();
+
+        // $userMessage = Rent::where('driver', $driverId)
+        // ->get();
+
+        // foreach ($userMessage as $u) {
+        //     $u->profile = asset('storage/' . $u->customer_profile);
+        //     $u->fullname = trim("{$u->customer_first_name} {$u->customer_last_name}");
+        // }
+
+        // return response()->json($userMessage);
     }
 }

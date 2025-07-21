@@ -124,4 +124,5 @@ class DriverController extends Controller
            Rent::where('driver', $driverId)->update(['notifStatus' => 'done']);
 
     }
+
 }

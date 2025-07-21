@@ -68,16 +68,16 @@
                 <ul
                     class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 select-none">
                     <li>
-                        <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
+                        <x-nav-links.nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
                     </li>
                     <li>
-                        <x-nav-link href="/about" :active="request()->is('about')">About</x-nav-link>
+                        <x-nav-links.nav-link href="/about" :active="request()->is('about')">About</x-nav-link>
                     </li>
                     <li>
-                        <x-nav-link href="/services" :active="request()->is('services')">Services</x-nav-link>
+                        <x-nav-links.nav-link href="/services" :active="request()->is('services')">Services</x-nav-link>
                     </li>
                     <li>
-                        <x-nav-link href="/contacts" :active="request()->is('contact')">Contacts</x-nav-link>
+                        <x-nav-links.nav-link href="/contacts" :active="request()->is('contact')">Contacts</x-nav-link>
                     </li>
                 </ul>
             </div>

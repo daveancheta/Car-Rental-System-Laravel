@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('car_price');
             $table->string('car_image');
             $table->string('status');
+             $table->string('notifStatus');
             $table->timestamps();
         });
     }
