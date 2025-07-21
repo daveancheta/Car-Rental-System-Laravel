@@ -93,6 +93,5 @@ Route::post('/update-notif', [DriverController::class, 'updateNotif'])->middlewa
 Route::get('/driverMessenger', [GetController::class, 'driverMessenger'])->middleware(RedirectIfNotSignedInDriver::class);
 Route::get('/getMessage', [GetController::class, 'getMessage'])->middleware(RedirectIfNotSignedInDriver::class);
 Route::get('/chat/{room}/session', [GetController::class, 'getSession']);
-Route::get('/getDriverSessionMessage', [GetController::class, 'getDriverSessionMessage'])->middleware(RedirectIfNotSignedInDriver::class);
+Route::get('/getDriverSessionMessage/{room}', [GetController::class, 'getDriverSessionMessage'])->middleware(RedirectIfNotSignedInDriver::class);
 Route::post('/submit-room', [GetController::class, 'getDriverSessionMessage'])->middleware(RedirectIfNotSignedInDriver::class);
-Route::get('/anotherFunction', [GetController::class, 'anotherFunction'])->middleware(RedirectIfNotSignedInDriver::class);

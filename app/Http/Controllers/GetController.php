@@ -278,25 +278,22 @@ class GetController extends Controller
     public function getDriverSessionMessage(Request $request, Room $room)
     {
 
-        request()->validate([
-            'room_id' => ['']
-        ]);
+       
 
         $driverId = Auth::id();
 
-        $roomId = $request->input('room_id');
+      
 
- 
 
         $driverMessage = Messenger::where('driver_id', $driverId)
-            ->where('id', $roomId)
+            ->where('room_id', $room->id)
             ->get();
 
         foreach ($driverMessage as $u) {
             $u->profile = asset('storage/' . $u->customer_profile);
         }
 
-        return response()->json($driverMessage);
+     return response()->json($driverMessage);
      
     }
 
