@@ -32,16 +32,28 @@
 
     <aside id="default-sidebar"
         class="fixed top-0 left-0 z-40 w-110 h-screen transition-transform -translate-x-full sm:translate-x-0"
-        aria-label="Sidebar">
+        aria-label="Sidebar" style="scrollbar-width: thin; scrollbar-color: #6b7280 transparent; scroll">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 border-r-2 dark:border-gray-800">
             <div class="mb-5">
                 <span class="text-white text-3xl font-bold">Chats</span>
             </div>
 
-            <form class="max-w-md mx-auto mb-5">
-                <label for="default-search"
-                    class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                <div class="relative">
+
+            <label for="default-search"
+                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <div class="flex flex-row items-center">
+
+                <button id="backButton" class="hidden">
+                    <svg class="w-8 h-8 text-gray-800 dark:text-white mr-2 ml-2" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 12h14M5 12l4-4m-4 4 4 4" />
+                    </svg>
+                </button>
+
+
+                <div class="relative w-full">
+
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -50,13 +62,16 @@
                         </svg>
                     </div>
                     <input type="search" id="default-search"
-                        class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none"
                         placeholder="Search People..." required />
                 </div>
-            </form>
+            </div>
 
-            <ul class="space-y-2 font-medium" id="message">
-              
+
+
+            <ul class="" id="message">
+            
+                
             </ul>
         </div>
     </aside>
@@ -69,20 +84,43 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        const backButton = document.getElementById('backButton');
+        const searchInput = document.getElementById('default-search');
+
+        searchInput.addEventListener('input', () => {
+            if (searchInput.value.trim() === '') {
+                backButton.classList.add('hidden');
+            } else {
+                backButton.classList.remove('hidden');
+            }
+        });
+
+    
+
         function getMessages() {
             $.get('/getMessage', function(getMessage){
                 let html = ''; 
+                  const currentPath = window.location.pathname;
+
 
                 getMessage.forEach(message => {
-                    html += ` <a href='chat/${message.id}/session'>
-                        <button class="submit-room" type="button" data-room="${message.id}">
+                 
+                     const actualUrl = `/chat/${message.id}/session/${message.user_id}`; 
+                     const isActivePath = actualUrl  === currentPath ? 'bg-gray-700 text-white cursor-not-allowed pointer-events-none select-none p-3 mt-3 rounded-lg' : 'hover:bg-gray-700 p-3 mt-3 rounded-lg';
+                     
+                    
+                    html += `
+                    <div class="${isActivePath}">
+                        <a href='chat/${message.id}/session/${message.user_id}'>
                        <li class="mb-5 flex gap-2">
-                    <img class="rounded-full w-15 h-15" src="${message.profile}" alt="">
+                    <img class="rounded-full w-15 h-15 object-cover" src="${message.profile}" alt="">
 
                     <p class="text-white font-medium mt-2">${message.customer_name}</p>
                 </li>
-                </button>
                 </a>
+                </div>
+              
+              
                 `;
                 });
 
@@ -96,33 +134,7 @@
 
             getMessages();
             setInterval(getMessages, 500);
-
-             
-    // AJAX CSRF Setup
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        }
-    });
-
-    // Mark as Done
-    $(document).on('click', '.submit-room', function () {
-        let button = $(this);
-        let data = {
-            room_id: button.data('room')
-        };
-
-        $.ajax({
-            url: '/submit-room',
-            type: 'POST',
-            data: data,
-            error: function (xhr) {
-                console.error(xhr.responseText);
-                alert('Failed to mark as done.');
-            }
-        });
-    });
-      
+   
       
     </script>
 </body>

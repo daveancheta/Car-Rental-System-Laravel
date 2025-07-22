@@ -258,17 +258,6 @@ class GetController extends Controller
         return response()->json($userMessage);
     }
 
-    public function getDriverMessage()
-    {
-        $driverId = Auth::id();
-
-        $userMessage = Messenger::where('driver', $driverId)
-            ->get();
-
-
-        return response()->json($userMessage);
-    }
-
     public function getSession(Room $room)
     {
 
@@ -278,15 +267,10 @@ class GetController extends Controller
     public function getDriverSessionMessage(Request $request, Room $room)
     {
 
-       
-
         $driverId = Auth::id();
-
       
-
-
-        $driverMessage = Messenger::where('driver_id', $driverId)
-            ->where('room_id', $room->id)
+        $driverMessage = Messenger::oldest()->where('room_id', $room->id)
+          
             ->get();
 
         foreach ($driverMessage as $u) {
@@ -299,12 +283,10 @@ class GetController extends Controller
 
     public function getCustomerSessionMessage(Room $room)
     {
-        $customerId = $room->id;
-        $roomId = $room->id;
+        $customerId = $room->user_id;
 
 
         $driverMessage = Messenger::where('user_id', $customerId)
-            ->where('room_id', $roomId)
             ->get();
 
         foreach ($driverMessage as $u) {
