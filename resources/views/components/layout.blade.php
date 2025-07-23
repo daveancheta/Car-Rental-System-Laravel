@@ -29,16 +29,10 @@
 
 <body class="flex flex-col min-h-screen dark:bg-gray-900 no-scrollbar" style="font-family: 'Inter', sans-serif;">
 
-
-
-
-
-
-
     @guest
     <nav class="fixed top-0 left-0 w-full bg-white border-gray-200 dark:bg-gray-900 z-40 border-white">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse select-none">
+            <a href="/index" class="flex items-center space-x-3 rtl:space-x-reverse select-none">
                 <img src="{{ Vite::asset('resources/images/logo.png') }}" class="h-8" alt="Flowbite Logo" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
                     style=" font-family: 'Russo One', sans-serif;">CarVibe</span>
@@ -91,7 +85,7 @@
    <nav class="fixed top-0 left-0 w-full bg-white border-gray-200 dark:bg-gray-900 z-40 border-white">
 
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse select-none">
+            <a href="/index" class="flex items-center space-x-3 rtl:space-x-reverse select-none">
                 <img src="{{ Vite::asset('resources/images/logo.png') }}" class="h-8" alt="Flowbite Logo" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
                     style=" font-family: 'Russo One', sans-serif;">CarVibe</span>

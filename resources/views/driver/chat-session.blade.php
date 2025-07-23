@@ -22,13 +22,16 @@
     <div>
         <div class="bg-gray-800 h-150 w-full rounded-t-lg relative overflow-y-auto"
             style="scrollbar-width: thin; scrollbar-color: #6b7280 transparent; scroll">
-            <div class="bg-gray-800 h-20 w-full rounded-t-lg flex items-center p-2 gap-2">
+            <div class="bg-gray-800 h-20 w-full rounded-t-lg flex items-center p-6 mt-5 gap-2 gap-2">
                 <img class="rounded-full w-15 h-15 object-cover"
                     src="{{ asset('storage/' . $room->customer_profile) }}">
                 <span class="text-sm text-white">{{ $room->customer_name }}</span>
 
             </div>
-            <div id="driverMessage"></div>
+            <div class="mb-5">
+                 <div id="driverMessage"></div>
+            </div>
+           
         </div>
 
         <div class="bg-gray-800 h-20 w-full rounded-b-lg flex items-center p-2 gap-2 sticky bottom-0">
@@ -132,12 +135,12 @@
 
        
         $(document).on('click', '.send-message', function () {
-           
+           let roomId = '{{ $room->id }}';
             let button = $(this);
             let data = {
                 message: document.getElementById('inputMessage').value,
                 driver_id: {{ Auth::user()->id }},
-                room_id: 1,
+                room_id: `${roomId}`,
             };
                     document.getElementById('inputMessage').value = '';
                     sendButton.classList.add('send-button-disabled');

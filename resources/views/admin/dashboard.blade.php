@@ -14,7 +14,6 @@
     @endphp
     @endforeach
 
-
     @php $currentrevenue = 0; @endphp
     @foreach ($revenuecurrentmonth as $month)
     @php
@@ -36,7 +35,6 @@
     $revenue += $total;
     $percentage = 0.20 * $count7;
     $wodriver = $revenue * $percentage;
-
     @endphp
     @endforeach
 
@@ -49,8 +47,8 @@
     $total = $days * $cey->car_price;
     $pastrevenue += $total;
     @endphp
-
     @endforeach
+    
     @php
     $sub = $currentrevenue - $pastrevenue;
     $div = $sub / $pastrevenue;

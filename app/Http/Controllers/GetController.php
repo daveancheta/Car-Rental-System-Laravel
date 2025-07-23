@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 
@@ -58,11 +59,20 @@ class GetController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function index3()
+    public function index3(Rent $rent)
     {
         $userId = Auth::id(); // Get the currently logged-in user's ID
 
         $rents = Rent::where('customer_user_id', $userId)->get();
+
+          $rents = DB::table('rents')
+        ->join('users', 'rents.driver', '=', 'users.id')
+        ->select(
+            'rents.*',
+            'users.first_name',
+            'users.last_name'
+        )
+        ->get();
 
         return view('display-rent', compact('rents'));
     }

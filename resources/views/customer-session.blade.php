@@ -27,7 +27,10 @@
                 <span class="text-sm text-white">{{ $room->driver_name }}</span>
 
             </div>
-            <div id="customermessage"></div>
+            <div class="mb-5">
+                <div id="customermessage"></div>
+            </div>
+            
         </div>
 
         <div class="bg-gray-800 h-20 w-full rounded-b-lg flex items-center p-2 gap-2 sticky bottom-0">
@@ -99,7 +102,7 @@
                     const user = message.user_id === customerId;
                     html += ` <div class="flex flex-col mt-10">
                             <div class="${user ? 'flex justify-end items-end mr-5' : 'flex justify-start items-end ml-5'}">
-                        <span class="${user ? 'text-[#1A1A1A] p-2 text-start bg-[#64B5F6] rounded-3xl' : 'text-white p-2 text-start bg-gray-600 rounded-3xl'}">${message.message}</span>
+                        <span class="${user ? 'text-[#1A1A1A] p-2 text-start bg-[#64B5F6] rounded-md' : 'text-white p-2 text-start bg-gray-600 rounded-md'}">${message.message}</span>
                         </div>
                        </div>`;
                 });
@@ -121,12 +124,12 @@
 
        
         $(document).on('click', '.send-message', function () {
-           
+           let roomId = '{{ $room->id }}';
             let button = $(this);
             let data = {
                 message: document.getElementById('inputMessage').value,
                 user_id: {{ Auth::user()->id }},
-                room_id: 1,
+                room_id: `${roomId}`,
             };
                     document.getElementById('inputMessage').value = '';
                     sendButton.classList.add('send-button-disabled');

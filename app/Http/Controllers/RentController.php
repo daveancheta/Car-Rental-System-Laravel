@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cars;
 use App\Models\Rent;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -70,9 +71,9 @@ class RentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Rent $rent)
     {
-        //
+       
     }
 
     /**
