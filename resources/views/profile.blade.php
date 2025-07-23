@@ -50,7 +50,7 @@
             <div class="flex justify-between px-4 text-white text-xs cursor-pointer">
                 <div><a href="/users/{{ Auth::user()->id }}/profile">Edit Profile</a></div>
                 <div><a href="/display">View Rents</a></div>
-                <div><a href="">Chat Bot</a></div>
+                <div><a href="/user-messenger">Messenger</a></div>
             </div>
             <hr class="my-4 border-gray-300 dark:border-gray-600" />
 

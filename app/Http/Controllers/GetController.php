@@ -295,4 +295,23 @@ class GetController extends Controller
 
         return response()->json($driverMessage);
     }
+
+    public function userMessenger() 
+    {
+        return view('user-messenger');
+    }
+
+    public function getuserMessage() 
+    {
+          $customerId = Auth::id();
+
+        $userMessage = Room::where('user_id', $customerId);
+
+        foreach ($userMessage as $u) 
+        {
+            $u->profile = asset('storage/' . $u->customer_profile);
+        }
+
+        return response()->json('userMessage');
+    }
 }

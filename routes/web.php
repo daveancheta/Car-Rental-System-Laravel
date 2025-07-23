@@ -95,3 +95,7 @@ Route::get('/getMessage', [GetController::class, 'getMessage'])->middleware(Redi
 Route::get('/chat/{room}/session/{customer}', [GetController::class, 'getSession']);
 Route::get('/getDriverSessionMessage/{room}/{customer}', [GetController::class, 'getDriverSessionMessage'])->middleware(RedirectIfNotSignedInDriver::class);
 Route::post('/submit-room', [GetController::class, 'getDriverSessionMessage'])->middleware(RedirectIfNotSignedInDriver::class);
+
+//User Messenger
+Route::get('user-messenger', [GetController::class, 'userMessenger']);
+Route::get('customerMessage', [GetController::class, 'getuserMessage']);
