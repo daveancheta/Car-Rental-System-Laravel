@@ -105,4 +105,5 @@ Route::get('/customer/{room}/session/{driver}', [GetController::class, 'getCusto
 Route::get('/getcustomerSessionMessage/{room}/{driver}', [GetController::class, 'getCustomerSessionMessage']);
 
 // User Send Message
-Route::post('submit-message', [SendMessageController::class, 'userSendMessage']);
+Route::post('/submitMessage', [SendMessageController::class, 'store']);
+Route::post('/submitDriverMessage', [SendMessageController::class, 'drivermessage']);

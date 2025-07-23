@@ -49,7 +49,8 @@
             <input id="inputMessage" class="w-full bg-gray-900 p-3 rounded-full text-white px-5 focus:outline-none"
                 type="text" placeholder="Aa" autocomplete="off">
             <div class="mr-5 ml-5">
-                <button id="sendButton" class="send-button-disabled disabled">
+                <button onclick="scrolltobot()" type="button" id="sendButton"
+                    class="send-message send-button-disabled disabled">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-send w-6 h-6"
                         viewBox="0 0 16 16">
                         <path
@@ -98,7 +99,7 @@
                     const user = message.user_id === customerId;
                     html += ` <div class="flex flex-col mt-10">
                             <div class="${user ? 'flex justify-end items-end mr-5' : 'flex justify-start items-end ml-5'}">
-                        <span class="${user ? 'text-[#1A1A1A] p-2 text-start bg-[#64B5F6] rounded-md' : 'text-white p-2 text-start bg-gray-600 rounded-md'}">${message.message}</span>
+                        <span class="${user ? 'text-[#1A1A1A] p-2 text-start bg-[#64B5F6] rounded-3xl' : 'text-white p-2 text-start bg-gray-600 rounded-3xl'}">${message.message}</span>
                         </div>
                        </div>`;
                 });
@@ -110,7 +111,7 @@
         }
 
         loadmessage();
-        setInterval(loadmessage, 500);
+        setInterval(loadmessage, 1000);
 
         $.ajaxSetup({
             headers: {
@@ -118,17 +119,23 @@
             }
         });
 
-        $(document).on('click', 'send-message', function () {
+       
+        $(document).on('click', '.send-message', function () {
+           
             let button = $(this);
             let data = {
-                message = document.getElementById('inputmessage'),
+                message: document.getElementById('inputMessage').value,
                 user_id: {{ Auth::user()->id }},
-                customer_name: {{ Auth::user()->first_name  }},
-                profile: {{ Auth::user()->profile }},
+                room_id: 1,
             };
+                    document.getElementById('inputMessage').value = '';
+                    sendButton.classList.add('send-button-disabled');
+                    sendButton.classList.add('disabled');
+                    sendButton.classList.remove('send-button');
+                    
 
             $.ajax({
-                url: 'submit-message',
+                url: '/submitMessage',
                 type: 'POST',
                 data: data,
                 error: function (xhr) {

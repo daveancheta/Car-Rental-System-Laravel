@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Messenger;
 
 class SendMessageController extends Controller
 {
@@ -27,9 +28,29 @@ class SendMessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = request()->validate([
+            'message' => ['nullable'],
+            'user_id' => ['nullable'],
+            'room_id' => ['nullable']
+        ]);
+
+         Messenger::create($validated);
     }
 
+     public function drivermessage(Request $request)
+    {
+        $validated = request()->validate([
+            'message' => ['nullable'],
+            'driver_id' => ['nullable'],
+            'room_id' => ['nullable']
+        ]);
+
+         Messenger::create($validated);
+    }
+
+    
+
+   
     /**
      * Display the specified resource.
      */

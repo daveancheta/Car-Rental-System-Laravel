@@ -50,7 +50,7 @@
             <input id="inputMessage" class="w-full bg-gray-900 p-3 rounded-full text-white px-5 focus:outline-none"
                 type="text" placeholder="Aa" autocomplete="off">
             <div class="mr-5 ml-5">
-                <button id="sendButton" class="send-button-disabled disabled">
+                <button id="sendButton" class="send-message send-button-disabled disabled">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-send w-6 h-6"
                         viewBox="0 0 16 16">
                         <path
@@ -117,13 +117,43 @@
 
                 $('#driverMessage').html(html);
             }).fail(() => {
-                $('#driverMessage').html('<p class="text-red-500>Faile to load message...</p>')
+                $('#driverMessage').html('<p class="text-red-500>Failed to load message...</p>')
             });
         }
 
         getDriverSessionMessage();
         setInterval(getDriverSessionMessage, 500);
 
-      
+           $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        });
+
+       
+        $(document).on('click', '.send-message', function () {
+           
+            let button = $(this);
+            let data = {
+                message: document.getElementById('inputMessage').value,
+                driver_id: {{ Auth::user()->id }},
+                room_id: 1,
+            };
+                    document.getElementById('inputMessage').value = '';
+                    sendButton.classList.add('send-button-disabled');
+                    sendButton.classList.add('disabled');
+                    sendButton.classList.remove('send-button');
+                    
+
+            $.ajax({
+                url: '/submitDriverMessage',
+                type: 'POST',
+                data: data,
+                error: function (xhr) {
+                    console.error(xhr.responseText);
+                    alert('Failed to send message.')
+                }
+            });
+        });
     </script>
 </x-driver-messenger>

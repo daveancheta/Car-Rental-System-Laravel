@@ -13,10 +13,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @vite('resources/css/app.css')
 </head>
 
-<body class="dark:bg-gray-900 select-none" style="font-family: 'Inter', sans-serif;">
+<body class="dark:bg-gray-900 select-none overflow-hidden" style="font-family: 'Inter', sans-serif;">
 
     <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
         type="button"
@@ -70,8 +71,8 @@
 
 
             <ul class="" id="message">
-            
-                
+
+
             </ul>
         </div>
     </aside>
@@ -82,7 +83,7 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         const backButton = document.getElementById('backButton');
         const searchInput = document.getElementById('default-search');
