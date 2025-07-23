@@ -16,7 +16,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="dark:bg-gray-900" style="font-family: 'Inter', sans-serif;">
+<body class="dark:bg-gray-900 select-none" style="font-family: 'Inter', sans-serif;">
 
     <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
         type="button"
@@ -105,13 +105,13 @@
 
                 getMessage.forEach(message => {
                  
-                     const actualUrl = `/chat/${message.id}/session/${message.user_id}`; 
+                     const actualUrl = `/customer/${message.id}/session/${message.driver_id}`; 
                      const isActivePath = actualUrl  === currentPath ? 'bg-gray-700 text-white cursor-not-allowed pointer-events-none select-none p-3 mt-3 rounded-lg' : 'hover:bg-gray-700 p-3 mt-3 rounded-lg';
                      
                     
                     html += `
                     <div class="${isActivePath}">
-                        <a href='chat/${message.id}/session/${message.driver_id}'>
+                        <a href='customer/${message.id}/session/${message.driver_id}'>
                        <li class="mb-5 flex gap-2">
                     <img class="rounded-full w-15 h-15 object-cover" src="${message.profile}" alt="">
 

@@ -1,4 +1,4 @@
-<x-driver-messenger>
+<x-user-messenger>
     <style>
         .send-button-disabled {
             background-color: gray;
@@ -22,13 +22,12 @@
     <div>
         <div class="bg-gray-800 h-150 w-full rounded-t-lg relative overflow-y-auto"
             style="scrollbar-width: thin; scrollbar-color: #6b7280 transparent; scroll">
-            <div class="bg-gray-800 h-20 w-full rounded-t-lg flex items-center p-2 gap-2">
-                <img class="rounded-full w-15 h-15 object-cover"
-                    src="{{ asset('storage/' . $room->customer_profile) }}">
-                <span class="text-sm text-white">{{ $room->customer_name }}</span>
+            <div class="bg-gray-800 h-20 w-full rounded-t-lg flex items-center p-6 mt-5 gap-2">
+                <img class="rounded-full w-15 h-15 object-cover" src="{{ asset('storage/' . $room->driver_profile) }}">
+                <span class="text-sm text-white">{{ $room->driver_name }}</span>
 
             </div>
-            <div id="driverMessage"></div>
+            <div id="customermessage"></div>
         </div>
 
         <div class="bg-gray-800 h-20 w-full rounded-b-lg flex items-center p-2 gap-2 sticky bottom-0">
@@ -58,7 +57,7 @@
                     </svg>
                 </button>
             </div>
-         
+
         </div>
 
 
@@ -72,58 +71,71 @@
 
         inputMessage.addEventListener('input', () => {
             if (inputMessage.value.trim() === '') {
-                sendButton.classList.add('send-button-disabled');
+             sendButton.classList.add('send-button-disabled');
                 sendButton.classList.add('disabled');
                  sendButton.classList.remove('send-button');
             } else {
                 sendButton.classList.remove('send-button-disabled');
                 sendButton.classList.remove('disabled');
                 sendButton.classList.add('send-button');
-            }
+        }
         });
-        
-        function getDriverSessionMessage() {
-             let roomId = '{{ $room->id }}';
-             let customerId = '{{ $room->user_id }}';
-             let driverId = {{ Auth::user()->id }};
-             let customerProfile = '{{ asset('storage/' . $room->customer_profile) }}';
-            let customerName = '{{ $room->customer_name }}';
-          
- 
 
-            $.get(`/getDriverSessionMessage/${roomId}/${customerId}`, function(driverMessage) {
+        function loadmessage() {
+            let roomId = '{{ $room->id}}';
+            let driver_id = '{{ $room->driver_id}}';
+            let customerId = {{ Auth::user()->id}};
+
+            $.get(`/getcustomerSessionMessage/${roomId}/${driver_id}`, function(customerSessionMessage) {
                 let html = '';
-              
- 
 
-                if(driverMessage.length === 0)
+                   if(customerSessionMessage.length === 0)
             {
                 html += `<div class="flex justify-center mt-100 text-white">Start Messaging</div>`;
             } else {
-                         
-                driverMessage.forEach(message => {
-                   const user = message.driver_id === driverId;
-                    html += `
-                        <div class="flex flex-col mt-10">
+
+                customerSessionMessage.forEach(message => {
+                    const user = message.user_id === customerId;
+                    html += ` <div class="flex flex-col mt-10">
                             <div class="${user ? 'flex justify-end items-end mr-5' : 'flex justify-start items-end ml-5'}">
                         <span class="${user ? 'text-[#1A1A1A] p-2 text-start bg-[#64B5F6] rounded-md' : 'text-white p-2 text-start bg-gray-600 rounded-md'}">${message.message}</span>
                         </div>
-                       </div> `;
+                       </div>`;
                 });
-               
-                
-                   
             }
-
-                $('#driverMessage').html(html);
+                $('#customermessage').html(html);
             }).fail(() => {
-                $('#driverMessage').html('<p class="text-red-500>Faile to load message...</p>')
+                $('#customermessage').html('<p class="text-red-500>Failed to Load Message...');
             });
         }
 
-        getDriverSessionMessage();
-        setInterval(getDriverSessionMessage, 500);
+        loadmessage();
+        setInterval(loadmessage, 500);
 
-      
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        });
+
+        $(document).on('click', 'send-message', function () {
+            let button = $(this);
+            let data = {
+                message = document.getElementById('inputmessage'),
+                user_id: {{ Auth::user()->id }},
+                customer_name: {{ Auth::user()->first_name  }},
+                profile: {{ Auth::user()->profile }},
+            };
+
+            $.ajax({
+                url: 'submit-message',
+                type: 'POST',
+                data: data,
+                error: function (xhr) {
+                    console.error(xhr.responseText);
+                    alert('Failed to send message.')
+                }
+            });
+        });
     </script>
-</x-driver-messenger>
+</x-user-messenger>

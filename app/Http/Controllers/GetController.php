@@ -267,26 +267,7 @@ class GetController extends Controller
     public function getDriverSessionMessage(Request $request, Room $room)
     {
 
-        $driverId = Auth::id();
-      
         $driverMessage = Messenger::oldest()->where('room_id', $room->id)
-          
-            ->get();
-
-        foreach ($driverMessage as $u) {
-            $u->profile = asset('storage/' . $u->customer_profile);
-        }
-
-     return response()->json($driverMessage);
-     
-    }
-
-    public function getCustomerSessionMessage(Room $room)
-    {
-        $customerId = $room->user_id;
-
-
-        $driverMessage = Messenger::where('user_id', $customerId)
             ->get();
 
         foreach ($driverMessage as $u) {
@@ -296,22 +277,35 @@ class GetController extends Controller
         return response()->json($driverMessage);
     }
 
-    public function userMessenger() 
+    public function userMessenger()
     {
         return view('user-messenger');
     }
 
-    public function getuserMessage() 
+    public function getuserMessage()
     {
-          $customerId = Auth::id();
+        $customerId = Auth::id();
 
-        $userMessage = Room::where('user_id', $customerId);
+        $userMessage = Room::where('user_id', $customerId)
+            ->get();
 
-        foreach ($userMessage as $u) 
-        {
+        foreach ($userMessage as $u) {
             $u->profile = asset('storage/' . $u->customer_profile);
         }
 
-        return response()->json('userMessage');
+        return response()->json($userMessage);
+    }
+    public function getCustomerSession(Room $room)
+    {
+        return view('customer-session', compact('room'));
+    }
+    public function getCustomerSessionMessage(Room $room)
+    {
+
+        $customerSessionMessage = Messenger::oldest()
+            ->where('room_id', $room->id)
+            ->get();
+
+        return response()->json($customerSessionMessage);
     }
 }

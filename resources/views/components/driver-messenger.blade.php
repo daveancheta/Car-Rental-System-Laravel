@@ -16,7 +16,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="dark:bg-gray-900" style="font-family: 'Inter', sans-serif;">
+<body class="dark:bg-gray-900 select-none" style="font-family: 'Inter', sans-serif;">
 
     <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
         type="button"

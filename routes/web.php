@@ -10,6 +10,7 @@ use App\Http\Controllers\RentController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\EditProfileController;
+use App\Http\Controllers\SendMessageController;
 use App\Mail\VerificationMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -99,3 +100,9 @@ Route::post('/submit-room', [GetController::class, 'getDriverSessionMessage'])->
 //User Messenger
 Route::get('user-messenger', [GetController::class, 'userMessenger']);
 Route::get('customerMessage', [GetController::class, 'getuserMessage']);
+Route::get('getCustomerMesssage', [GetController::class, 'getcustomerSession']);
+Route::get('/customer/{room}/session/{driver}', [GetController::class, 'getCustomerSession']);
+Route::get('/getcustomerSessionMessage/{room}/{driver}', [GetController::class, 'getCustomerSessionMessage']);
+
+// User Send Message
+Route::post('submit-message', [SendMessageController::class, 'userSendMessage']);
