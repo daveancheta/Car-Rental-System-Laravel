@@ -24,12 +24,18 @@ class GetController extends Controller
     {
         Gate::authorize('access-admin');
 
-        $cars = Cars::latest()->simplePaginate(4); // fetch all users
+        $cars = Cars::latest(); // fetch all users
 
         $drivers = User::latest()
             ->where('is_driver', '=', '1')
             ->where('account_status', 'verified')
             ->get();
+
+        $cars = DB::table('cars')
+        ->join('users', 'cars.driver', '=', 'users.id')
+        ->select('cars.*',
+        'users.first_name', 
+        'users.last_name')->paginate(4);
 
 
         return view('admin.create-car', compact('cars', 'drivers'));
@@ -49,6 +55,11 @@ class GetController extends Controller
         $cars = Cars::all(); // fetch all users
         $uniqueCode = 'CRN-' . now()->format('Ymd') . '-' . strtoupper(Str::random(8));
 
+        $cars = DB::table('cars')
+        ->join('users', 'cars.driver', '=', 'users.id')
+        ->select('cars.*',
+        'users.first_name', 'users.last_name')
+        ->get();
 
 
 

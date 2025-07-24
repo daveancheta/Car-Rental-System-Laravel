@@ -33,7 +33,7 @@
           class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
           <div class="relative">
             <img src="{{ asset('storage/' . $car->image) }}" alt="{{ $car->car_name }}"
-              class="w-full h-48 object-cover rounded-t-xl" />
+              class="w-full h-48 object-fill rounded-t-xl" />
             <div class="absolute top-3 left-3">
               <span
                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium uppercase tracking-wide bg-red-100 text-red-800">
@@ -45,6 +45,8 @@
           <div class="p-5">
             <h5 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ $car->car_name }}</h5>
             <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">{{ $car->description }}</p>
+                 <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">Driver: <span
+                        class="dark:text-yellow-500">{{ $car->first_name }} {{ $car->last_name }}</span></p>
             <div class="flex items-center justify-between mb-4">
               <span class="text-2xl font-bold text-green-600 dark:text-green-400">
                 ₱{{ number_format($car->car_price, 2) }}
@@ -117,7 +119,7 @@
           class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
           <div class="relative">
             <img src="{{ asset('storage/' . $car->image) }}" alt="{{ $car->car_name }}"
-              class="w-full h-48 object-cover rounded-t-xl" />
+              class="w-full h-48 object-fill rounded-t-xl" />
             <div class="absolute top-3 left-3">
               @if(Auth::user()->account_status === NULL)
               <span
@@ -137,6 +139,8 @@
           <div class="p-5">
             <h5 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ $car->car_name }}</h5>
             <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">{{ $car->description }}</p>
+                 <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">Driver: <span
+                        class="dark:text-yellow-500">{{ $car->first_name }} {{ $car->last_name }}</span></p>
             <div class="flex items-center justify-between mb-4">
               <span class="text-2xl font-bold text-green-600 dark:text-green-400">
                 ₱{{ number_format($car->car_price, 2) }}<span class="text-sm text-gray-500 dark:text-gray-400">/per
@@ -245,6 +249,16 @@
                 <x-modal-forms.label class="text-xs" for="">End Date</x-modal-forms.label>
                 <x-modal-forms.input type="date" name="rent_end_date" min="{{ $currentDay}}" />
               </div>
+
+              <div>
+                 <p class="text-white font-bold text-md mb-2 mt-2">Driver: <span
+                                class="capitalize font-normal">{{ $car->first_name }} {{ $car->last_name }}</span></p>
+                  <x-modal-forms.label for="driver">Would you like to rent this car with a driver?</x-modal-forms.label>
+                <x-modal-forms.select name="driver">
+                  <option value="{{ $car->driver }}">Yes</option>
+                  <option value="0">No</option>
+                </x-modal-forms.select>
+              </div>
               <input type="hidden" name="car_id" value="{{ $car->id }}">
               <input type="hidden" name="customer_user_id" value="{{ Auth::user()->id }}">
               <input type="hidden" name="customer_email" value="{{ Auth::user()->email }}">
@@ -262,40 +276,8 @@
               <input type="hidden" name="customer_profile" value="{{ Auth::user()->profile}}">
               <input type="hidden" name="status" value="pending">
               <input type="hidden" name="car_image" value="{{ $car->image}}">
-              <input type="hidden" name="driver" value="{{ $car->driver}}">
 
-              <div class="row mb-3">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="text-white mb-2">Are you renting the car with a driver?</label>
-
-
-                    <div class="flex items-center mb-4">
-                      <input type="radio" value="" name="default-radio"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" id="checkbox">
-                      <label for="default-radio-1"
-                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
-                    </div>
-                    <div class="flex items-center">
-                      <input checked id="default-radio-2" type="radio" value="" name="default-radio"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                      <label for="default-radio-2"
-                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Checked state</label>
-                    </div>
-
-
-                    <div class="col-md-4 mb-3" id="box" style="display: none;">
-                      <input type="number" name="practical1" class="form-control" placeholder="Enter driver fee">
-                    </div>
-
-                    <div class="d-flex align-items-center gap-2">
-                      <input name="driver" type="radio" class="form-check-input">
-                      <label class="form-check-label text-white">No</label>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
+              
 
 
               <x-modal-forms.button type="submit">

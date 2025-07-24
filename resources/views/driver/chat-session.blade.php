@@ -21,7 +21,7 @@
     </style>
     <div>
         <div class="bg-gray-800 h-150 w-full rounded-t-lg relative overflow-y-auto"
-            style="scrollbar-width: thin; scrollbar-color: #6b7280 transparent; scroll">
+            style="scrollbar-width: thin; scrollbar-color: #6b7280 transparent;">
             <div class="bg-gray-800 h-20 w-full rounded-t-lg flex items-center p-6 mt-5 gap-2 gap-2">
                 <img class="rounded-full w-15 h-15 object-cover"
                     src="{{ asset('storage/' . $room->customer_profile) }}">

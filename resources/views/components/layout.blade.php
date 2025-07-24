@@ -27,7 +27,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="flex flex-col min-h-screen dark:bg-gray-900 no-scrollbar" style="font-family: 'Inter', sans-serif;">
+<body class="flex flex-col min-h-screen dark:bg-gray-900 no-scrollbar" style="font-family: 'Inter', sans-serif; scrollbar-width: thin; scrollbar-color: #6b7280 transparent;">
 
     @guest
     <nav class="fixed top-0 left-0 w-full bg-white border-gray-200 dark:bg-gray-900 z-40 border-white">

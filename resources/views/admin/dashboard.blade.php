@@ -25,7 +25,8 @@
     @endphp
     @endforeach
 
-    @php $revenue = 0; @endphp
+    @php $revenue = 0;
+    $wodriver = 0; @endphp
     @foreach ($totalRevenue as $nuew)
     @php
     $start = \Carbon\Carbon::parse($nuew->rent_start_date);
@@ -49,11 +50,17 @@
     @endphp
     @endforeach
     
-    @php
+   @php
+    $mul = 0;
     $sub = $currentrevenue - $pastrevenue;
-    $div = $sub / $pastrevenue;
-    $mul = $div * 100;
-    @endphp
+
+    if ($pastrevenue != 0) {
+        $div = $sub / $pastrevenue;
+        $mul = $div * 100;
+    } else {
+        $mul = 0;
+    }
+@endphp
 
 
 

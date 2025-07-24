@@ -20,7 +20,7 @@
    @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-100 dark:bg-gray-900" style="font-family: 'Inter', sans-serif;">
+<body class="bg-gray-100 dark:bg-gray-900" style="font-family: 'Inter', sans-serif; scrollbar-width: thin; scrollbar-color: #6b7280 transparent;">
 
 
    <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700">

@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        Paginator::useTailwind();
+        
         Gate::define('access-admin', function ($user) {
             return $user->is_admin
                 ? Response::allow()
