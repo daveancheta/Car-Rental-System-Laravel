@@ -35,7 +35,7 @@ class GetController extends Controller
         ->join('users', 'cars.driver', '=', 'users.id')
         ->select('cars.*',
         'users.first_name', 
-        'users.last_name')->paginate(4);
+        'users.last_name')->simplePaginate(4);
 
 
         return view('admin.create-car', compact('cars', 'drivers'));
