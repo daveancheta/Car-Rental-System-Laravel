@@ -134,7 +134,7 @@
     }
 
             getMessages();
-            setInterval(getMessages, 500);
+            setInterval(getMessages, 1000);
    
       
     </script>
