@@ -13,7 +13,7 @@
           d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
       </svg>
       <div>
-        <span class="font-medium">You need to sign in first before you can rent a car.</span> <a href="/"
+        <span class="font-medium">You need to sign in first before you can rent a car.</span> <a href="/index"
           class="text-blue-700 underline">Sign in now.</a>
       </div>
     </div>
@@ -61,6 +61,7 @@
           </div>
         </div>
         @endforeach
+      
         @else
         <div class="flex-1 flex flex-col items-center justify-center">
           <div
@@ -78,7 +79,11 @@
         @endif
       </div>
     </div>
+      <div class="mt-5 items-center mx-8">
+        {{ $cars->links() }}
+    </div>
   </div>
+  
   @endguest
 
 
@@ -256,7 +261,7 @@
                   <x-modal-forms.label for="driver">Would you like to rent this car with a driver?</x-modal-forms.label>
                 <x-modal-forms.select name="driver">
                   <option value="{{ $car->driver }}">Yes</option>
-                  <option value="0">No</option>
+                  <option value="">No</option>
                 </x-modal-forms.select>
               </div>
               <input type="hidden" name="car_id" value="{{ $car->id }}">
@@ -288,8 +293,10 @@
         </x-modal-forms.container>
 
         @endforeach
-
       </div>
+      <div class="mt-5 items-center mx-8">
+        {{ $cars->links() }}
+    </div>
       @else
 
       <div class="flex-1 flex flex-col items-center justify-center">

@@ -54,7 +54,7 @@ class RentController extends Controller
             'car_name' => ['required'],
             'car_price' => ['required'],
             'car_image' => ['required'],
-            'driver' => ['required'],
+            'driver' => ['nullable'],
             'status' => ['required'],
         ]);
 

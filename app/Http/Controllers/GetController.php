@@ -35,9 +35,8 @@ class GetController extends Controller
         ->join('users', 'cars.driver', '=', 'users.id')
         ->select('cars.*',
         'users.first_name', 
-        'users.last_name')->simplePaginate(4);
-
-
+        'users.last_name')->paginate(4);
+        
         return view('admin.create-car', compact('cars', 'drivers'));
     }
 
@@ -55,11 +54,11 @@ class GetController extends Controller
         $cars = Cars::all(); // fetch all users
         $uniqueCode = 'CRN-' . now()->format('Ymd') . '-' . strtoupper(Str::random(8));
 
-        $cars = DB::table('cars')
+         $cars = DB::table('cars')
         ->join('users', 'cars.driver', '=', 'users.id')
         ->select('cars.*',
         'users.first_name', 'users.last_name')
-        ->get();
+        ->paginate(4);
 
 
 
@@ -74,16 +73,19 @@ class GetController extends Controller
     {
         $userId = Auth::id(); // Get the currently logged-in user's ID
 
-        $rents = Rent::where('customer_user_id', $userId)->get();
+     
 
-          $rents = DB::table('rents')
-        ->join('users', 'rents.driver', '=', 'users.id')
-        ->select(
-            'rents.*',
-            'users.first_name',
-            'users.last_name'
-        )
-        ->get();
+       $rents = DB::table('rents')
+            ->leftJoin('users', 'rents.driver', '=', 'users.id')
+            ->select(
+                'rents.*',
+                'users.first_name',
+                'users.last_name'
+            )
+            ->where('customer_user_id', $userId)
+            ->get();
+
+            
 
         return view('display-rent', compact('rents'));
     }

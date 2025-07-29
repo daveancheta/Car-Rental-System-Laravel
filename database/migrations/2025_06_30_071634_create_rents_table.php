@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('customer_user_id')
                 ->constrained('users')
                 ->onDelete('cascade');
-            $table->string('driver');
+            $table->string('driver')->nullable();
             $table->string('crn_id')->unique();
             $table->string('customer_first_name');
             $table->string('customer_middle_name')->nullable();
