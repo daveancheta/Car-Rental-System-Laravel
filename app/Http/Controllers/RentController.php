@@ -7,6 +7,8 @@ use App\Models\Rent;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RentMail;
 use Illuminate\Support\Str;
 
 class RentController extends Controller
@@ -58,11 +60,15 @@ class RentController extends Controller
             'status' => ['required'],
         ]);
 
-        Rent::create($validated);
+        $rents = Rent::create($validated);
 
         $carId = $request->input('car_id');
         $car = Cars::find($carId);
         $car->update(['status' => 'rented']);
+
+        $user = Auth::user();
+        Mail::to($user->email)
+            ->send(new RentMail($rents));
 
 
         return redirect('/car');
@@ -71,10 +77,7 @@ class RentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Rent $rent)
-    {
-       
-    }
+    public function show(Rent $rent) {}
 
     /**
      * Show the form for editing the specified resource.
@@ -93,18 +96,18 @@ class RentController extends Controller
     }
 
     public function destroy(Rent $rent)
-{
-    if ($rent->car_id) {
-        $car = Cars::find($rent->car_id);
-        if ($car) {
-            $car->update(['status' => 'available']);
+    {
+        if ($rent->car_id) {
+            $car = Cars::find($rent->car_id);
+            if ($car) {
+                $car->update(['status' => 'available']);
+            }
         }
+
+        $rent->delete();
+
+        return redirect('/display');
     }
-
-    $rent->delete();
-
-    return redirect('/display');
-}
 
 
 

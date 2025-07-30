@@ -52,7 +52,6 @@ Route::post('/verify_code', [RegisterController::class, 'code']);
 Route::get('/rent', [RentController::class, 'create'])->middleware('auth');
 Route::post('/rent', [RentController::class, 'store'])->middleware('auth');
 
-
 Route::get('/rental/{rent}/contract', [ContractController::class, 'generateContract'])->name('contract.generate');
 Route::get('/rental/{rent}/contract/download', [ContractController::class, 'downloadContract'])->name('contract.download');
 

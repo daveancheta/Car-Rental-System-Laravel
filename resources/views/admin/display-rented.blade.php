@@ -52,11 +52,11 @@
 
                         <div class="text-base font-semibold text-gray-900 dark:text-white">
                             @php
-                                $fullname = trim("{$rent->customer_first_name} {$rent->customer_middle_name} {$rent->customer_last_name}
+                                $fullnametrim = trim("{$rent->customer_first_name} {$rent->customer_middle_name} {$rent->customer_last_name}
                                 {$rent->customer_suffix}")
                             @endphp
                             <div><span class="font-normal text-sm text-gray-500 dark:text-gray-400">Name:</span><br>
-                                {{ $fullname }}</div>
+                                {{ $fullnametrim }}</div>
                         </div>
                     </div>
                 </div>
