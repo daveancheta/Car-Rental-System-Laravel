@@ -31,17 +31,23 @@
                 </div>
                 <div class="p-5">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $rent->car_name }}</h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{
+                            $rent->car_name }}</h5>
                     </a>
-                     <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2 mt-5">Driver: <span
-                        class="dark:text-yellow-500">{{ $rent->first_name }} {{ $rent->last_name }}</span></p>
-                <div class="flex items-center justify-between mt-4">
-                    <span class="text-2xl font-bold text-green-600 dark:text-green-400">₱{{
-                        number_format($rent->car_price,
-                        2)
-                        }}<span class="text-sm text-gray-500 dark:text-gray-400">/per day</span>
-                    </span>
-                </div>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2 mt-5">Driver: @if(
+                        $rent->driver === NULL)
+                        <span class="dark:text-yellow-500">N/A</span>
+                        @else
+                        <span class="dark:text-yellow-500">{{ $rent->first_name }} {{ $rent->last_name }}</span>
+                        @endif
+                    </p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold text-green-600 dark:text-green-400">₱{{
+                            number_format($rent->car_price,
+                            2)
+                            }}<span class="text-sm text-gray-500 dark:text-gray-400">/per day</span>
+                        </span>
+                    </div>
                     <form id="delete-rented" action="user/{{ $rent->id }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -49,35 +55,35 @@
                     @if($rent->status === 'pending')
                     <div class="flex justify-end">
                         <button type="submit" form="delete-rented"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-yellow-100 text-yellow-800 rounded-lg mt-4">
-                        Cancel
-                    </button>
+                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-yellow-100 text-yellow-800 rounded-lg mt-4 cursor-pointer">
+                            Cancel
+                        </button>
                     </div>
-                    
+
 
                     @elseif($rent->status === 'declined')
-                       <div class="flex justify-end">
+                    <div class="flex justify-end">
                         <button type="submit" form="delete-rented"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-red-100 text-red-800 rounded-lg mt-4">
-                        Delete
-                    </button>
+                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-red-100 text-red-800 rounded-lg mt-4 cursor-pointer">
+                            Delete
+                        </button>
                     </div>
 
                     @elseif($rent->status === 'approved')
 
-                  <div class="flex justify-end">
+                    <div class="flex justify-end">
                         <button type="submit"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-gray-900 text-white rounded-lg mt-4 cursor-not-allowed">
-                        Cancel
-                    </button>
+                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-gray-900 text-white rounded-lg mt-4 cursor-not-allowed">
+                            Cancel
+                        </button>
                     </div>
 
                     @else
-                     <div class="flex justify-end">
+                    <div class="flex justify-end">
                         <button type="submit"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-gray-900 text-white rounded-lg mt-4 cursor-not-allowed">
-                        Cancel
-                    </button>
+                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-gray-900 text-white rounded-lg mt-4 cursor-not-allowed">
+                            Cancel
+                        </button>
                     </div>
                     @endif
                 </div>

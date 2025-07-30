@@ -2,6 +2,7 @@
 
   @php
       $currentDay = \Carbon\Carbon::today()->format('Y-m-d');
+      $tomorrowDay = \Carbon\Carbon::tomorrow()->format('Y-m-d');
   @endphp
 
   @guest
@@ -88,9 +89,6 @@
 
 
   @auth
-
-
-
   @if(Auth::user()->account_status === NULL)
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <div class="flex items-center p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
@@ -252,7 +250,7 @@
 
               <div>
                 <x-modal-forms.label class="text-xs" for="">End Date</x-modal-forms.label>
-                <x-modal-forms.input type="date" name="rent_end_date" min="{{ $currentDay}}" />
+                <x-modal-forms.input type="date" name="rent_end_date" min="{{ $tomorrowDay}}" />
               </div>
 
               <div>
