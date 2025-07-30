@@ -1,6 +1,7 @@
 <x-layout>
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
 
+        @if($rents->count())
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
             @foreach ($rents as $rent)
 
@@ -48,13 +49,13 @@
                             }}<span class="text-sm text-gray-500 dark:text-gray-400">/per day</span>
                         </span>
                     </div>
-                    <form id="delete-rented" action="user/{{ $rent->id }}" method="POST">
+                    <form action="user/{{ $rent->id }}" method="POST">
                         @csrf
                         @method('DELETE')
-                    </form>
+                  
                     @if($rent->status === 'pending')
                     <div class="flex justify-end">
-                        <button type="submit" form="delete-rented"
+                        <button type="submit"
                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-yellow-100 text-yellow-800 rounded-lg mt-4 cursor-pointer">
                             Cancel
                         </button>
@@ -63,7 +64,7 @@
 
                     @elseif($rent->status === 'declined')
                     <div class="flex justify-end">
-                        <button type="submit" form="delete-rented"
+                        <button type="submit"
                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-red-100 text-red-800 rounded-lg mt-4 cursor-pointer">
                             Delete
                         </button>
@@ -72,23 +73,39 @@
                     @elseif($rent->status === 'approved')
 
                     <div class="flex justify-end">
-                        <button type="submit"
+                        <div
                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-gray-900 text-white rounded-lg mt-4 cursor-not-allowed">
                             Cancel
-                        </button>
+                    </div>
                     </div>
 
                     @else
                     <div class="flex justify-end">
-                        <button type="submit"
+                        <div
                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-gray-900 text-white rounded-lg mt-4 cursor-not-allowed">
                             Cancel
-                        </button>
+                    </div>
                     </div>
                     @endif
+                      </form>
                 </div>
             </div>
             @endforeach
         </div>
     </div>
+    @else
+      <div class="flex-1 flex flex-col items-center justify-center">
+        <div
+            class="flex items-center p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 max-w-md w-full">
+            <svg class="shrink-0 inline w-5 h-5 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <div>
+                <span class="font-medium">You haven’t rented any cars yet.</span>
+            </div>
+        </div>
+    </div>
+    @endif
 </x-layout>
