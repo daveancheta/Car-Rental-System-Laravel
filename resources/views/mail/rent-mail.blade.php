@@ -21,7 +21,7 @@
                     <!-- Car Image -->
                     <tr>
                         <td style="background-color: #2d3748;">
-                            <img src="{{ $message->embed('storage/' . $rents->car_image) }}" alt="{{ $rents->car_name }}" style="width: 100%; max-height: 300px; object-fit: cover;">
+                            <img src="{{ $message->embed('storage/' . $rents->car_image) }}" alt="{{ $rents->car_name }}" style="width: 100%; max-height: 300px; object-fit: fill;">
                         </td>
                     </tr>
 

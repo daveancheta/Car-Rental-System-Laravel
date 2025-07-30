@@ -80,7 +80,8 @@ class GetController extends Controller
             ->select(
                 'rents.*',
                 'users.first_name',
-                'users.last_name'
+                'users.last_name',
+                'users.profile as driver_profile'
             )
             ->where('customer_user_id', $userId)
             ->get();
