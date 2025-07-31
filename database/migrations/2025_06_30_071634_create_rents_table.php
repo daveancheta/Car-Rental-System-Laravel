@@ -37,6 +37,9 @@ return new class extends Migration
             $table->string('car_price');
             $table->string('car_image');
             $table->string('status');
+            $table->string('service_rate')->nullable();
+            $table->string('driver_rate')->nullable();
+
              $table->string('notifStatus');
             $table->timestamps();
         });
