@@ -136,7 +136,8 @@
                                 <span class="text-white">Please rate your experience with our service and
                                     vehicle.</span>
                                 <div class="flex flex-row gap-1">
-                                    <button type="button" id="starone-{{ $rent->id }}" class="w-8 h-8 text-gray-500 cursor-pointer">
+                                    <button type="button" id="starone-{{ $rent->id }}"
+                                        class="w-8 h-8 text-gray-500 cursor-pointer">
                                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                             viewBox="0 0 24 24">
                                             <path
@@ -144,7 +145,8 @@
                                         </svg>
                                     </button>
 
-                                    <button type="button" id="startwo-{{ $rent->id }}" class="w-8 h-8 text-gray-500 cursor-pointer">
+                                    <button type="button" id="startwo-{{ $rent->id }}"
+                                        class="w-8 h-8 text-gray-500 cursor-pointer">
                                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                             viewBox="0 0 24 24">
                                             <path
@@ -152,7 +154,8 @@
                                         </svg>
                                     </button>
 
-                                    <button type="button" id="starthree-{{ $rent->id }}" class="w-8 h-8 text-gray-500 cursor-pointer">
+                                    <button type="button" id="starthree-{{ $rent->id }}"
+                                        class="w-8 h-8 text-gray-500 cursor-pointer">
                                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                             viewBox="0 0 24 24">
                                             <path
@@ -160,7 +163,8 @@
                                         </svg>
                                     </button>
 
-                                    <button type="button" id="starfour-{{ $rent->id }}" class="w-8 h-8 text-gray-500 cursor-pointer">
+                                    <button type="button" id="starfour-{{ $rent->id }}"
+                                        class="w-8 h-8 text-gray-500 cursor-pointer">
                                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                             viewBox="0 0 24 24">
                                             <path
@@ -168,7 +172,8 @@
                                         </svg>
                                     </button>
 
-                                    <button type="button" id="starfive-{{ $rent->id }}" class="w-8 h-8 text-gray-500 cursor-pointer">
+                                    <button type="button" id="starfive-{{ $rent->id }}"
+                                        class="w-8 h-8 text-gray-500 cursor-pointer">
                                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                             viewBox="0 0 24 24">
                                             <path
@@ -177,6 +182,58 @@
                                     </button>
 
 
+                                </div>
+
+                                <div class="flex flex-col gap-4">
+                                    <span class="text-white">Please rate your experience with our Driver.</span>
+                                    <div class="flex flex-row gap-1">
+                                        <button type="button" id="starone2-{{ $rent->id }}"
+                                            class="w-8 h-8 text-gray-500 cursor-pointer">
+                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        </button>
+
+                                        <button type="button" id="startwo2-{{ $rent->id }}"
+                                            class="w-8 h-8 text-gray-500 cursor-pointer">
+                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        </button>
+
+                                        <button type="button" id="starthree2-{{ $rent->id }}"
+                                            class="w-8 h-8 text-gray-500 cursor-pointer">
+                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        </button>
+
+                                        <button type="button" id="starfour2-{{ $rent->id }}"
+                                            class="w-8 h-8 text-gray-500 cursor-pointer">
+                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        </button>
+
+                                        <button type="button" id="starfive2-{{ $rent->id }}"
+                                            class="w-8 h-8 text-gray-500 cursor-pointer">
+                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        </button>
+
+
+                                    </div>
                                 </div>
                             </div>
 
@@ -306,5 +363,99 @@
             });
         }
         });
+
+          modalid.forEach(modal => {
+              const id = modal.id.split('-')[1];
+        
+        const starone2 = document.getElementById(`starone2-${id}`);
+        const startwo2 = document.getElementById(`startwo2-${id}`); 
+        const starthree2 = document.getElementById(`starthree2-${id}`);
+        const starfour2 = document.getElementById(`starfour2-${id}`);
+        const starfive2 = document.getElementById(`starfive2-${id}`);
+        const clear = document.getElementById('clear-rating');
+    
+        if (starone2) {
+            starone2.addEventListener('click', function() {
+            starone2.classList.add('text-yellow-500');
+            starone2.classList.remove('text-gray-500');
+            startwo2.classList.remove('text-yellow-500');
+            starthree2.classList.remove('text-yellow-500');
+            starfour2.classList.remove('text-yellow-500');
+            starfive2.classList.remove('text-yellow-500');
+            startwo2.classList.add('text-gray-500');
+            starthree2.classList.add('text-gray-500');
+            starfour2.classList.add('text-gray-500');
+            starfive2.classList.add('text-gray-500');
+            });
+        }
+
+          if (startwo2) {
+            startwo2.addEventListener('click', function() {
+            starone2.classList.add('text-yellow-500');
+            startwo2.classList.add('text-yellow-500');
+            starthree2.classList.remove('text-yellow-500');
+            starfour2.classList.remove('text-yellow-500');
+            starfive2.classList.remove('text-yellow-500');
+            starthree2.classList.add('text-gray-500');
+            starfour2.classList.add('text-gray-500');
+            starfive2.classList.add('text-gray-500');
+            });
+        }
+
+         if (starthree2) {
+            starthree2.addEventListener('click', function() {
+            starone2.classList.add('text-yellow-500');
+            startwo2.classList.add('text-yellow-500');
+            starthree2.classList.add('text-yellow-500');
+            starthree2.classList.remove('text-gray-500');
+            starfour2.classList.remove('text-yellow-500');
+            starfive2.classList.remove('text-yellow-500');
+            starfour2.classList.add('text-gray-500');
+            starfive2.classList.add('text-gray-500');
+            });
+        }
+
+         if (starfour2) {
+            starfour2.addEventListener('click', function() {
+            starone2.classList.add('text-yellow-500');
+            startwo2.classList.add('text-yellow-500');
+            starthree2.classList.add('text-yellow-500');
+            starfour2.classList.add('text-yellow-500');
+            starfour2.classList.remove('text-gray-500');
+            starthree2.classList.remove('text-gray-500');
+            starfive2.classList.remove('text-yellow-500');
+            starfive2.classList.add('text-gray-500');
+            });
+        }
+
+         if (starfive2) {
+            starfive2.addEventListener('click', function() {
+            starone2.classList.add('text-yellow-500');
+            startwo2.classList.add('text-yellow-500');
+            starthree2.classList.add('text-yellow-500');
+            starfour2.classList.add('text-yellow-500');
+            starfour2.classList.remove('text-gray-500');
+            starfive2.classList.add('text-yellow-500');
+            starfive2.classList.remove('text-gray-500');
+            });
+        }
+         if (clear) {
+            clear.addEventListener('click', function() {
+            starone2.classList.remove('text-yellow-500');
+            startwo2.classList.remove('text-yellow-500');
+            starthree2.classList.remove('text-yellow-500');
+            starfour2.classList.remove('text-yellow-500');
+            starfour2.classList.remove('text-yellow-500');
+            starfive2.classList.remove('text-yellow-500');
+            starone2.classList.add('text-gray-500');
+            startwo2.classList.add('text-gray-500');
+            starthree2.classList.add('text-gray-500');
+            starfour2.classList.add('text-gray-500');
+            starfive2.classList.add('text-gray-500');
+            });
+        }
+        });
+
+
     </script>
 </x-layout>
