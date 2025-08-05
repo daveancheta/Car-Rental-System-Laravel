@@ -47,12 +47,53 @@
 
                     <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2 mt-5">Driver: @if(
                         $rent->driver === NULL)
-                        <span class="dark:text-yellow-500">N/A</span>
+                        <span class="dark:text-yellow-500 select-none">N/A</span>
                         @else
-                        <span class="dark:text-yellow-500">{{
-                            $rent->first_name }} {{ $rent->last_name }}</span>
+                        <button data-modal-target="rate-{{$rent->driver}}-driver"
+                            data-modal-toggle="rate-{{$rent->driver}}-driver"
+                            class="dark:text-yellow-500 cursor-pointer">{{
+                            $rent->first_name }} {{ $rent->last_name }}</button>
                         @endif
                     </p>
+
+                    <!-- Main modal -->
+                    <div id="rate-{{$rent->driver}}-driver" data-modal-backdrop="static" tabindex="-1"
+                        aria-hidden="true"
+                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="relative p-4 w-full max-w-2xl max-h-full">
+                            <!-- Modal content -->
+                            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                                <!-- Modal header -->
+                                <div
+                                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                        {{$rent->first_name}} {{$rent->last_name}}
+                                    </h3>
+                                    <button type="button"
+                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                        data-modal-hide="rate-{{$rent->driver}}-driver">
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                        </svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="p-4 md:p-5 space-y-4">
+
+                                </div>
+                                <!-- Modal footer -->
+                                <div
+                                    class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                    <button data-modal-hide="static-modal" type="button"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="flex items-center justify-between mt-4">
                         <span class="text-2xl font-bold text-green-600 dark:text-green-400">₱{{
                             number_format($rent->car_price,
@@ -169,7 +210,8 @@
                                         </button>
                                     </form>
 
-                                    <form id="rate-submit-3-{{$rent->id}}" action="/submit-{{$rent->id}}-service-rate" method="POST">
+                                    <form id="rate-submit-3-{{$rent->id}}" action="/submit-{{$rent->id}}-service-rate"
+                                        method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <input id="input-3-{{$rent->id}}" type="hidden" name="service_rate" value="3">
@@ -183,7 +225,8 @@
                                         </button>
                                     </form>
 
-                                    <form id="rate-submit-4-{{$rent->id}}" action="/submit-{{$rent->id}}-service-rate" method="POST">
+                                    <form id="rate-submit-4-{{$rent->id}}" action="/submit-{{$rent->id}}-service-rate"
+                                        method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <input id="input-4-{{$rent->id}}" type="hidden" name="service_rate" value="4">
@@ -197,7 +240,8 @@
                                         </button>
                                     </form>
 
-                                    <form id="rate-submit-5-{{$rent->id}}" action="/submit-{{$rent->id}}-service-rate" method="POST">
+                                    <form id="rate-submit-5-{{$rent->id}}" action="/submit-{{$rent->id}}-service-rate"
+                                        method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <input id="input-5-{{$rent->id}}" type="hidden" name="service_rate" value="5">
@@ -264,7 +308,7 @@
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                             </svg>
                                         </button>
-                                        
+
 
 
                                     </div>
@@ -277,8 +321,8 @@
                         <div
                             class="flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
 
-                             <button id="default-button-{{$rent->id}}" data-modal-hide="large-modal" type="button"
-                                  class="font-medium text-sm px-5 py-2.5 text-center bg-gray-900 text-white rounded-lg mt-4 cursor-not-allowed select-none">Submit</button>
+                            <button id="default-button-{{$rent->id}}" data-modal-hide="large-modal" type="button"
+                                class="font-medium text-sm px-5 py-2.5 text-center bg-gray-900 text-white rounded-lg mt-4 cursor-not-allowed select-none">Submit</button>
 
                             <button form="rate-submit-1-{{$rent->id}}" data-modal-hide="large-modal" type="submit"
                                 id="rating-{{ $rent->id }}-1"
@@ -292,12 +336,12 @@
                                 id="rating-{{ $rent->id }}-3"
                                 class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
 
-                                   <button form="rate-submit-4-{{$rent->id}}" data-modal-hide="large-modal" type="submit"
-                            id="rating-{{ $rent->id }}-4" 
+                            <button form="rate-submit-4-{{$rent->id}}" data-modal-hide="large-modal" type="submit"
+                                id="rating-{{ $rent->id }}-4"
                                 class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
 
-                                   <button form="rate-submit-5-{{$rent->id}}" data-modal-hide="large-modal" type="submit"
-                            id="rating-{{ $rent->id }}-5" 
+                            <button form="rate-submit-5-{{$rent->id}}" data-modal-hide="large-modal" type="submit"
+                                id="rating-{{ $rent->id }}-5"
                                 class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
                         </div>
                     </div>
