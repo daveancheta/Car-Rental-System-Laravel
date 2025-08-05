@@ -49,15 +49,15 @@
                         $rent->driver === NULL)
                         <span class="dark:text-yellow-500 select-none">N/A</span>
                         @else
-                        <button data-modal-target="rate-driver-{{$rent->driver}}"
-                            data-modal-toggle="rate-driver-{{$rent->driver}}"
+                        <button data-modal-target="rate-driver-{{$rent->id}}"
+                            data-modal-toggle="rate-driver-{{$rent->id}}"
                             class="dark:text-yellow-500 cursor-pointer">{{
                             $rent->first_name }} {{ $rent->last_name }}</button>
                         @endif
                     </p>
 
                     <!-- Main modal -->
-                    <div id="rate-driver-{{$rent->driver}}" data-modal-backdrop="static" tabindex="-1"
+                    <div id="rate-driver-{{$rent->id}}" data-modal-backdrop="static" tabindex="-1"
                         aria-hidden="true"
                         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                         <div class="relative p-4 w-full max-w-2xl max-h-full">
@@ -71,7 +71,7 @@
                                     </h3>
                                     <button type="button"
                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                        data-modal-hide="rate-driver-{{$rent->driver}}" id="clear2-rating-{{ $rent->driver }}">
+                                        data-modal-hide="rate-driver-{{$rent->id}}" id="clear2-rating-{{ $rent->id }}">
                                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 14 14">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -85,14 +85,14 @@
                                     <div class="p-5 flex flex-col gap-4">
                                         <span class="text-white">Please rate your experience with our Driver.</span>
                                         <div class="flex flex-row gap-1">
-                                            <form id="rate2-submit-1-{{$rent->driver}}"
+                                            <form id="rate2-submit-1-{{$rent->id}}"
                                                 action="/submit2-service-rate" method="POST">
                                                 @csrf
                                                 @method('PATCH')
-                                                <input type="hidden" name="id" value="{{$rent->id}}">
+                                                <input type="text" name="id" value="{{$rent->id}}">
                                                 <input id="input-1-{{$rent->driver}}" type="hidden" name="driver_rate"
                                                     value="1">
-                                                <button type="button" id="starone2-{{ $rent->driver }}"
+                                                <button type="button" id="starone2-{{ $rent->id }}"
                                                     class="w-8 h-8 text-gray-500 cursor-pointer">
                                                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                                         fill="currentColor" viewBox="0 0 24 24">
@@ -102,14 +102,14 @@
                                                 </button>
                                             </form>
 
-                                            <form id="rate2-submit-2-{{$rent->driver}}"
+                                            <form id="rate2-submit-2-{{$rent->id}}"
                                                 action="/submit2-service-rate" method="POST">
                                                 @csrf
                                                 @method('PATCH')
                                                 <input type="hidden" name="id" value="{{$rent->id}}">
                                                 <input id="input-2-{{$rent->driver}}" type="hidden" name="driver_rate"
                                                     value="2">
-                                                <button type="button" id="startwo2-{{ $rent->driver }}"
+                                                <button type="button" id="startwo2-{{ $rent->id }}"
                                                     class="w-8 h-8 text-gray-500 cursor-pointer">
                                                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                                         fill="currentColor" viewBox="0 0 24 24">
@@ -119,14 +119,14 @@
                                                 </button>
                                             </form>
 
-                                            <form id="rate2-submit-3-{{$rent->driver}}"
+                                            <form id="rate2-submit-3-{{$rent->id}}"
                                                 action="/submit2-service-rate" method="POST">
                                                 @csrf
                                                 @method('PATCH')
                                                 <input type="hidden" name="id" value="{{$rent->id}}">
                                                 <input id="input-3-{{$rent->driver}}" type="hidden" name="driver_rate"
                                                     value="3">
-                                                <button type="button" id="starthree2-{{ $rent->driver }}"
+                                                <button type="button" id="starthree2-{{ $rent->id }}"
                                                     class="w-8 h-8 text-gray-500 cursor-pointer">
                                                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                                         fill="currentColor" viewBox="0 0 24 24">
@@ -136,14 +136,14 @@
                                                 </button>
                                             </form>
 
-                                            <form id="rate2-submit-4-{{$rent->driver}}"
+                                            <form id="rate2-submit-4-{{$rent->id}}"
                                                 action="/submit2-service-rate" method="POST">
                                                 @csrf
                                                 @method('PATCH')
                                                 <input type="hidden" name="id" value="{{$rent->id}}">
                                                 <input id="input-4-{{$rent->driver}}" type="hidden" name="driver_rate"
                                                     value="4">
-                                                <button type="button" id="starfour2-{{ $rent->driver }}"
+                                                <button type="button" id="starfour2-{{ $rent->id }}"
                                                     class="w-8 h-8 text-gray-500 cursor-pointer">
                                                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                                         fill="currentColor" viewBox="0 0 24 24">
@@ -153,14 +153,14 @@
                                                 </button>
                                             </form>
 
-                                            <form id="rate2-submit-5-{{$rent->driver}}"
+                                            <form id="rate2-submit-5-{{$rent->id}}"
                                                 action="/submit2-service-rate" method="POST">
                                                 @csrf
                                                 @method('PATCH')
                                                 <input type="hidden" name="id" value="{{$rent->id}}">
                                                 <input id="input-5-{{$rent->driver}}" type="hidden" name="driver_rate"
                                                     value="5">
-                                                <button type="button" id="starfive2-{{ $rent->driver }}"
+                                                <button type="button" id="starfive2-{{ $rent->id }}"
                                                     class="w-8 h-8 text-gray-500 cursor-pointer">
                                                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                                         fill="currentColor" viewBox="0 0 24 24">
@@ -178,28 +178,28 @@
                                 <div
                                     class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
 
-                                    <button id="default2-button-{{$rent->driver}}" data-modal-hide="large-modal"
+                                    <button id="default2-button-{{$rent->id}}" data-modal-hide="large-modal"
                                         type="button"
                                         class="font-medium text-sm px-5 py-2.5 text-center bg-gray-900 text-white rounded-lg mt-4 cursor-not-allowed select-none">Submit</button>
 
-                                    <button form="rate2-submit-1-{{$rent->driver}}" 
-                                        type="submit" id="rating2-{{ $rent->driver }}-1"
+                                    <button form="rate2-submit-1-{{$rent->id}}" 
+                                        type="submit" id="rating2-{{ $rent->id }}-1"
                                         class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
 
-                                    <button form="rate2-submit-2-{{$rent->driver}}" 
-                                        type="submit" id="rating2-{{ $rent->driver }}-2"
+                                    <button form="rate2-submit-2-{{$rent->id}}" 
+                                        type="submit" id="rating2-{{ $rent->id }}-2"
                                         class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
 
-                                    <button form="rate2-submit-3-{{$rent->driver}}" 
-                                        type="submit" id="rating2-{{ $rent->driver }}-3"
+                                    <button form="rate2-submit-3-{{$rent->id}}" 
+                                        type="submit" id="rating2-{{ $rent->id }}-3"
                                         class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
 
-                                    <button form="rate2-submit-4-{{$rent->driver}}" 
-                                        type="submit" id="rating2-{{ $rent->driver }}-4"
+                                    <button form="rate2-submit-4-{{$rent->id}}" 
+                                        type="submit" id="rating2-{{ $rent->id }}-4"
                                         class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
 
-                                    <button form="rate2-submit-5-{{$rent->driver}}" 
-                                        type="submit" id="rating2-{{ $rent->driver }}-5"
+                                    <button form="rate2-submit-5-{{$rent->id}}" 
+                                        type="submit" id="rating2-{{ $rent->id }}-5"
                                         class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
                                 </div>
                             </div>

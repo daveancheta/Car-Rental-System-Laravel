@@ -49,9 +49,9 @@ class RateController extends Controller
             'driver_rate' => 'nullable'
         ]);
 
-        $driverId = $request->input('id');
+        $id = $request->input('id');
         $driverRate = $request->input('driver_rate');
-        Rent::where('id', $driverId)->update(['driver_rate' => $driverRate]);
+        Rent::where('id', $id)->update(['driver_rate' => $driverRate]);
 
         return redirect('/display');
     }
