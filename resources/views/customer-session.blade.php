@@ -73,6 +73,13 @@
         const inputMessage = document.getElementById('inputMessage');
         const sendButton = document.getElementById('sendButton');
 
+        inputMessage.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("sendButton").click();
+            }
+        });
+
         inputMessage.addEventListener('input', () => {
             if (inputMessage.value.trim() === '') {
              sendButton.classList.add('send-button-disabled');
@@ -121,7 +128,7 @@
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             }
         });
-
+      
        
         $(document).on('click', '.send-message', function () {
            let roomId = '{{ $room->id }}';
