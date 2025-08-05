@@ -89,7 +89,7 @@
                                                 action="/submit2-service-rate" method="POST">
                                                 @csrf
                                                 @method('PATCH')
-                                                <input type="text" name="id" value="{{$rent->id}}">
+                                                <input type="hidden" name="id" value="{{$rent->id}}">
                                                 <input id="input-1-{{$rent->driver}}" type="hidden" name="driver_rate"
                                                     value="1">
                                                 <button type="button" id="starone2-{{ $rent->id }}"
