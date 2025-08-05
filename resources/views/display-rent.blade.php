@@ -49,15 +49,15 @@
                         $rent->driver === NULL)
                         <span class="dark:text-yellow-500 select-none">N/A</span>
                         @else
-                        <button data-modal-target="rate-{{$rent->driver}}-driver"
-                            data-modal-toggle="rate-{{$rent->driver}}-driver"
+                        <button data-modal-target="rate-driver-{{$rent->driver}}"
+                            data-modal-toggle="rate-driver-{{$rent->driver}}"
                             class="dark:text-yellow-500 cursor-pointer">{{
                             $rent->first_name }} {{ $rent->last_name }}</button>
                         @endif
                     </p>
 
                     <!-- Main modal -->
-                    <div id="rate-{{$rent->driver}}-driver" data-modal-backdrop="static" tabindex="-1"
+                    <div id="rate-driver-{{$rent->driver}}" data-modal-backdrop="static" tabindex="-1"
                         aria-hidden="true"
                         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                         <div class="relative p-4 w-full max-w-2xl max-h-full">
@@ -71,7 +71,7 @@
                                     </h3>
                                     <button type="button"
                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                        data-modal-hide="rate-{{$rent->driver}}-driver">
+                                        data-modal-hide="rate-driver-{{$rent->driver}}" id="clear2-rating-{{ $rent->driver }}">
                                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 14 14">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -82,13 +82,120 @@
                                 </div>
                                 <!-- Modal body -->
                                 <div class="p-4 md:p-5 space-y-4">
+                                    <div class="p-5 flex flex-col gap-4">
+                                        <span class="text-white">Please rate your experience with our Driver.</span>
+                                        <div class="flex flex-row gap-1">
+                                            <form id="rate2-submit-1-{{$rent->id}}"
+                                                action="/submit-{{$rent->driver}}-service-rate" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input id="input-1-{{$rent->driver}}" type="hidden" name="service_rate"
+                                                    value="1">
+                                                <button type="button" id="starone2-{{ $rent->driver }}"
+                                                    class="w-8 h-8 text-gray-500 cursor-pointer">
+                                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                        fill="currentColor" viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                    </svg>
+                                                </button>
+                                            </form>
 
+                                            <form id="rate2-submit-2-{{$rent->id}}"
+                                                action="/submit-{{$rent->driver}}-service-rate" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input id="input-2-{{$rent->driver}}" type="hidden" name="service_rate"
+                                                    value="2">
+                                                <button type="button" id="startwo2-{{ $rent->driver }}"
+                                                    class="w-8 h-8 text-gray-500 cursor-pointer">
+                                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                        fill="currentColor" viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+
+                                            <form id="rate2-submit-3-{{$rent->id}}"
+                                                action="/submit-{{$rent->driver}}-service-rate" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input id="input-3-{{$rent->driver}}" type="hidden" name="service_rate"
+                                                    value="3">
+                                                <button type="button" id="starthree2-{{ $rent->driver }}"
+                                                    class="w-8 h-8 text-gray-500 cursor-pointer">
+                                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                        fill="currentColor" viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+
+                                            <form id="rate2-submit-4-{{$rent->id}}"
+                                                action="/submit-{{$rent->driver}}-service-rate" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input id="input-4-{{$rent->driver}}" type="hidden" name="service_rate"
+                                                    value="4">
+                                                <button type="button" id="starfour2-{{ $rent->driver }}"
+                                                    class="w-8 h-8 text-gray-500 cursor-pointer">
+                                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                        fill="currentColor" viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+
+                                            <form id="rate2-submit-5-{{$rent->id}}"
+                                                action="/submit-{{$rent->driver}}-service-rate" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input id="input-5-{{$rent->driver}}" type="hidden" name="service_rate"
+                                                    value="5">
+                                                <button type="button" id="starfive2-{{ $rent->driver }}"
+                                                    class="w-8 h-8 text-gray-500 cursor-pointer">
+                                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                        fill="currentColor" viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
                                 </div>
                                 <!-- Modal footer -->
                                 <div
                                     class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                    <button data-modal-hide="static-modal" type="button"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+
+                                    <button id="default2-button-{{$rent->driver}}" data-modal-hide="large-modal"
+                                        type="button"
+                                        class="font-medium text-sm px-5 py-2.5 text-center bg-gray-900 text-white rounded-lg mt-4 cursor-not-allowed select-none">Submit</button>
+
+                                    <button form="rate2-submit-1-{{$rent->driver}}" 
+                                        type="submit" id="rating2-{{ $rent->driver }}-1"
+                                        class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
+
+                                    <button form="rate2-submit-2-{{$rent->driver}}" 
+                                        type="submit" id="rating2-{{ $rent->driver }}-2"
+                                        class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
+
+                                    <button form="rate2-submit-3-{{$rent->driver}}" 
+                                        type="submit" id="rating2-{{ $rent->driver }}-3"
+                                        class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
+
+                                    <button form="rate2-submit-4-{{$rent->driver}}" 
+                                        type="submit" id="rating2-{{ $rent->driver }}-4"
+                                        class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
+
+                                    <button form="rate2-submit-5-{{$rent->driver}}" 
+                                        type="submit" id="rating2-{{ $rent->driver }}-5"
+                                        class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -257,63 +364,6 @@
 
                                 </div>
 
-                                @if ($rent->driver === NULL)
-                                @else
-                                <div class="flex flex-col gap-4">
-                                    <span class="text-white">Please rate your experience with our Driver <span
-                                            class="text-yellow-500">({{ $rent->first_name}} {{
-                                            $rent->last_name}})</span>.</span>
-                                    <div class="flex flex-row gap-1">
-                                        <button type="button" id="starone2-{{ $rent->id }}"
-                                            class="w-8 h-8 text-gray-500 cursor-pointer">
-                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor" viewBox="0 0 24 24">
-                                                <path
-                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                            </svg>
-                                        </button>
-
-                                        <button type="button" id="startwo2-{{ $rent->id }}"
-                                            class="w-8 h-8 text-gray-500 cursor-pointer">
-                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor" viewBox="0 0 24 24">
-                                                <path
-                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                            </svg>
-                                        </button>
-
-                                        <button type="button" id="starthree2-{{ $rent->id }}"
-                                            class="w-8 h-8 text-gray-500 cursor-pointer">
-                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor" viewBox="0 0 24 24">
-                                                <path
-                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                            </svg>
-                                        </button>
-
-                                        <button type="button" id="starfour2-{{ $rent->id }}"
-                                            class="w-8 h-8 text-gray-500 cursor-pointer">
-                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor" viewBox="0 0 24 24">
-                                                <path
-                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                            </svg>
-                                        </button>
-
-                                        <button type="button" id="starfive2-{{ $rent->id }}"
-                                            class="w-8 h-8 text-gray-500 cursor-pointer">
-                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor" viewBox="0 0 24 24">
-                                                <path
-                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                            </svg>
-                                        </button>
-
-
-
-                                    </div>
-                                </div>
-                                @endif
                             </div>
 
                         </div>
@@ -368,6 +418,7 @@
 
     <script>
         const modalid = document.querySelectorAll( "[id^='rate-']" )
+        const modalidd = document.querySelectorAll( "[id^='rate-driver']" )
 
         modalid.forEach(modal => {
               const id = modal.id.split('-')[1];
@@ -504,15 +555,23 @@
         }
         });
 
-          modalid.forEach(modal => {
-              const id = modal.id.split('-')[1];
+        
+         
+          modalidd.forEach(modal => {
+              const id = modal.id.split('-')[2];
         
         const starone2 = document.getElementById(`starone2-${id}`);
         const startwo2 = document.getElementById(`startwo2-${id}`); 
         const starthree2 = document.getElementById(`starthree2-${id}`);
         const starfour2 = document.getElementById(`starfour2-${id}`);
         const starfive2 = document.getElementById(`starfive2-${id}`);
-        const clear = document.getElementById(`clear-rating-${id}`);
+        const clear = document.getElementById(`clear2-rating-${id}`);
+        const rateSubmit1 = document.getElementById(`rating2-${id}-1`);  
+        const rateSubmit2 = document.getElementById(`rating2-${id}-2`);  
+        const rateSubmit3 = document.getElementById(`rating2-${id}-3`);  
+        const rateSubmit4 = document.getElementById(`rating2-${id}-4`);  
+        const rateSubmit5 = document.getElementById(`rating2-${id}-5`); 
+        const defaultSubmit = document.getElementById(`default2-button-${id}`);
     
         if (starone2) {
             starone2.addEventListener('click', function() {
@@ -526,6 +585,12 @@
             starthree2.classList.add('text-gray-500');
             starfour2.classList.add('text-gray-500');
             starfive2.classList.add('text-gray-500');
+            rateSubmit1.classList.remove('hidden');
+            rateSubmit2.classList.add('hidden');
+            rateSubmit3.classList.add('hidden');
+            rateSubmit4.classList.add('hidden');
+            rateSubmit5.classList.add('hidden');
+            defaultSubmit.classList.add('hidden');
             });
         }
 
@@ -539,6 +604,12 @@
             starthree2.classList.add('text-gray-500');
             starfour2.classList.add('text-gray-500');
             starfive2.classList.add('text-gray-500');
+            rateSubmit1.classList.add('hidden');
+            rateSubmit2.classList.remove('hidden');
+            rateSubmit3.classList.add('hidden');
+            rateSubmit4.classList.add('hidden');
+            rateSubmit5.classList.add('hidden');
+            defaultSubmit.classList.add('hidden');
             });
         }
 
@@ -552,6 +623,12 @@
             starfive2.classList.remove('text-yellow-500');
             starfour2.classList.add('text-gray-500');
             starfive2.classList.add('text-gray-500');
+             rateSubmit1.classList.add('hidden');
+            rateSubmit2.classList.add('hidden');
+            rateSubmit3.classList.remove('hidden');
+            rateSubmit4.classList.add('hidden');
+            rateSubmit5.classList.add('hidden');
+            defaultSubmit.classList.add('hidden');
             });
         }
 
@@ -565,6 +642,12 @@
             starthree2.classList.remove('text-gray-500');
             starfive2.classList.remove('text-yellow-500');
             starfive2.classList.add('text-gray-500');
+             rateSubmit1.classList.add('hidden');
+            rateSubmit2.classList.add('hidden');
+            rateSubmit3.classList.add('hidden');
+            rateSubmit4.classList.remove('hidden');
+            rateSubmit5.classList.add('hidden');
+            defaultSubmit.classList.add('hidden');
             });
         }
 
@@ -577,6 +660,12 @@
             starfour2.classList.remove('text-gray-500');
             starfive2.classList.add('text-yellow-500');
             starfive2.classList.remove('text-gray-500');
+             rateSubmit1.classList.add('hidden');
+            rateSubmit2.classList.add('hidden');
+            rateSubmit3.classList.add('hidden');
+            rateSubmit4.classList.add('hidden');
+            rateSubmit5.classList.remove('hidden');
+            defaultSubmit.classList.add('hidden');
             });
         }
          if (clear) {
@@ -592,6 +681,12 @@
             starthree2.classList.add('text-gray-500');
             starfour2.classList.add('text-gray-500');
             starfive2.classList.add('text-gray-500');
+            rateSubmit1.classList.add('hidden');
+            rateSubmit2.classList.add('hidden');
+            rateSubmit3.classList.add('hidden');
+            rateSubmit4.classList.add('hidden');
+            rateSubmit5.classList.add('hidden');
+            defaultSubmit.classList.remove('hidden');
             });
         }
         });
