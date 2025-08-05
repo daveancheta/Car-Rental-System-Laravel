@@ -110,3 +110,4 @@ Route::post('/submitDriverMessage', [SendMessageController::class, 'drivermessag
 
 // Submit Rate 
 Route::patch('/submit-{rent}-service-rate', [RateController::class, 'update']);
+Route::patch('/submit2-service-rate', [RateController::class, 'edit']);

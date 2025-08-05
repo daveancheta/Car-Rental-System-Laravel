@@ -85,11 +85,12 @@
                                     <div class="p-5 flex flex-col gap-4">
                                         <span class="text-white">Please rate your experience with our Driver.</span>
                                         <div class="flex flex-row gap-1">
-                                            <form id="rate2-submit-1-{{$rent->id}}"
-                                                action="/submit-{{$rent->driver}}-service-rate" method="POST">
+                                            <form id="rate2-submit-1-{{$rent->driver}}"
+                                                action="/submit2-service-rate" method="POST">
                                                 @csrf
                                                 @method('PATCH')
-                                                <input id="input-1-{{$rent->driver}}" type="hidden" name="service_rate"
+                                                <input type="hidden" name="id" value="{{$rent->id}}">
+                                                <input id="input-1-{{$rent->driver}}" type="hidden" name="driver_rate"
                                                     value="1">
                                                 <button type="button" id="starone2-{{ $rent->driver }}"
                                                     class="w-8 h-8 text-gray-500 cursor-pointer">
@@ -101,11 +102,12 @@
                                                 </button>
                                             </form>
 
-                                            <form id="rate2-submit-2-{{$rent->id}}"
-                                                action="/submit-{{$rent->driver}}-service-rate" method="POST">
+                                            <form id="rate2-submit-2-{{$rent->driver}}"
+                                                action="/submit2-service-rate" method="POST">
                                                 @csrf
                                                 @method('PATCH')
-                                                <input id="input-2-{{$rent->driver}}" type="hidden" name="service_rate"
+                                                <input type="hidden" name="id" value="{{$rent->id}}">
+                                                <input id="input-2-{{$rent->driver}}" type="hidden" name="driver_rate"
                                                     value="2">
                                                 <button type="button" id="startwo2-{{ $rent->driver }}"
                                                     class="w-8 h-8 text-gray-500 cursor-pointer">
@@ -117,11 +119,12 @@
                                                 </button>
                                             </form>
 
-                                            <form id="rate2-submit-3-{{$rent->id}}"
-                                                action="/submit-{{$rent->driver}}-service-rate" method="POST">
+                                            <form id="rate2-submit-3-{{$rent->driver}}"
+                                                action="/submit2-service-rate" method="POST">
                                                 @csrf
                                                 @method('PATCH')
-                                                <input id="input-3-{{$rent->driver}}" type="hidden" name="service_rate"
+                                                <input type="hidden" name="id" value="{{$rent->id}}">
+                                                <input id="input-3-{{$rent->driver}}" type="hidden" name="driver_rate"
                                                     value="3">
                                                 <button type="button" id="starthree2-{{ $rent->driver }}"
                                                     class="w-8 h-8 text-gray-500 cursor-pointer">
@@ -133,11 +136,12 @@
                                                 </button>
                                             </form>
 
-                                            <form id="rate2-submit-4-{{$rent->id}}"
-                                                action="/submit-{{$rent->driver}}-service-rate" method="POST">
+                                            <form id="rate2-submit-4-{{$rent->driver}}"
+                                                action="/submit2-service-rate" method="POST">
                                                 @csrf
                                                 @method('PATCH')
-                                                <input id="input-4-{{$rent->driver}}" type="hidden" name="service_rate"
+                                                <input type="hidden" name="id" value="{{$rent->id}}">
+                                                <input id="input-4-{{$rent->driver}}" type="hidden" name="driver_rate"
                                                     value="4">
                                                 <button type="button" id="starfour2-{{ $rent->driver }}"
                                                     class="w-8 h-8 text-gray-500 cursor-pointer">
@@ -149,11 +153,12 @@
                                                 </button>
                                             </form>
 
-                                            <form id="rate2-submit-5-{{$rent->id}}"
-                                                action="/submit-{{$rent->driver}}-service-rate" method="POST">
+                                            <form id="rate2-submit-5-{{$rent->driver}}"
+                                                action="/submit2-service-rate" method="POST">
                                                 @csrf
                                                 @method('PATCH')
-                                                <input id="input-5-{{$rent->driver}}" type="hidden" name="service_rate"
+                                                <input type="hidden" name="id" value="{{$rent->id}}">
+                                                <input id="input-5-{{$rent->driver}}" type="hidden" name="driver_rate"
                                                     value="5">
                                                 <button type="button" id="starfive2-{{ $rent->driver }}"
                                                     class="w-8 h-8 text-gray-500 cursor-pointer">

@@ -42,9 +42,18 @@ class RateController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, Rent $rent)
     {
-        //
+        $validated = $request->validate([
+            'id' => 'nullable',
+            'driver_rate' => 'nullable'
+        ]);
+
+        $driverId = $request->input('id');
+        $driverRate = $request->input('driver_rate');
+        Rent::where('id', $driverId)->update(['driver_rate' => $driverRate]);
+
+        return redirect('/display');
     }
 
     /**
