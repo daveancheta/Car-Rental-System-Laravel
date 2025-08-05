@@ -11,6 +11,7 @@ use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\SendMessageController;
+use App\Http\Controllers\RateController;
 use App\Mail\VerificationMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -106,3 +107,6 @@ Route::get('/getcustomerSessionMessage/{room}/{driver}', [GetController::class, 
 // User Send Message
 Route::post('/submitMessage', [SendMessageController::class, 'store']);
 Route::post('/submitDriverMessage', [SendMessageController::class, 'drivermessage']);
+
+// Submit Rate 
+Route::patch('/submit-{rent}-service-rate', [RateController::class, 'update']);

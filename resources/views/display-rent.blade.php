@@ -94,7 +94,7 @@
                         <div class="flex justify-end space-x-4">
                             @if($rent->service_rate !== NULL)
                             @else
-                               <button type="button" data-modal-target="rate-{{ $rent->id }}"
+                            <button type="button" data-modal-target="rate-{{ $rent->id }}"
                                 data-modal-toggle="rate-{{ $rent->id }}"
                                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-yellow-100 text-yellow-900 rounded-lg mt-4 cursor-pointer">
                                 Rate
@@ -139,58 +139,86 @@
                                 <span class="text-white">Please rate your experience with our service and
                                     vehicle.</span>
                                 <div class="flex flex-row gap-1">
-                                    <button type="button" id="starone-{{ $rent->id }}"
-                                        class="w-8 h-8 text-gray-500 cursor-pointer">
-                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                    </button>
+                                    <form id="rate-submit-1-{{$rent->id}}" action="/submit-{{$rent->id}}-service-rate"
+                                        method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <input id="input-1-{{$rent->id}}" type="hidden" name="service_rate" value="1">
+                                        <button type="button" id="starone-{{ $rent->id }}"
+                                            class="w-8 h-8 text-gray-500 cursor-pointer">
+                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        </button>
+                                    </form>
 
-                                    <button type="button" id="startwo-{{ $rent->id }}"
-                                        class="w-8 h-8 text-gray-500 cursor-pointer">
-                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                    </button>
+                                    <form id="rate-submit-2-{{$rent->id}}" action="/submit-{{$rent->id}}-service-rate"
+                                        method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <input id="input-2-{{$rent->id}}" type="hidden" name="service_rate" value="2">
+                                        <button type="button" id="startwo-{{ $rent->id }}"
+                                            class="w-8 h-8 text-gray-500 cursor-pointer">
+                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        </button>
+                                    </form>
 
-                                    <button type="button" id="starthree-{{ $rent->id }}"
-                                        class="w-8 h-8 text-gray-500 cursor-pointer">
-                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                    </button>
+                                    <form id="rate-submit-3-{{$rent->id}}" action="/submit-{{$rent->id}}-service-rate" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <input id="input-3-{{$rent->id}}" type="hidden" name="service_rate" value="3">
+                                        <button type="button" id="starthree-{{ $rent->id }}"
+                                            class="w-8 h-8 text-gray-500 cursor-pointer">
+                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        </button>
+                                    </form>
 
-                                    <button type="button" id="starfour-{{ $rent->id }}"
-                                        class="w-8 h-8 text-gray-500 cursor-pointer">
-                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                    </button>
+                                    <form id="rate-submit-4-{{$rent->id}}" action="/submit-{{$rent->id}}-service-rate" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <input id="input-4-{{$rent->id}}" type="hidden" name="service_rate" value="4">
+                                        <button type="button" id="starfour-{{ $rent->id }}"
+                                            class="w-8 h-8 text-gray-500 cursor-pointer">
+                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        </button>
+                                    </form>
 
-                                    <button type="button" id="starfive-{{ $rent->id }}"
-                                        class="w-8 h-8 text-gray-500 cursor-pointer">
-                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                    </button>
-
+                                    <form id="rate-submit-5-{{$rent->id}}" action="/submit-{{$rent->id}}-service-rate" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <input id="input-5-{{$rent->id}}" type="hidden" name="service_rate" value="5">
+                                        <button type="button" id="starfive-{{ $rent->id }}"
+                                            class="w-8 h-8 text-gray-500 cursor-pointer">
+                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        </button>
+                                    </form>
 
                                 </div>
 
                                 @if ($rent->driver === NULL)
                                 @else
                                 <div class="flex flex-col gap-4">
-                                    <span class="text-white">Please rate your experience with our Driver.</span>
+                                    <span class="text-white">Please rate your experience with our Driver <span
+                                            class="text-yellow-500">({{ $rent->first_name}} {{
+                                            $rent->last_name}})</span>.</span>
                                     <div class="flex flex-row gap-1">
                                         <button type="button" id="starone2-{{ $rent->id }}"
                                             class="w-8 h-8 text-gray-500 cursor-pointer">
@@ -236,6 +264,7 @@
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                             </svg>
                                         </button>
+                                        
 
 
                                     </div>
@@ -247,8 +276,29 @@
                         <!-- Modal footer -->
                         <div
                             class="flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
-                            <button data-modal-hide="large-modal" type="button"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+
+                             <button id="default-button-{{$rent->id}}" data-modal-hide="large-modal" type="button"
+                                  class="font-medium text-sm px-5 py-2.5 text-center bg-gray-900 text-white rounded-lg mt-4 cursor-not-allowed select-none">Submit</button>
+
+                            <button form="rate-submit-1-{{$rent->id}}" data-modal-hide="large-modal" type="submit"
+                                id="rating-{{ $rent->id }}-1"
+                                class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
+
+                            <button form="rate-submit-2-{{$rent->id}}" data-modal-hide="large-modal" type="submit"
+                                id="rating-{{ $rent->id }}-2"
+                                class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
+
+                            <button form="rate-submit-3-{{$rent->id}}" data-modal-hide="large-modal" type="submit"
+                                id="rating-{{ $rent->id }}-3"
+                                class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
+
+                                   <button form="rate-submit-4-{{$rent->id}}" data-modal-hide="large-modal" type="submit"
+                            id="rating-{{ $rent->id }}-4" 
+                                class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
+
+                                   <button form="rate-submit-5-{{$rent->id}}" data-modal-hide="large-modal" type="submit"
+                            id="rating-{{ $rent->id }}-5" 
+                                class="hidden font-medium text-sm px-5 py-2.5 text-center bg-yellow-100 text-yellow-900 text-white rounded-lg mt-4">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -283,7 +333,15 @@
         const starthree = document.getElementById(`starthree-${id}`);
         const starfour = document.getElementById(`starfour-${id}`);
         const starfive = document.getElementById(`starfive-${id}`);
-        const clear = document.getElementById(`clear-rating-${id}`);
+        const clear = document.getElementById(`clear-rating-${id}`);  
+        const rateSubmit1 = document.getElementById(`rating-${id}-1`);  
+        const rateSubmit2 = document.getElementById(`rating-${id}-2`);  
+        const rateSubmit3 = document.getElementById(`rating-${id}-3`);  
+        const rateSubmit4 = document.getElementById(`rating-${id}-4`);  
+        const rateSubmit5 = document.getElementById(`rating-${id}-5`); 
+        const defaultSubmit = document.getElementById(`default-button-${id}`);
+        
+
     
         if (starone) {
             starone.addEventListener('click', function() {
@@ -297,6 +355,12 @@
             starthree.classList.add('text-gray-500');
             starfour.classList.add('text-gray-500');
             starfive.classList.add('text-gray-500');
+            rateSubmit1.classList.remove('hidden');
+            rateSubmit2.classList.add('hidden');
+            rateSubmit3.classList.add('hidden');
+            rateSubmit4.classList.add('hidden');
+            rateSubmit5.classList.add('hidden');
+            defaultSubmit.classList.add('hidden')
             });
         }
 
@@ -310,6 +374,12 @@
             starthree.classList.add('text-gray-500');
             starfour.classList.add('text-gray-500');
             starfive.classList.add('text-gray-500');
+            rateSubmit1.classList.add('hidden');
+            rateSubmit2.classList.remove('hidden');
+            rateSubmit3.classList.add('hidden');
+            rateSubmit4.classList.add('hidden');
+            rateSubmit5.classList.add('hidden');
+             defaultSubmit.classList.add('hidden')
             });
         }
 
@@ -323,6 +393,12 @@
             starfive.classList.remove('text-yellow-500');
             starfour.classList.add('text-gray-500');
             starfive.classList.add('text-gray-500');
+              rateSubmit1.classList.add('hidden');
+            rateSubmit2.classList.add('hidden');
+            rateSubmit3.classList.remove('hidden');
+            rateSubmit4.classList.add('hidden');
+            rateSubmit5.classList.add('hidden');
+             defaultSubmit.classList.add('hidden')
             });
         }
 
@@ -336,6 +412,12 @@
             starthree.classList.remove('text-gray-500');
             starfive.classList.remove('text-yellow-500');
             starfive.classList.add('text-gray-500');
+              rateSubmit1.classList.add('hidden');
+            rateSubmit2.classList.add('hidden');
+            rateSubmit3.classList.add('hidden');
+            rateSubmit4.classList.remove('hidden');
+            rateSubmit5.classList.add('hidden');
+             defaultSubmit.classList.add('hidden')
             });
         }
 
@@ -348,6 +430,12 @@
             starfour.classList.remove('text-gray-500');
             starfive.classList.add('text-yellow-500');
             starfive.classList.remove('text-gray-500');
+              rateSubmit1.classList.add('hidden');
+            rateSubmit2.classList.add('hidden');
+            rateSubmit3.classList.add('hidden');
+            rateSubmit4.classList.add('hidden');
+            rateSubmit5.classList.remove('hidden');
+             defaultSubmit.classList.add('hidden')
             });
         }
          if (clear) {
@@ -363,6 +451,11 @@
             starthree.classList.add('text-gray-500');
             starfour.classList.add('text-gray-500');
             starfive.classList.add('text-gray-500');
+              rateSubmit1.classList.add('hidden');
+            rateSubmit2.classList.add('hidden');
+            rateSubmit3.classList.add('hidden');
+            rateSubmit4.classList.add('hidden');
+            rateSubmit5.classList.add('hidden');
             });
         }
         });
