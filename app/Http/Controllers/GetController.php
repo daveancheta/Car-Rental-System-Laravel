@@ -332,4 +332,12 @@ class GetController extends Controller
 
         return response()->json($customerSessionMessage);
     }
+    public function crudUser()
+    {
+        $users = User::where('is_admin', NULL)
+        ->where('is_driver', NULL)
+        ->get();
+
+        return view('admin.crud-user', compact('users'));
+    }
 }
