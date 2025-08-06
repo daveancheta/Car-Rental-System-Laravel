@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('verification_code')->nullable();
             $table->boolean('is_admin')->nullable();
             $table->boolean('is_driver')->nullable();
+            $table->timestamps('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
