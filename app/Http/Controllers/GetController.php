@@ -339,7 +339,7 @@ class GetController extends Controller
         ->get();
 
         foreach ($users as $u) {
-            $u->last_login = Carbon::parse($u->last_login)->format('F j, Y - h:i:s');
+            $u->last_login2 = Carbon::parse($u->last_login)->format('F j, Y - h:i:s');
         }
 
         return view('admin.crud-user', compact('users'));

@@ -4,6 +4,10 @@
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
+    @php
+        $date7daysago = \Carbon\Carbon::now()->sub(7, 'days');
+    @endphp
+ {{ $date7daysago }}
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -44,8 +48,6 @@
             </thead>
             <tbody>
                 @foreach ($users as $u)
-
-
                 <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="w-4 p-4">
@@ -80,7 +82,11 @@
                         </div>
                     </td>
                     <td class="px-10 py-4">
-                     
+                     @if($u->last_login <= $date7daysago)
+                        INACTIVE
+                    @elseif($u->last_login >= $date7daysago)
+                    ACTIVE
+                     @endif
                     </td>
                     <td class="px-10 py-4 uppercase">
                         @if($u->account_status === 'verified')
@@ -113,7 +119,7 @@
 
                     </td>
                     <td class="px-10 py-4">
-                        {{ $u->last_login }}
+                        {{ $u->last_login2 }}
                     </td>
                     <td class="px-10 py-4">
                         {{ $u->created_at->format('F j, Y - h:i:s')}}
