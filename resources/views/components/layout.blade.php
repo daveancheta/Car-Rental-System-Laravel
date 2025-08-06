@@ -107,7 +107,7 @@
                     </svg>
 
                     @else
-                    <img class="w-8 h-8 rounded-full select-none" src="{{ asset('storage/' . Auth::user()->profile) }}"
+                    <img class="w-8 h-8 rounded-full select-none object-cover" src="{{ asset('storage/' . Auth::user()->profile) }}"
                         alt="profile">
                     @endif
 
