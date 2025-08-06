@@ -7,7 +7,6 @@
     @php
         $date7daysago = \Carbon\Carbon::now()->sub(7, 'days');
     @endphp
- {{ $date7daysago }}
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -83,9 +82,15 @@
                     </td>
                     <td class="px-10 py-4">
                      @if($u->last_login <= $date7daysago)
-                        INACTIVE
+                        <div class="flex flex-row gap-2 items-center">
+                            <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                            <span>Inactive</span>
+                        </div>
                     @elseif($u->last_login >= $date7daysago)
-                    ACTIVE
+                     <div class="flex flex-row gap-2 items-center">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span>Active</span>
+                        </div>
                      @endif
                     </td>
                     <td class="px-10 py-4 uppercase">
