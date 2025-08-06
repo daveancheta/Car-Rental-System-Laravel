@@ -26,14 +26,13 @@ return new class extends Migration
             $table->string('valid_id_photo')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('profile')->nullable()->nullable();
+            $table->string('profile')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('account_status')->nullable();
             $table->string('verification_code')->nullable();
             $table->boolean('is_admin')->nullable();
             $table->boolean('is_driver')->nullable();
-            $table->timestamps('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

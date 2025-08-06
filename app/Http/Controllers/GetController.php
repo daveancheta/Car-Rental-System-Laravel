@@ -338,6 +338,10 @@ class GetController extends Controller
         ->where('is_driver', NULL)
         ->get();
 
+        foreach ($users as $u) {
+            $u->last_login = Carbon::parse($u->last_login)->format('F j, Y - h:i:s');
+        }
+
         return view('admin.crud-user', compact('users'));
     }
 }

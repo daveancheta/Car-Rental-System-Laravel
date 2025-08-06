@@ -80,7 +80,7 @@
                         </div>
                     </td>
                     <td class="px-10 py-4">
-
+                     
                     </td>
                     <td class="px-10 py-4 uppercase">
                         @if($u->account_status === 'verified')
@@ -113,10 +113,10 @@
 
                     </td>
                     <td class="px-10 py-4">
-                        
+                        {{ $u->last_login }}
                     </td>
                     <td class="px-10 py-4">
-                        {{ $u->created_at->format('F j, Y - h:i:s') }}
+                        {{ $u->created_at->format('F j, Y - h:i:s')}}
                     </td>
                     <td class="px-10 py-4">
                         {{ $u->updated_at->format('F j, Y - h:i:s') }}
