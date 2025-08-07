@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rent;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -44,12 +45,15 @@ class DriverController extends Controller
             ]);
         }
 
-        request()->session()->regenerate();
+        $userId = Auth::id();
+
+        request()->session()->regenerate();   
+        User::where('id', $userId)->update(['last_login' => Carbon::now()]);
 
         return redirect('/driverhomes');
     }
 
-      public function register(Request $request)
+    public function register(Request $request)
     {
         $validated = request()->validate([
             'first_name' => ['required'],
@@ -65,11 +69,11 @@ class DriverController extends Controller
             'valid_id_photo' => ['nullable'],
         ]);
 
-           if ($request->hasFile('valid_id_photo')) {
+        if ($request->hasFile('valid_id_photo')) {
             $validated['valid_id_photo'] = $request->valid_id_photo->store('valid_id', 'public');
         }
 
-          if ($request->hasFile('profile')) {
+        if ($request->hasFile('profile')) {
             $validated['profile'] = $request->valid_id_photo->store('profile', 'public');
         }
 
@@ -120,9 +124,7 @@ class DriverController extends Controller
             'user_id' => ['required']
         ]);
 
-           $driverId = $request->input('user_id');
-           Rent::where('driver', $driverId)->update(['notifStatus' => 'done']);
-
+        $driverId = $request->input('user_id');
+        Rent::where('driver', $driverId)->update(['notifStatus' => 'done']);
     }
-
 }
