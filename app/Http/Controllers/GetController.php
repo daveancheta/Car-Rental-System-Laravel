@@ -334,9 +334,7 @@ class GetController extends Controller
     }
     public function crudUser()
     {
-        $users = User::where('is_admin', NULL)
-        ->where('is_driver', NULL)
-        ->get();
+        $users = User::get();
 
         foreach ($users as $u) {
             $u->last_login2 = Carbon::parse($u->last_login)->format('F j, Y - h:i:s');
