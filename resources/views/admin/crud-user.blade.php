@@ -8,7 +8,7 @@
     $date7daysago = \Carbon\Carbon::now()->sub(7, 'days');
     @endphp
 
-    <div class="mb-5"> 
+    <div class="mb-5">
         <button class="bg-blue-800 text-white text-sm p-2.5 flex justify-center rounded-md">
             <div class="flex flex-row items-center gap-1">
                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -213,6 +213,10 @@
     </td>
     </tr>
     @endforeach
+    <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <td colspan="9" class="px-10 py-4">{{ $users->links() }}</td>
+    </tr>
     </tbody>
     </table>
     </div>
