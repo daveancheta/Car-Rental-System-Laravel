@@ -8,6 +8,18 @@
     $date7daysago = \Carbon\Carbon::now()->sub(7, 'days');
     @endphp
 
+    <div class="mb-5"> 
+        <button class="bg-blue-800 text-white text-sm p-2.5 flex justify-center rounded-md">
+            <div class="flex flex-row items-center gap-1">
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 12h14m-7 7V5" />
+                </svg>
+                <span>Add New User</span>
+            </div>
+        </button>
+    </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
