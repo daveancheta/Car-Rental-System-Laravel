@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\Cars;
 use App\Models\Rent;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -46,8 +47,11 @@ class AdminController extends Controller
             ]);
         }
 
-        request()->session()->regenerate();
 
+        $userId = Auth::id();
+
+        request()->session()->regenerate();
+        User::where('id', $userId)->update(['last_login' => Carbon::now()]);
         return redirect('/admindashboard');
     }
 
@@ -69,33 +73,33 @@ class AdminController extends Controller
         return view('admin.edit-rented', compact('rent'));
     }
 
-   public function update(Request $request, Rent $rent)
-{
-    Gate::authorize('access-admin');
+    public function update(Request $request, Rent $rent)
+    {
+        Gate::authorize('access-admin');
 
-    $validated = $request->validate([
-        'status' => 'required'
-    ]);
+        $validated = $request->validate([
+            'status' => 'required'
+        ]);
 
-    $rent->update($validated); 
+        $rent->update($validated);
 
-    
-    $rent->refresh();
 
-    if ($rent->car_id) {
-        $car = Cars::find($rent->car_id);
+        $rent->refresh();
 
-        if ($car) {
-            if (in_array($rent->status, ['declined', 'done'])) {
-                $car->update(['status' => 'available']);
-            } elseif (in_array($rent->status, ['approved', 'pending'])) {
-                $car->update(['status' => 'rented']);
+        if ($rent->car_id) {
+            $car = Cars::find($rent->car_id);
+
+            if ($car) {
+                if (in_array($rent->status, ['declined', 'done'])) {
+                    $car->update(['status' => 'available']);
+                } elseif (in_array($rent->status, ['approved', 'pending'])) {
+                    $car->update(['status' => 'rented']);
+                }
             }
         }
-    }
 
-    return redirect('/rented/' . $rent->id . '/admin');
-}
+        return redirect('/rented/' . $rent->id . '/admin');
+    }
 
 
     /**
