@@ -8,8 +8,9 @@
     $date7daysago = \Carbon\Carbon::now()->sub(7, 'days');
     @endphp
 
-    <div class="mb-5">
-        <button class="bg-blue-800 text-white text-sm p-2.5 flex justify-center rounded-md">
+    <div class="mb-5 flex justify-between">
+        <div>
+            <button class="bg-blue-800 text-white text-sm p-2.5 flex justify-center rounded-md">
             <div class="flex flex-row items-center gap-1">
                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -19,6 +20,12 @@
                 <span>Add New User</span>
             </div>
         </button>
+        </div>
+        <div class="flex flex-row gap-0">
+            <button class="bg-gray-700 text-white text-sm p-2.5 flex justify-center rounded-l-md cursor-pointer hover:scale-110 transform transition duration-300 hover:rounded-md hover:z-50">Suspend All</button>
+            <button class="bg-gray-700 text-white text-sm p-2.5 flex justify-center border-l border-black cursor-pointer hover:scale-110 transform transition duration-300 hover:rounded-md hover:border-none hover:z-50">Archive All</button>
+            <button class="bg-gray-700 text-white text-sm p-2.5 flex justify-center rounded-r-md border-l border-black cursor-pointer hover:scale-110 transform transition duration-300 hover:rounded-md hover:border-none">Delete All</button>
+        </div>
     </div>
     <div class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sm:rounded-lg mb-3 p-5">
         <p class="dark:text-gray-400 text-md">All USers: <span class="text-white font-bold">{{ $usersCount }}</span></p>
