@@ -20,6 +20,9 @@
             </div>
         </button>
     </div>
+    <div class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sm:rounded-lg mb-3 p-5">
+        <p class="dark:text-gray-400 text-md">All USers: <span class="text-white font-bold">{{ $usersCount }}</span></p>
+    </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
