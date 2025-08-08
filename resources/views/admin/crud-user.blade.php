@@ -11,20 +11,26 @@
     <div class="mb-5 flex justify-between">
         <div>
             <button class="bg-blue-800 text-white text-sm p-2.5 flex justify-center rounded-md">
-            <div class="flex flex-row items-center gap-1">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M5 12h14m-7 7V5" />
-                </svg>
-                <span>Add New User</span>
-            </div>
-        </button>
+                <div class="flex flex-row items-center gap-1">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 12h14m-7 7V5" />
+                    </svg>
+                    <span>Add New User</span>
+                </div>
+            </button>
         </div>
         <div class="flex flex-row gap-0">
-            <button class="bg-gray-700 text-white text-sm p-2.5 flex justify-center rounded-l-md cursor-pointer hover:scale-110 transform transition duration-300 hover:rounded-md hover:z-50">Suspend All</button>
-            <button class="bg-gray-700 text-white text-sm p-2.5 flex justify-center border-l border-black cursor-pointer hover:scale-110 transform transition duration-300 hover:rounded-md hover:border-none hover:z-50">Archive All</button>
-            <button class="bg-gray-700 text-white text-sm p-2.5 flex justify-center rounded-r-md border-l border-black cursor-pointer hover:scale-110 transform transition duration-300 hover:rounded-md hover:border-none">Delete All</button>
+            <button
+                class="bg-gray-700 text-white text-sm p-2.5 flex justify-center rounded-l-md cursor-pointer hover:scale-110 transform transition duration-300 hover:rounded-md hover:z-50">Suspend
+                All</button>
+            <button
+                class="bg-gray-700 text-white text-sm p-2.5 flex justify-center border-l border-black cursor-pointer hover:scale-110 transform transition duration-300 hover:rounded-md hover:border-none hover:z-50">Archive
+                All</button>
+            <button
+                class="bg-gray-700 text-white text-sm p-2.5 flex justify-center rounded-r-md border-l border-black cursor-pointer hover:scale-110 transform transition duration-300 hover:rounded-md hover:border-none">Delete
+                All</button>
         </div>
     </div>
     <div class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sm:rounded-lg mb-3 p-5">
@@ -229,6 +235,120 @@
     </tr>
     </tbody>
     </table>
+    </div>
+
+
+    <div class="mt-10 mb-5 flex justify-between">
+        <div>
+            <button class="bg-blue-800 text-white text-sm p-2.5 flex justify-center rounded-md">
+                <div class="flex flex-row items-center gap-1">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 12h14m-7 7V5" />
+                    </svg>
+                    <span>Add New Car</span>
+                </div>
+            </button>
+        </div>
+        <div class="flex flex-row gap-0">
+            <button
+                class="bg-gray-700 text-white text-sm p-2.5 flex justify-center rounded-l-md cursor-pointer hover:scale-110 transform transition duration-300 hover:rounded-md hover:z-50">Suspend
+                All</button>
+            <button
+                class="bg-gray-700 text-white text-sm p-2.5 flex justify-center border-l border-black cursor-pointer hover:scale-110 transform transition duration-300 hover:rounded-md hover:border-none hover:z-50">Archive
+                All</button>
+            <button
+                class="bg-gray-700 text-white text-sm p-2.5 flex justify-center rounded-r-md border-l border-black cursor-pointer hover:scale-110 transform transition duration-300 hover:rounded-md hover:border-none">Delete
+                All</button>
+        </div>
+    </div>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="p-4">
+                        <div class="flex items-center">
+                            <input id="checkbox-all-search" type="checkbox"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                        </div>
+                    </th>
+                    <th scope="col" class="px-10 py-3">
+                        Car Name
+                    </th>
+                    <th scope="col" class="px-10 py-3">
+                        Car Price
+                    </th>
+                    <th scope="col" class="px-10 py-3">
+                        Description
+                    </th>
+                    <th scope="col" class="px-10 py-3">
+                        Image
+                    </th>
+                    <th scope="col" class="px-10 py-3">
+                        Driver
+                    </th>
+                    <th scope="col" class="px-10 py-3">
+                        Status
+                    </th>
+                    <th scope="col" class="px-10 py-3">
+                        Created At
+                    </th>
+                    <th scope="col" class="px-10 py-3">
+                        Updated At
+                    </th>
+                    <th scope="col" class="px-10 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($cars as $c)
+                <tr
+                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td class="w-4 p-4">
+                        <div class="flex items-center">
+                            <input id="checkbox-table-search-1" type="checkbox"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 dark:bg">
+                            <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                        </div>
+                    </td>
+                    <th scope="row" class="px-6 py-4">
+                        {{ $c->car_name}}
+                    </th>
+                    <td class="px-10 py-4">
+                        
+                    </td>
+                    <td class="px-10 py-4">
+
+                    </td>
+                    <td class="px-10 py-4">
+
+                    </td>
+                    <td class="px-10 py-4">
+
+                    </td>
+                    <td class="px-10 py-4">
+
+                    </td>
+                    <td class="px-10 py-4">
+
+                    </td>
+                    <td class="px-10 py-4">
+
+                    </td>
+                    <td class="flex items-center px-6 py-4">
+                    </td>
+                </tr>
+                @endforeach
+                <tr
+                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td colspan="10" class="px-10 py-4">{{ $users->links() }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 </x-admin-layout>

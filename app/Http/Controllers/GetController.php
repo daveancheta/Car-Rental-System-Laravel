@@ -337,10 +337,13 @@ class GetController extends Controller
         $users = User::paginate(10);
         $usersCount = User::count();
 
+        $cars = Cars::paginate(10);
+        $carsCount = Cars::count();
+
         foreach ($users as $u) {
             $u->last_login2 = Carbon::parse($u->last_login)->format('F j, Y - h:i:s');
         }
 
-        return view('admin.crud-user', compact('users', 'usersCount'));
+        return view('admin.crud-user', compact('users', 'usersCount', 'cars', 'carsCount'));
     }
 }
