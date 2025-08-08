@@ -319,27 +319,29 @@
                         {{ $c->car_name}}
                     </th>
                     <td class="px-10 py-4">
-                        
+                        {{ $c->car_price}}
                     </td>
                     <td class="px-10 py-4">
-
+                        {{ $c->description}}
                     </td>
                     <td class="px-10 py-4">
-
+                        {{ $c->image}}
                     </td>
                     <td class="px-10 py-4">
-
+                        {{ $c->driver}}
                     </td>
                     <td class="px-10 py-4">
-
+                        {{ $c->status }}
                     </td>
                     <td class="px-10 py-4">
-
+                        {{ $c->created_at->format('F d, y - h:i:s') }}
                     </td>
                     <td class="px-10 py-4">
-
+                        {{ $c->updated_at->format('F d, y - h:i:s') }}
                     </td>
                     <td class="flex items-center px-6 py-4">
+                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
                     </td>
                 </tr>
                 @endforeach
